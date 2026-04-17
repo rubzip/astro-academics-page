@@ -40,6 +40,7 @@ const activeSocials = SOCIALS.filter((s) => s.active);
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    aria-hidden="true"
                     class="opacity-70"
                     ><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"
                     ></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"
@@ -58,6 +59,7 @@ const activeSocials = SOCIALS.filter((s) => s.active);
                     activeSocials.map((social) => (
                         <a
                             href={social.href}
+                            aria-label={social.linkTitle}
                             title={social.linkTitle}
                             target="_blank"
                             rel="noreferrer"
