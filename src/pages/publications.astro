@@ -21,53 +21,57 @@ const sortedPublications = publications.sort(
         {
             sortedPublications.map((pub) => (
                 <article class="publication-item">
-                    <a href={`/publications/${pub.id}`} class="post-link">
-                        <h3>{pub.data.title}</h3>
-                    </a>
-                    <div class="post-meta">
-                        <span class="date">
-                            {pub.data.publicationDate.toLocaleDateString(
-                                "en-US",
-                                {
-                                    year: "numeric",
-                                    month: "long",
-                                    day: "numeric",
-                                },
-                            )}
-                        </span>
+                    <div class="publication-content">
+                        <a
+                            href={
+                                pub.data.url ||
+                                pub.data.pdf ||
+                                `https://doi.org/${pub.data.doi}`
+                            }
+                            target="_blank"
+                            class="post-link"
+                        >
+                            <h3>{pub.data.title}</h3>
+                        </a>
+                        <div class="post-meta">
+                            <span class="date">
+                                {pub.data.publicationDate.toLocaleDateString(
+                                    "en-US",
+                                    {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    },
+                                )}
+                            </span>
+                        </div>
+                        <p class="authors">{pub.data.authors.join(", ")}</p>
+                        {pub.data.journal && (
+                            <p class="journal">
+                                <em>{pub.data.journal}</em>
+                            </p>
+                        )}
+                        <p class="description">{pub.data.description || ""}</p>
                     </div>
-                    <p class="authors">{pub.data.authors.join(", ")}</p>
-                    {pub.data.journal && (
-                        <p class="journal">
-                            <em>{pub.data.journal}</em>
-                        </p>
-                    )}
-                    <p class="description">{pub.data.description || ""}</p>
-                    <div class="links">
+                    <div class="publication-links">
                         {pub.data.doi && (
                             <a
                                 href={`https://doi.org/${pub.data.doi}`}
                                 target="_blank"
                             >
-                                DOI
+                                DOI &rarr;
                             </a>
                         )}
                         {pub.data.url && (
                             <a href={pub.data.url} target="_blank">
-                                Publisher Website
+                                Publisher &rarr;
                             </a>
                         )}
                         {pub.data.pdf && (
                             <a href={pub.data.pdf} target="_blank">
-                                PDF
+                                PDF &rarr;
                             </a>
                         )}
-                        <a
-                            href={`/publications/${pub.id}`}
-                            class="details-link"
-                        >
-                            Abstract & Details &rarr;
-                        </a>
                     </div>
                 </article>
             ))
@@ -95,9 +99,16 @@ const sortedPublications = publications.sort(
     .publication-item {
         padding-bottom: 2.5rem;
         border-bottom: 1px dashed var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
     }
     .publication-item:last-child {
         border-bottom: none;
+    }
+    .publication-content {
+        flex: 1;
     }
     .post-meta {
         margin-bottom: 0.75rem;
@@ -123,8 +134,8 @@ const sortedPublications = publications.sort(
         letter-spacing: -0.01em;
     }
     .authors {
-        font-weight: 500;
-        margin-top: 0.75rem;
+        font-weight: 600;
+        margin-top: 1rem;
         margin-bottom: 0.25rem;
         opacity: 0.9;
     }
@@ -138,19 +149,23 @@ const sortedPublications = publications.sort(
         line-height: 1.6;
         opacity: 0.8;
     }
-    .links {
-        margin-top: 1.5rem;
+    .publication-links {
         display: flex;
-        gap: 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex-shrink: 0;
+        text-align: right;
+        min-width: 120px;
     }
-    .links a {
+    .publication-links a {
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 700;
         color: var(--foreground);
         transition: color 0.2s;
+        white-space: nowrap;
     }
-    .links a:hover {
+    .publication-links a:hover {
         color: var(--accent);
         text-decoration: underline;
     }

@@ -20,37 +20,40 @@ const sortedTalks = talks.sort(
         {
             sortedTalks.map((talk) => (
                 <article class="talk-item">
-                    <a href={`/talks/${talk.id}`} class="post-link">
-                        <h3>{talk.data.title}</h3>
-                    </a>
-                    <div class="post-meta">
-                        <span class="date">
-                            {talk.data.date.toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                            })}
-                        </span>
+                    <div class="talk-content">
+                        <a
+                            href={talk.data.slides || talk.data.video}
+                            target="_blank"
+                            class="post-link"
+                        >
+                            <h3>{talk.data.title}</h3>
+                        </a>
+                        <div class="post-meta">
+                            <span class="date">
+                                {talk.data.date.toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })}
+                            </span>
+                        </div>
+                        <p class="event">
+                            <strong>{talk.data.event}</strong>
+                        </p>
+                        <p class="location">{talk.data.location}</p>
+                        <p class="description">{talk.data.description || ""}</p>
                     </div>
-                    <p class="event">
-                        <strong>{talk.data.event}</strong>
-                    </p>
-                    <p class="location">{talk.data.location}</p>
-                    <p class="description">{talk.data.description || ""}</p>
-                    <div class="links">
+                    <div class="talk-links">
                         {talk.data.slides && (
                             <a href={talk.data.slides} target="_blank">
-                                Slides
+                                Slides &rarr;
                             </a>
                         )}
                         {talk.data.video && (
                             <a href={talk.data.video} target="_blank">
-                                Video
+                                Video &rarr;
                             </a>
                         )}
-                        <a href={`/talks/${talk.id}`} class="details-link">
-                            Talk Details & Abstract &rarr;
-                        </a>
                     </div>
                 </article>
             ))
@@ -78,9 +81,16 @@ const sortedTalks = talks.sort(
     .talk-item {
         padding-bottom: 2.5rem;
         border-bottom: 1px dashed var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
     }
     .talk-item:last-child {
         border-bottom: none;
+    }
+    .talk-content {
+        flex: 1;
     }
     .post-meta {
         margin-bottom: 0.75rem;
@@ -106,7 +116,7 @@ const sortedTalks = talks.sort(
         letter-spacing: -0.01em;
     }
     .event {
-        margin-top: 0.75rem;
+        margin-top: 1rem;
         margin-bottom: 0.25rem;
         font-weight: 600;
     }
@@ -120,19 +130,23 @@ const sortedTalks = talks.sort(
         line-height: 1.6;
         opacity: 0.8;
     }
-    .links {
-        margin-top: 1.5rem;
+    .talk-links {
         display: flex;
-        gap: 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex-shrink: 0;
+        text-align: right;
+        min-width: 120px;
     }
-    .links a {
+    .talk-links a {
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 700;
         color: var(--foreground);
         transition: color 0.2s;
+        white-space: nowrap;
     }
-    .links a:hover {
+    .talk-links a:hover {
         color: var(--accent);
         text-decoration: underline;
     }

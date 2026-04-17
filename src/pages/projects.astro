@@ -20,7 +20,8 @@ const projects = await getCollection("projects");
                     <div class="project-content">
                         <div class="post-link-wrapper">
                             <a
-                                href={`/projects/${project.id}`}
+                                href={project.data.github}
+                                target="_blank"
                                 class="post-link"
                             >
                                 <h3>{project.data.title}</h3>
@@ -45,12 +46,6 @@ const projects = await getCollection("projects");
                                 GitHub &rarr;
                             </a>
                         )}
-                        <a
-                            href={`/projects/${project.id}`}
-                            class="details-link"
-                        >
-                            Project Details &rarr;
-                        </a>
                     </div>
                 </article>
             ))
