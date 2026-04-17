@@ -4,19 +4,29 @@ import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
-    return posts.map((post) => ({
+    const sortedPosts = posts.sort(
+        (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+    );
+
+    return sortedPosts.map((post, i) => ({
         params: { id: post.id },
-        props: { post },
+        props: {
+            post,
+            prevPost: i > 0 ? sortedPosts[i - 1] : null,
+            nextPost: i < sortedPosts.length - 1 ? sortedPosts[i + 1] : null,
+        },
     }));
 }
 
-const { post } = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-    <article class="post-content">
-        <header>
+    <article class="post-container">
+        <a href="/blog" class="back-link">&larr; Back to Blog</a>
+
+        <header class="post-header">
             <div class="meta">
                 <time datetime={post.data.pubDate.toISOString()}>
                     {
@@ -27,6 +37,7 @@ const { Content } = await render(post);
                         })
                     }
                 </time>
+                <span class="separator">•</span>
                 <span class="author">By {post.data.author}</span>
             </div>
             <h1>{post.data.title}</h1>
@@ -34,58 +45,163 @@ const { Content } = await render(post);
                 {post.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
             </div>
         </header>
-        <hr />
-        <div class="prose">
+
+        <div class="divider"></div>
+
+        <div class="prose-content">
             <Content />
         </div>
+
+        <nav class="post-navigation">
+            {
+                prevPost && (
+                    <a href={`/blog/${prevPost.id}`} class="nav-prev">
+                        <span class="nav-label">Newer Post</span>
+                        <span class="nav-title">{prevPost.data.title}</span>
+                    </a>
+                )
+            }
+            <div class="nav-spacer"></div>
+            {
+                nextPost && (
+                    <a href={`/blog/${nextPost.id}`} class="nav-next">
+                        <span class="nav-label">Older Post</span>
+                        <span class="nav-title">{nextPost.data.title}</span>
+                    </a>
+                )
+            }
+        </nav>
     </article>
 </Layout>
 
 <style>
-    .post-content {
-        max-width: 700px;
+    .post-container {
+        max-width: 800px;
         margin: 0 auto;
+        padding-top: 2rem;
     }
-    header {
-        margin-bottom: 2rem;
+    .back-link {
+        display: inline-block;
+        margin-bottom: 3rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--text-muted);
+        transition: color 0.2s;
+    }
+    .back-link:hover {
+        color: var(--accent);
+    }
+    .post-header {
+        margin-bottom: 3rem;
     }
     .meta {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         color: var(--text-muted);
         display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
+        gap: 0.75rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+    .separator {
+        opacity: 0.5;
     }
     h1 {
-        font-size: 3rem;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
         font-weight: 800;
         margin: 0;
         line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--foreground);
     }
     .tags {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
         display: flex;
-        gap: 0.75rem;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
     .tag {
         font-size: 0.9rem;
-        color: var(--text-muted);
+        color: var(--accent);
+        font-weight: 600;
+        opacity: 0.8;
     }
-    hr {
-        border: 0;
-        border-top: 1px solid var(--border);
-        margin: 2rem 0;
+    .divider {
+        border-top: 1px dashed var(--border);
+        margin: 3rem 0;
     }
-    .prose {
+    .prose-content {
         line-height: 1.8;
-        font-size: 1.2rem;
+        font-size: 1.15rem;
+        color: var(--foreground);
     }
-    .prose :global(p) {
+    .prose-content :global(p) {
+        margin-bottom: 2rem;
+    }
+    .prose-content :global(h2) {
+        margin-top: 4rem;
         margin-bottom: 1.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
     }
-    .prose :global(h2) {
-        margin-top: 2.5rem;
+    .prose-content :global(h3) {
+        margin-top: 3rem;
         margin-bottom: 1rem;
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+    .prose-content :global(pre) {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+    .prose-content :global(blockquote) {
+        border-left: 4px solid var(--accent);
+        padding-left: 1.5rem;
+        margin: 2.5rem 0;
+        font-style: italic;
+        opacity: 0.9;
+    }
+
+    .post-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6rem;
+        padding-top: 3rem;
+        border-top: 1px dashed var(--border);
+        gap: 2rem;
+    }
+    .post-navigation a {
+        text-decoration: none;
+        max-width: 45%;
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+    }
+    .nav-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--foreground);
+        line-height: 1.3;
+        transition: color 0.2s;
+    }
+    .post-navigation a:hover .nav-title {
+        color: var(--accent);
+    }
+    .nav-next {
+        text-align: right;
+    }
+    .nav-spacer {
+        flex: 1;
     }
 </style>

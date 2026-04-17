@@ -8,7 +8,7 @@ export const SITE = {
     shortBio: "Theoretical physicist, developed the general theory of relativity.",
     institution: "Bern Patent Office",
     lightAndDarkMode: true,
-    postPerPage: 10,
+    postPerPage: 3,
 };
 
 export const LOCALE = ["en-EN"]; // set to [] to use the browser locale

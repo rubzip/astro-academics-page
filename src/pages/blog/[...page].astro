@@ -1,0 +1,188 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { SITE } from "../../config";
+
+export async function getStaticPaths({ paginate }) {
+    const posts = await getCollection("posts");
+    const sortedPosts = posts.sort(
+        (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+    );
+
+    return paginate(sortedPosts, { pageSize: SITE.postPerPage });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="Blog">
+    <header>
+        <h1>Blog</h1>
+        <p class="subtitle">Insights and updates on theoretical physics.</p>
+    </header>
+
+    <section class="posts-list">
+        {
+            page.data.map((post) => (
+                <article class="post-item">
+                    <div class="post-header">
+                        <a href={`/blog/${post.id}`} class="post-link">
+                            <h3>{post.data.title}</h3>
+                        </a>
+                        <div class="post-meta">
+                            <span class="date">
+                                {post.data.pubDate.toLocaleDateString("en-US", {
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })}
+                            </span>
+                        </div>
+                    </div>
+                    <p class="description">{post.data.description}</p>
+                    <div class="tags">
+                        {post.data.tags.map((tag) => (
+                            <span class="tag">#{tag}</span>
+                        ))}
+                    </div>
+                </article>
+            ))
+        }
+    </section>
+
+    {
+        page.lastPage > 1 && (
+            <nav class="pagination">
+                {page.url.prev ? (
+                    <a href={page.url.prev} class="prev">
+                        &larr; Newer
+                    </a>
+                ) : (
+                    <span class="prev disabled">&larr; Newer</span>
+                )}
+
+                <div class="page-count">
+                    Page {page.currentPage} of {page.lastPage}
+                </div>
+
+                {page.url.next ? (
+                    <a href={page.url.next} class="next">
+                        Older &rarr;
+                    </a>
+                ) : (
+                    <span class="next disabled">Older &rarr;</span>
+                )}
+            </nav>
+        )
+    }
+</Layout>
+
+<style>
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .subtitle {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+        margin-bottom: 3rem;
+    }
+    .posts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+    }
+    .post-item {
+        padding-bottom: 2rem;
+        border-bottom: 1px dashed var(--border);
+    }
+    .post-item:last-child {
+        border-bottom: none;
+    }
+    .post-header {
+        margin-bottom: 0.75rem;
+    }
+    .post-link {
+        text-decoration: none;
+        color: inherit;
+    }
+    .post-link:hover h3 {
+        color: var(--accent);
+        text-decoration: underline;
+    }
+    h3 {
+        font-size: 1.75rem;
+        margin: 0;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+    .post-meta {
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    .date {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+    .description {
+        margin-top: 1rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+    .tags {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+    .tag {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-weight: 600;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        cursor: default;
+    }
+    .tag:hover {
+        opacity: 1;
+        color: var(--accent);
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5rem;
+        padding-top: 2rem;
+        border-top: 1px dashed var(--border);
+    }
+    .pagination a,
+    .pagination span {
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    .pagination a {
+        color: var(--foreground);
+        transition: color 0.2s;
+    }
+    .pagination a:hover {
+        color: var(--accent);
+    }
+    .pagination .disabled {
+        color: var(--text-muted);
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    .page-count {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+</style>
