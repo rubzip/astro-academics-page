@@ -3,6 +3,7 @@ title: "On the Electrodynamics of Moving Bodies"
 authors: ["Albert Einstein"]
 publicationDate: 1905-09-26
 journal: "Annalen der Physik"
+url: "https://www.fourmilab.ch/etexts/einstein/specrel/www/"
 featured: true
 ---
 

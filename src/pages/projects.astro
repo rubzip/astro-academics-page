@@ -45,6 +45,12 @@ const projects = await getCollection("projects");
                                 GitHub &rarr;
                             </a>
                         )}
+                        <a
+                            href={`/projects/${project.id}`}
+                            class="details-link"
+                        >
+                            Project Details &rarr;
+                        </a>
                     </div>
                 </article>
             ))

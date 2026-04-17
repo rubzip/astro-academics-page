@@ -54,7 +54,7 @@ const sortedPublications = publications.sort(
                         )}
                         {pub.data.url && (
                             <a href={pub.data.url} target="_blank">
-                                Link
+                                Publisher Website
                             </a>
                         )}
                         {pub.data.pdf && (
@@ -62,6 +62,12 @@ const sortedPublications = publications.sort(
                                 PDF
                             </a>
                         )}
+                        <a
+                            href={`/publications/${pub.id}`}
+                            class="details-link"
+                        >
+                            Abstract & Details &rarr;
+                        </a>
                     </div>
                 </article>
             ))
