@@ -1,5 +1,5 @@
 ---
-import { SITE } from "../config";
+import { SITE, SOCIAL_ICONS } from "../config";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -12,14 +12,25 @@ const currentYear = new Date().getFullYear();
             &copy; {currentYear}
             {SITE.author}. All rights reserved.
         </p>
-        <p class="font-medium">
-            Built with <a
-                href="https://github.com/rubzip/astro-academics-page"
+        <div class="flex items-center gap-4">
+            <a
+                href="/rss.xml"
+                aria-label="RSS Feed"
+                title="RSS Feed"
                 target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-foreground transition-colors underline decoration-border underline-offset-4"
-                >Astro Academic Pages</a
-            >
-        </p>
+                rel="noreferrer"
+                class="hover:text-accent transition-colors"
+                set:html={SOCIAL_ICONS["RSS"]}
+            />
+            <p class="font-medium">
+                Built with <a
+                    href="https://github.com/rubzip/astro-academics-page"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-foreground transition-colors underline decoration-border underline-offset-4"
+                    >Astro Academic Pages</a
+                >
+            </p>
+        </div>
     </div>
 </footer>
