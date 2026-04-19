@@ -8,10 +8,12 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   markdown: {
-      remarkPlugins: [remarkMath],
-      rehypePlugins: [rehypeKatex],
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
-
+  build: {
+    inlineStylesheets: 'always'
+  },
   vite: {
     plugins: [tailwindcss()],
   },

@@ -1,0 +1,120 @@
+---
+import { getEntry, render } from "astro:content";
+import Layout from "./Layout.astro";
+import BackLink from "../components/BackLink.astro";
+import ContentHeader from "../components/ContentHeader.astro";
+import ContentLinks from "../components/ContentLinks.astro";
+
+interface Props {
+    collection: "publications" | "talks" | "projects" | "posts" | "cv";
+    id: string;
+    readingTime?: string;
+}
+
+const { collection, id, readingTime } = Astro.props;
+const entry = (await getEntry(collection, id)) as any;
+
+if (!entry) return Astro.redirect("/404");
+
+const { Content } = await render(entry);
+const d = entry.data;
+
+// Map metadata based on collection
+let meta: { label?: string; value: string; datetime?: string }[] = [];
+let links: { href: string; label: string }[] = [];
+let backLabel = "";
+let backHref = "";
+
+if (collection === "publications") {
+    backLabel = "Publications";
+    backHref = "/publications";
+    meta = [
+        { label: "Journal", value: d.journal },
+        { value: d.authors?.join(", ") },
+        {
+            value: (d.publicationDate as Date)?.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+            }),
+        },
+    ].filter((m): m is { label?: string; value: string } => !!m?.value);
+    links = [
+        d.external_url && { href: d.external_url, label: "View" },
+        d.doi && { href: `https://doi.org/${d.doi}`, label: "DOI" },
+        d.pdf && { href: d.pdf, label: "PDF" },
+        d.url && { href: d.url, label: "Publisher" },
+    ].filter((l): l is { href: string; label: string } => !!l);
+} else if (collection === "talks") {
+    backLabel = "Talks";
+    backHref = "/talks";
+    meta = [
+        { label: "Event", value: d.event },
+        { label: "Location", value: d.location },
+        {
+            value: (d.date as Date)?.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            }),
+        },
+    ].filter((m): m is { label?: string; value: string } => !!m?.value);
+    links = [
+        d.external_url && { href: d.external_url, label: "View" },
+        d.slides && { href: d.slides, label: "Slides" },
+        d.video && { href: d.video, label: "Video" },
+    ].filter((l): l is { href: string; label: string } => !!l);
+} else if (collection === "projects") {
+    backLabel = "Projects";
+    backHref = "/projects";
+    meta = [{ value: d.description }].filter(
+        (m): m is { label?: string; value: string } => !!m?.value,
+    );
+    links = [
+        d.external_url && { href: d.external_url, label: "View" },
+        d.github && { href: d.github, label: "GitHub" },
+    ].filter((l): l is { href: string; label: string } => !!l);
+} else {
+    backLabel = "Blog";
+    backHref = "/blog";
+    meta = [
+        { label: "Author", value: d.author },
+        {
+            value: (d.pubDate as Date)?.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            }),
+        },
+        readingTime && { value: readingTime },
+    ].filter((m): m is { label?: string; value: string } => !!m?.value);
+    links = [
+        d.external_url && { href: d.external_url, label: "Original Post" },
+    ].filter((l): l is { href: string; label: string } => !!l);
+}
+---
+
+<Layout title={d.title}>
+    <BackLink href={backHref} label={backLabel} />
+
+    <article class="content-container pt-4">
+        <ContentHeader title={d.title} meta={meta} />
+
+        {
+            d.tags && (
+                <div class="tags container-narrow flex gap-3 flex-wrap mb-10">
+                    {d.tags.map((tag: string) => (
+                        <span class="badge">#{tag}</span>
+                    ))}
+                </div>
+            )
+        }
+
+        <ContentLinks links={links} />
+
+        <div class="prose container-narrow pt-8">
+            <Content />
+        </div>
+
+        <slot name="footer" />
+    </article>
+</Layout>

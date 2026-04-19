@@ -1,8 +1,18 @@
 ---
-title: "The Special Theory of Relativity"
-date: 1905-12-01
-event: "Colloquium at University of Bern"
-location: "Bern, Switzerland"
+title: "The Principle of Relativity and its Consequences"
+date: 1909-09-21
+event: "81st Assembly of German Natural Scientists and Physicians"
+location: "Salzburg, Austria"
+external_url: "https://example.com/talk-slides"
+tags: ["Relativity", "History of Science"]
+description: "The first public presentation of relativity to the wider scientific community."
 ---
 
-A presentation on the implications of the constant speed of light and the relativity of simultaneity.
+# Summary
+
+This was my first major public presentation on relativity. I discussed the transformation equations and the abandonment of the luminiferous ether...
+
+## Key Points
+- The constancy of the speed of light.
+- Time dilation and length contraction as physical realities.
+- The path towards a generalized theory of gravitation.

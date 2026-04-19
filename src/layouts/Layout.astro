@@ -3,6 +3,14 @@ import { SITE } from "../config";
 import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/LeftSidebar.astro";
 import RightMain from "../components/RightMain.astro";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/800.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "katex/dist/katex.min.css";
 import "../styles/global.css";
 
 interface Props {
@@ -47,20 +55,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-            rel="stylesheet"
-        />
-
         <ClientRouter />
-
-        <!-- KaTeX CSS -->
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-        />
 
         <!-- Dark Mode Script -->
         <script is:inline>

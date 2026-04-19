@@ -1,7 +1,6 @@
 ---
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import { SITE } from "../config";
 
 const cvEntry = await getEntry("cv", "cv");
 if (!cvEntry) {
@@ -10,181 +9,107 @@ if (!cvEntry) {
     );
 }
 
-const { name, experience, education, skills } = cvEntry.data;
+const { Content } = await render(cvEntry);
+const { name, title, experience = [], education = [] } = cvEntry.data;
 ---
 
 <Layout title="CV">
-    <header class="cv-header">
-        <h1>Curriculum Vitae</h1>
+    <header class="page-header">
+        <h1 class="page-title">Curriculum Vitae</h1>
+        <p class="page-subtitle">{name} — {title}</p>
     </header>
 
-    <section class="cv-section">
-        <h2>Professional Experience</h2>
-        <div class="timeline">
-            {
-                experience.map((exp) => (
-                    <div class="timeline-item">
-                        <div class="timeline-marker">
-                            <div class="dot" />
-                            <div class="line" />
-                        </div>
-                        <div class="timeline-content">
-                            <div class="entry-header">
-                                <h3>{exp.role}</h3>
-                                <span class="period">{exp.period}</span>
-                            </div>
-                            <div class="institution">{exp.institution}</div>
-                            <div class="desc">{exp.description}</div>
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
-    </section>
-
-    <section class="cv-section">
-        <h2>Education</h2>
-        <div class="timeline">
-            {
-                education.map((edu) => (
-                    <div class="timeline-item">
-                        <div class="timeline-marker">
-                            <div class="dot" />
-                            <div class="line" />
-                        </div>
-                        <div class="timeline-content">
-                            <div class="entry-header">
-                                <h3>{edu.degree}</h3>
-                                <span class="period">{edu.period}</span>
-                            </div>
-                            <div class="institution">{edu.institution}</div>
-                            {edu.thesis && (
-                                <div class="thesis">
-                                    <em>Thesis: {edu.thesis}</em>
+    <div class="container-narrow">
+        {
+            experience.length > 0 && (
+                <section class="cv-section mb-16">
+                    <h2 class="text-2xl font-bold border-b border-border pb-2 mb-10 opacity-90">
+                        Professional Experience
+                    </h2>
+                    <div class="timeline flex flex-col">
+                        {experience.map((exp) => (
+                            <div class="timeline-item flex gap-8">
+                                <div class="timeline-marker flex flex-col items-center shrink-0">
+                                    <div class="dot w-3 h-3 rounded-full bg-accent mt-2 z-10" />
+                                    <div class="line flex-1 w-[2px] bg-border my-2" />
                                 </div>
-                            )}
-                        </div>
+                                <div class="timeline-content pb-14 flex-1">
+                                    <div class="entry-header flex justify-between items-baseline gap-4 mb-2">
+                                        <h3 class="text-xl font-bold transition-colors duration-200 leading-tight">
+                                            {exp.role}
+                                        </h3>
+                                        <span class="period text-sm text-text-muted font-bold whitespace-nowrap">
+                                            {exp.period}
+                                        </span>
+                                    </div>
+                                    <div class="institution font-bold text-lg opacity-90">
+                                        {exp.institution}
+                                    </div>
+                                    <div class="desc mt-4 leading-relaxed opacity-80">
+                                        {exp.description}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))
-            }
-        </div>
-    </section>
+                </section>
+            )
+        }
 
-    <section class="cv-section">
-        <h2>Skills</h2>
-        <div class="skills-list">
-            {
-                skills.map((skill, index) => (
-                    <span class="skill-item">
-                        {skill}
-                        {index < skills.length - 1 ? " • " : ""}
-                    </span>
-                ))
-            }
+        {
+            education.length > 0 && (
+                <section class="cv-section mb-16">
+                    <h2 class="text-2xl font-bold border-b border-border pb-2 mb-10 opacity-90">
+                        Education
+                    </h2>
+                    <div class="timeline flex flex-col">
+                        {education.map((edu) => (
+                            <div class="timeline-item flex gap-8">
+                                <div class="timeline-marker flex flex-col items-center shrink-0">
+                                    <div class="dot w-3 h-3 rounded-full bg-accent mt-2 z-10" />
+                                    <div class="line flex-1 w-[2px] bg-border my-2" />
+                                </div>
+                                <div class="timeline-content pb-14 flex-1">
+                                    <div class="entry-header flex justify-between items-baseline gap-4 mb-2">
+                                        <h3 class="text-xl font-bold transition-colors duration-200 leading-tight">
+                                            {edu.degree}
+                                        </h3>
+                                        <span class="period text-sm text-text-muted font-bold whitespace-nowrap">
+                                            {edu.period}
+                                        </span>
+                                    </div>
+                                    <div class="institution font-bold text-lg opacity-90">
+                                        {edu.institution}
+                                    </div>
+                                    {edu.description && (
+                                        <div class="desc mt-4 leading-relaxed opacity-80">
+                                            {edu.description}
+                                        </div>
+                                    )}
+                                    {edu.thesis && (
+                                        <div class="thesis mt-4 italic opacity-80">
+                                            Thesis: {edu.thesis}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )
+        }
+
+        <div class="prose max-w-none">
+            <Content />
         </div>
-    </section>
+    </div>
 </Layout>
 
 <style>
-    .cv-header {
-        margin-bottom: 3rem;
-    }
-    h1 {
-        font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-    }
-    .cv-section {
-        margin-bottom: 5rem;
-    }
-    h2 {
-        font-size: 1.75rem;
-        margin-bottom: 2.5rem;
-        font-weight: 800;
-        letter-spacing: -0.01em;
-        color: var(--foreground);
-        opacity: 0.9;
-    }
-    .timeline {
-        display: flex;
-        flex-direction: column;
-    }
-    .timeline-item {
-        display: flex;
-        gap: 2rem;
-    }
-    .timeline-marker {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-shrink: 0;
-    }
-    .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: var(--accent);
-        margin-top: 0.5rem;
-        z-index: 1;
-    }
-    .line {
-        flex: 1;
-        width: 2px;
-        background: var(--border);
-        margin: 0.5rem 0;
-    }
     .timeline-item:last-child .line {
         display: none;
     }
-    .timeline-content {
-        padding-bottom: 3.5rem;
-        flex: 1;
-    }
     .timeline-item:last-child .timeline-content {
         padding-bottom: 0;
-    }
-    .entry-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 1rem;
-        margin-bottom: 0.5rem;
-    }
-    h3 {
-        font-size: 1.5rem;
-        margin: 0;
-        font-weight: 700;
-        line-height: 1.2;
-        transition: color 0.2s;
-    }
-    h3:hover {
-        color: var(--accent);
-    }
-    .period {
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        font-weight: 600;
-        white-space: nowrap;
-    }
-    .institution {
-        font-weight: 600;
-        font-size: 1.1rem;
-        color: var(--foreground);
-        opacity: 0.9;
-    }
-    .desc,
-    .thesis {
-        margin-top: 1rem;
-        line-height: 1.6;
-        opacity: 0.85;
-    }
-    .skills-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem 1.25rem;
-    }
-    .skill-item {
-        font-weight: 600;
-        color: var(--text-muted);
-        font-size: 1rem;
     }
 </style>

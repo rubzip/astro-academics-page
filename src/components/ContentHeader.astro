@@ -1,0 +1,41 @@
+---
+interface Props {
+    title: string;
+    meta?: {
+        label?: string;
+        value: string;
+        datetime?: string;
+    }[];
+}
+
+const { title, meta = [] } = Astro.props;
+---
+
+<header class="page-header container-narrow">
+    <h1 class="page-title">{title}</h1>
+    {
+        meta.length > 0 && (
+            <div class="item-meta mt-6">
+                {meta.map((item, index) => (
+                    <>
+                        {item.datetime ? (
+                            <time datetime={item.datetime}>{item.value}</time>
+                        ) : (
+                            <span>
+                                {item.label && (
+                                    <span class="opacity-70">
+                                        {item.label}:{" "}
+                                    </span>
+                                )}
+                                <strong>{item.value}</strong>
+                            </span>
+                        )}
+                        {index < meta.length - 1 && (
+                            <span class="opacity-50 mx-1">•</span>
+                        )}
+                    </>
+                ))}
+            </div>
+        )
+    }
+</header>

@@ -12,5 +12,5 @@ Currently, my focus is divided between the refinement of General Relativity and 
 
 ## Research Interests
 
-**Electrodynamics** • **Thermodynamics** • **Quantum Mechanics** • **General Relativity**
+My research focus includes: Electrodynamics, Thermodynamics, Quantum Mechanics, and General Relativity.
 
