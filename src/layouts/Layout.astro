@@ -1,5 +1,6 @@
 ---
 import { SITE } from "../config";
+import { LIGHT_THEMES, DARK_THEMES } from "../themes";
 import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/LeftSidebar.astro";
 import RightMain from "../components/RightMain.astro";
@@ -12,6 +13,13 @@ import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/500.css";
 import "katex/dist/katex.min.css";
 import "../styles/global.css";
+
+const themeLight =
+    LIGHT_THEMES[SITE.themeLight as keyof typeof LIGHT_THEMES] ||
+    LIGHT_THEMES.default;
+const themeDark =
+    DARK_THEMES[SITE.themeDark as keyof typeof DARK_THEMES] ||
+    DARK_THEMES.default;
 
 interface Props {
     title: string;
@@ -32,6 +40,43 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
         <link rel="icon" type="image/svg+xml" href={SITE.favicon} />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="generator" content={Astro.generator} />
+
+        <style
+            is:global
+            define:vars={{
+                lightBg: themeLight.background,
+                lightFg: themeLight.foreground,
+                lightAccent: themeLight.accent,
+                lightMuted: themeLight.muted,
+                lightBorder: themeLight.border,
+                lightSurface: themeLight.surface,
+
+                darkBg: themeDark.background,
+                darkFg: themeDark.foreground,
+                darkAccent: themeDark.accent,
+                darkMuted: themeDark.muted,
+                darkBorder: themeDark.border,
+                darkSurface: themeDark.surface,
+            }}
+        >
+            :root {
+                --background: var(--lightBg);
+                --foreground: var(--lightFg);
+                --accent: var(--lightAccent);
+                --text-muted: var(--lightMuted);
+                --border: var(--lightBorder);
+                --surface: var(--lightSurface);
+            }
+
+            [data-theme="dark"] {
+                --background: var(--darkBg);
+                --foreground: var(--darkFg);
+                --accent: var(--darkAccent);
+                --text-muted: var(--darkMuted);
+                --border: var(--darkBorder);
+                --surface: var(--darkSurface);
+            }
+        </style>
 
         <!-- Canonical URL -->
         <link rel="canonical" href={canonicalURL} />

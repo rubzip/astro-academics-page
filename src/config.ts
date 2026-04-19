@@ -10,6 +10,8 @@ export const SITE = {
     lightAndDarkMode: true,
     postPerPage: 3,
     favicon: "/favicon.svg",
+    themeLight: "default" as const,
+    themeDark: "default" as const,
 };
 
 export const LOCALE = ["en-EN"]; // set to [] to use the browser locale

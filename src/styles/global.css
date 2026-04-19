@@ -13,22 +13,12 @@
 
 :root,
 html[data-theme="light"] {
-    --accent: #006cac;
-    --background: #fdfdfd;
-    --foreground: #282728;
     --sidebar-bg: var(--background);
-    --border: #ece9e9;
-    --text-muted: #555555;
 }
 
 html[data-theme="dark"],
 html.dark {
-    --accent: #ff6b01;
-    --background: #212737;
-    --foreground: #eaedf3;
     --sidebar-bg: var(--background);
-    --border: #ab4b08;
-    --text-muted: #a0a6b1;
 }
 
 html {

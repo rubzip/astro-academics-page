@@ -26,7 +26,7 @@ Push your changes to GitHub and deploy to Netlify, Vercel, or any other hosting 
  - [ ] Refactor code
  - [ ] Add bibtex support
  - [ ] Add tagg system.
- - [ ] Add RSS button.
+ - [x] Add RSS button.
  - [ ] Script for checking lighthouse score
  - [ ] Change styles, make content more readable and compact
  - [ ] Evaluate github pages deployment (optionally netlify, vercel)
