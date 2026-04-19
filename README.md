@@ -35,12 +35,6 @@ Push your changes to GitHub and deploy to Netlify, Vercel, or any other hosting 
 
 ## 🚀 Performance & SEO
 
-This project is optimized for speed and scholarly discoverability. By self-hosting fonts and critical CSS, we achieve near-perfect metrics.
-
-![Performance](https://img.shields.io/badge/Performance-100-brightgreen.svg)
-![Accessibility](https://img.shields.io/badge/Accessibility-100-brightgreen.svg)
-![Best_Practices](https://img.shields.io/badge/Best_Practices-100-brightgreen.svg)
-![SEO](https://img.shields.io/badge/SEO-100-brightgreen.svg)
 
 ### Audit it yourself
 To run a full Lighthouse audit across all pages:
