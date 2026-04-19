@@ -23,19 +23,19 @@ Edit `src/config.ts` to change the site title, description, favicon, and social 
 Push your changes to GitHub and deploy to Netlify, Vercel, or any other hosting provider.
 
 ## ✅ Project Status & Progress
- - [ ] Refactor code
+ - [x] Refactor code
  - [ ] Add bibtex support
- - [ ] Add tagg system.
+ - [ ] Add tag system.
  - [x] Add RSS button.
- - [ ] Script for checking lighthouse score
+ - [x] Script for checking lighthouse score
  - [ ] Change styles, make content more readable and compact
  - [ ] Evaluate github pages deployment (optionally netlify, vercel)
  - [ ] Add examples with images
  - [ ] Add more examples, with different configurations
  - [ ] Improve documentation
  - [ ] Evaluate different screen sizes
- - [ ] No CSS / tailwind code theme configuration. Choosing it as a .ts config file, between a group of them
- - [ ] Active or disable sections and their respective subpages
+ - [x] No CSS / tailwind code theme configuration. Choosing it as a .ts config file, between a group of them
+ - [x] Active or disable sections and their respective subpages
  - [ ] Make look better repo
 
 ## 🚀 Performance & SEO
