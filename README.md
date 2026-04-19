@@ -20,3 +20,14 @@ Edit `src/config.ts` to change the site title, description, and social links.
 
 ### 4. Deploy
 Push your changes to GitHub and deploy to Netlify, Vercel, or any other hosting provider.
+
+## To do
+ - [] Refactor code
+ - [] Add bibtex support
+ - [] Add tagg system
+ - [] Script for checking lighthouse score
+ - [] Change styles, make content more readable and compact
+ - [] Evaluate github pages deployment (optionally netlify, vercel)
+ - [] Add examples with images
+ - [] Improve documentation
+
