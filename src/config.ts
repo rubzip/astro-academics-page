@@ -9,6 +9,7 @@ export const SITE = {
     institution: "Bern Patent Office",
     lightAndDarkMode: true,
     postPerPage: 3,
+    favicon: "/favicon.svg",
 };
 
 export const LOCALE = ["en-EN"]; // set to [] to use the browser locale

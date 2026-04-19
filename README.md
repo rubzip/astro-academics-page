@@ -6,7 +6,8 @@ Designed to be easy to use and customize, with a focus on content and presentati
 ## Customization Guide
 
 ### 1. Update Site Configuration
-Edit `src/config.ts` to change the site title, description, and social links.
+Edit `src/config.ts` to change the site title, description, favicon, and social links.
+- **Favicon**: You can set `SITE.favicon` to any path in `public/`. For example, `"/favicon-academic.svg"` for the default academic icon.
 
 ### 2. Add Your Content
 - **Publications**: Add your publications to `src/content/publications/`.
