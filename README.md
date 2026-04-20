@@ -1,4 +1,4 @@
-# Astro Academics Page
+# Astro Academic Portfolio
 An Astro template for your academic portfolio. This template is strongly inspired by [academic pages](https://github.com/academicpages/academicpages.github.io) and [astro paper](https://github.com/satnaing/astro-paper).
 
 Designed to be easy to use and customize, with a focus on content and presentation.
@@ -20,7 +20,7 @@ Edit `src/config.ts` to change the site title, description, favicon, and social 
 - **Layout**: Edit `src/layouts/Layout.astro` to change the layout.
 
 ### 4. Deploy
-Push your changes to GitHub and deploy to Netlify, Vercel, or any other hosting provider.
+Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any other hosting provider.
 
 ## ✅ Project Status & Progress
  - [x] Refactor code
