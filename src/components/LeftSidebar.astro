@@ -53,7 +53,7 @@ const activeSocials = SOCIALS.filter((s) => s.active);
             </p>
 
             <div
-                class="flex gap-5 flex-wrap items-center justify-center max-md:justify-start mt-6"
+                class="flex gap-2 flex-wrap items-center justify-center max-md:justify-start mt-6"
             >
                 {
                     activeSocials.map((social) => (
@@ -63,7 +63,7 @@ const activeSocials = SOCIALS.filter((s) => s.active);
                             title={social.linkTitle}
                             target="_blank"
                             rel="noreferrer"
-                            class="text-text-muted hover:text-accent transition-all duration-300 hover:scale-110"
+                            class="group inline-block p-2 text-text-muted hover:text-accent transition-all duration-300 hover:rotate-6 sm:p-1"
                             set:html={SOCIAL_ICONS[social.name]}
                         />
                     ))
@@ -80,10 +80,13 @@ const activeSocials = SOCIALS.filter((s) => s.active);
 </aside>
 
 <style>
-    :global(.social-link svg),
     :global(a svg) {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         stroke-width: 1.5px;
+        transition: transform 0.2s ease-in-out;
+    }
+    a:hover :global(svg) {
+        stroke: var(--accent);
     }
 </style>

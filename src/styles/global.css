@@ -13,22 +13,12 @@
 
 :root,
 html[data-theme="light"] {
-    --accent: #006cac;
-    --background: #fdfdfd;
-    --foreground: #282728;
     --sidebar-bg: var(--background);
-    --border: #ece9e9;
-    --text-muted: #555555;
 }
 
 html[data-theme="dark"],
 html.dark {
-    --accent: #ff6b01;
-    --background: #212737;
-    --foreground: #eaedf3;
     --sidebar-bg: var(--background);
-    --border: #ab4b08;
-    --text-muted: #a0a6b1;
 }
 
 html {
@@ -44,7 +34,7 @@ body {
 
 /* Global Content Styling for main area */
 main h1 {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
     font-weight: 800;
     margin-bottom: 2rem;
     letter-spacing: -0.025em;
@@ -52,10 +42,10 @@ main h1 {
 }
 
 main h2 {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-top: 4rem;
-    margin-bottom: 1.5rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.25rem;
     border-bottom: 1px solid var(--border);
     padding-bottom: 0.5rem;
     letter-spacing: -0.01em;
@@ -82,26 +72,180 @@ main a:hover {
     opacity: 1;
 }
 
-/* Unified Badge Styling */
+/* Unified Layout Classes */
+.container-narrow {
+    max-width: 800px;
+    margin: 0;
+}
+
+.page-header {
+    margin-bottom: 3rem;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+}
+
+/* Unified Item Listing Classes */
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.item-card {
+    padding-bottom: 2.5rem;
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.item-card:last-child {
+    border-bottom: none;
+}
+
+.item-content {
+    flex: 1;
+}
+
+.item-title {
+    font-size: 1.75rem;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+.item-title:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.item-meta {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.item-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    text-align: right;
+    min-width: 120px;
+}
+
+.item-links.horizontal {
+    flex-direction: row;
+    gap: 1.5rem;
+    text-align: left;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.item-links a {
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--foreground);
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.item-links a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* Back Link Styling */
+.back-link {
+    margin-bottom: 1.5rem;
+}
+
+.back-link a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.back-link a:hover {
+    color: var(--accent);
+}
+
+/* Prose Styling */
+.prose {
+    line-height: 1.8;
+    font-size: 1.15rem;
+}
+
+.prose p {
+    margin-bottom: 1.5rem;
+}
+
+.prose ul {
+    list-style-type: disc !important;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    display: block;
+}
+
+.prose ol {
+    list-style-type: decimal !important;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    display: block;
+}
+
+.prose li {
+    margin-bottom: 0.5rem;
+    display: list-item;
+}
+
+.prose li::marker {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+/* Unified Tag Styling (Minimalist) */
 .badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.2rem 0.75rem;
-    background-color: var(--border);
-    color: var(--foreground);
-    border-radius: 9999px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    padding: 0;
+    background-color: transparent;
+    color: var(--accent);
+    font-size: 0.95rem;
+    font-weight: 700;
     line-height: 1;
-    transition: all 0.2s;
+    transition: opacity 0.2s;
     text-decoration: none !important;
-    border: 1px solid transparent;
+    border: none;
+    opacity: 0.9;
 }
 
 .badge:hover {
-    background-color: var(--accent);
-    color: white;
-    border-color: var(--accent);
+    opacity: 1;
+    text-decoration: underline !important;
 }
 
 /* MathML hide fallback */

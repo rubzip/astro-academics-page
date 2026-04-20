@@ -3,8 +3,11 @@ title: "On the Electrodynamics of Moving Bodies"
 authors: ["Albert Einstein"]
 publicationDate: 1905-09-26
 journal: "Annalen der Physik"
-url: "https://www.fourmilab.ch/etexts/einstein/specrel/www/"
-featured: true
+external_url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19053221004"
+tags: ["Special Relativity", "Electrodynamics"]
+description: "The seminal paper that introduced the theory of special relativity, fundamental to modern physics."
 ---
 
-This paper introduces the special theory of relativity, which reconciles Newton's laws of motion with Maxwell's equations of electromagnetism. It explains how measurements of space and time depend on the relative velocity of the observer.
+# Abstract
+
+It is known that Maxwell's electrodynamics—as usually understood at the present time—when applied to moving bodies, leads to asymmetries which do not appear to be inherent in the phenomena. Take, for example, the reciprocal electrodynamic action of a magnet and a conductor...

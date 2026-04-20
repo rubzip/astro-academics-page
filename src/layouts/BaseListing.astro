@@ -1,0 +1,162 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import BaseItemCard from "../components/BaseItemCard.astro";
+import { getReadingTime } from "../utils/readingTime";
+
+interface Props {
+    collection: "publications" | "talks" | "projects" | "posts";
+    title: string;
+    subtitle?: string;
+    entries?: any[];
+    page?: any;
+}
+
+const {
+    collection,
+    title,
+    subtitle,
+    entries: manualEntries,
+    page,
+} = Astro.props;
+
+let entries = manualEntries || (await getCollection(collection));
+if (page) {
+    entries = page.data;
+}
+
+// Generic sorting logic
+const sortedEntries = entries.sort((a: any, b: any) => {
+    const dateA =
+        a.data.publicationDate || a.data.date || a.data.pubDate || new Date(0);
+    const dateB =
+        b.data.publicationDate || b.data.date || b.data.pubDate || new Date(0);
+    return dateB.getTime() - dateA.getTime();
+});
+
+// Generic mapping function
+function mapEntryToCard(entry: any) {
+    const d = entry.data;
+    const common = {
+        title: d.title,
+        description: d.description,
+        tags: d.tags || d.tech,
+        featured: d.featured,
+    };
+
+    if (collection === "publications") {
+        return {
+            ...common,
+            href: `/publications/${entry.id}`,
+            metaLine1: d.publicationDate?.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+            }),
+            metaLine2: d.authors?.join(", "),
+            links: [
+                d.external_url && { href: d.external_url, label: "View" },
+                d.doi && { href: `https://doi.org/${d.doi}`, label: "DOI" },
+                d.pdf && { href: d.pdf, label: "PDF" },
+            ].filter(Boolean),
+        };
+    }
+    if (collection === "talks") {
+        return {
+            ...common,
+            href: `/talks/${entry.id}`,
+            metaLine1: d.date?.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+            }),
+            metaLine2: `${d.event} • ${d.location}`,
+            links: [
+                d.external_url && { href: d.external_url, label: "View" },
+                d.slides && { href: d.slides, label: "Slides" },
+                d.video && { href: d.video, label: "Video" },
+            ].filter(Boolean),
+        };
+    }
+    if (collection === "projects") {
+        return {
+            ...common,
+            href: `/projects/${entry.id}`,
+            links: [
+                d.external_url && { href: d.external_url, label: "View" },
+                d.github && { href: d.github, label: "GitHub" },
+            ].filter(Boolean),
+        };
+    }
+    if (collection === "posts") {
+        return {
+            ...common,
+            href: `/blog/${entry.id}`,
+            metaLine1: `${d.pubDate?.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+            })} • ${getReadingTime(entry.body || "")} min read`,
+            links: [
+                d.external_url && { href: d.external_url, label: "Read More" },
+            ].filter(Boolean),
+        };
+    }
+    // Default / fallback
+    return {
+        ...common,
+        href: `/${collection}/${entry.id}`,
+        links: [
+            d.external_url && { href: d.external_url, label: "Read More" },
+        ].filter(Boolean),
+    };
+}
+---
+
+<Layout title={title}>
+    <header class="page-header">
+        <h1 class="page-title">{title}</h1>
+        {subtitle && <p class="page-subtitle">{subtitle}</p>}
+    </header>
+
+    <section class="item-list">
+        {
+            sortedEntries.map((entry: any) => (
+                <BaseItemCard {...mapEntryToCard(entry)} />
+            ))
+        }
+    </section>
+
+    {
+        page && page.lastPage > 1 && (
+            <nav class="pagination container-narrow flex justify-center items-center mt-20 pt-12 border-t border-dashed border-border gap-8">
+                {page.url.prev ? (
+                    <a
+                        href={page.url.prev}
+                        class="font-bold hover:text-accent transition-colors"
+                    >
+                        &larr; Newer
+                    </a>
+                ) : (
+                    <span class="opacity-30 cursor-not-allowed font-bold">
+                        &larr; Newer
+                    </span>
+                )}
+
+                <div class="page-count text-text-muted font-medium mx-4">
+                    Page {page.currentPage} of {page.lastPage}
+                </div>
+
+                {page.url.next ? (
+                    <a
+                        href={page.url.next}
+                        class="font-bold hover:text-accent transition-colors"
+                    >
+                        Older &rarr;
+                    </a>
+                ) : (
+                    <span class="opacity-30 cursor-not-allowed font-bold">
+                        Older &rarr;
+                    </span>
+                )}
+            </nav>
+        )
+    }
+</Layout>

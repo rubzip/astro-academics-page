@@ -12,9 +12,11 @@ const publications = defineCollection({
         conference: z.string().optional(),
         doi: z.string().optional(),
         url: z.string().url().optional(),
+        external_url: z.string().url().optional(),
         pdf: z.string().optional(),
         featured: z.boolean().default(false),
         description: z.string().optional(),
+        tags: z.array(z.string()).optional(),
     }),
 });
 
@@ -27,7 +29,9 @@ const talks = defineCollection({
         location: z.string(),
         slides: z.string().url().optional(),
         video: z.string().url().optional(),
+        external_url: z.string().url().optional(),
         description: z.string().optional(),
+        tags: z.array(z.string()).optional(),
     }),
 });
 
@@ -39,11 +43,16 @@ const posts = defineCollection({
         description: z.string(),
         author: z.string(),
         tags: z.array(z.string()),
+        external_url: z.string().url().optional(),
     }),
 });
 
 const bio = defineCollection({
     loader: glob({ pattern: "bio.md", base: "./src/content" }),
+    schema: z.object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+    }),
 });
 
 const projects = defineCollection({
@@ -51,7 +60,8 @@ const projects = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
-        tech: z.array(z.string()).optional(),
+        tags: z.array(z.string()).optional(),
+        external_url: z.string().url().optional(),
         github: z.string().url().optional(),
         featured: z.boolean().default(false),
     }),
@@ -67,14 +77,14 @@ const cv = defineCollection({
             institution: z.string(),
             period: z.string(),
             description: z.string(),
-        })),
+        })).optional(),
         education: z.array(z.object({
             degree: z.string(),
             institution: z.string(),
             period: z.string(),
             thesis: z.string().optional(),
-        })),
-        skills: z.array(z.string()),
+            description: z.string().optional(),
+        })).optional(),
     }),
 });
 

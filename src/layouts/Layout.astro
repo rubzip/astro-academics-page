@@ -1,9 +1,25 @@
 ---
 import { SITE } from "../config";
+import { LIGHT_THEMES, DARK_THEMES } from "../themes";
 import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/LeftSidebar.astro";
 import RightMain from "../components/RightMain.astro";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/800.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "katex/dist/katex.min.css";
 import "../styles/global.css";
+
+const themeLight =
+    LIGHT_THEMES[SITE.themeLight as keyof typeof LIGHT_THEMES] ||
+    LIGHT_THEMES.default;
+const themeDark =
+    DARK_THEMES[SITE.themeDark as keyof typeof DARK_THEMES] ||
+    DARK_THEMES.default;
 
 interface Props {
     title: string;
@@ -21,8 +37,46 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href={SITE.favicon} />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="generator" content={Astro.generator} />
+
+        <style
+            is:global
+            define:vars={{
+                lightBg: themeLight.background,
+                lightFg: themeLight.foreground,
+                lightAccent: themeLight.accent,
+                lightMuted: themeLight.muted,
+                lightBorder: themeLight.border,
+                lightSurface: themeLight.surface,
+
+                darkBg: themeDark.background,
+                darkFg: themeDark.foreground,
+                darkAccent: themeDark.accent,
+                darkMuted: themeDark.muted,
+                darkBorder: themeDark.border,
+                darkSurface: themeDark.surface,
+            }}
+        >
+            :root {
+                --background: var(--lightBg);
+                --foreground: var(--lightFg);
+                --accent: var(--lightAccent);
+                --text-muted: var(--lightMuted);
+                --border: var(--lightBorder);
+                --surface: var(--lightSurface);
+            }
+
+            [data-theme="dark"] {
+                --background: var(--darkBg);
+                --foreground: var(--darkFg);
+                --accent: var(--darkAccent);
+                --text-muted: var(--darkMuted);
+                --border: var(--darkBorder);
+                --surface: var(--darkSurface);
+            }
+        </style>
 
         <!-- Canonical URL -->
         <link rel="canonical" href={canonicalURL} />
@@ -47,69 +101,41 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-            rel="stylesheet"
-        />
-
         <ClientRouter />
 
-        <!-- KaTeX CSS -->
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-        />
-
-        <!-- Dark Mode Script -->
         <script is:inline>
-            const setTheme = () => {
-                const savedTheme =
-                    typeof localStorage !== "undefined" &&
-                    localStorage.getItem("theme");
-                const theme =
-                    savedTheme ||
-                    (window.matchMedia("(prefers-color-scheme: dark)").matches
-                        ? "dark"
-                        : "light");
+            function setTheme() {
+                const theme = (() => {
+                    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+                        return localStorage.getItem("theme");
+                    }
+                    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                        return "dark";
+                    }
+                    return "light";
+                })();
 
                 document.documentElement.setAttribute("data-theme", theme);
-            };
+                localStorage.setItem("theme", theme);
+            }
 
             setTheme();
             document.addEventListener("astro:after-swap", setTheme);
-        </script>
-    </head>
-    <body class="bg-background text-foreground transition-colors duration-300">
-        <div
-            class="max-w-[1400px] mx-auto flex min-h-screen max-md:flex-col relative"
-        >
-            <LeftSidebar />
-            <RightMain>
-                <slot />
-            </RightMain>
-        </div>
 
-        <script>
-            function setupThemeToggle() {
+            function initToggle() {
                 const toggle = document.getElementById("theme-toggle");
-                toggle?.addEventListener("click", () => {
-                    const currentTheme =
-                        document.documentElement.getAttribute("data-theme") ||
-                        "light";
-                    const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-                    document.documentElement.setAttribute(
-                        "data-theme",
-                        newTheme,
-                    );
-                    localStorage.setItem("theme", newTheme);
-                });
+                if (toggle) {
+                    toggle.addEventListener("click", () => {
+                        const current = document.documentElement.getAttribute("data-theme");
+                        const next = current === "dark" ? "light" : "dark";
+                        document.documentElement.setAttribute("data-theme", next);
+                        localStorage.setItem("theme", next);
+                    });
+                }
             }
 
-            setupThemeToggle();
-            document.addEventListener("astro:page-load", setupThemeToggle);
+            initToggle();
+            document.addEventListener("astro:after-swap", initToggle);
         </script>
     </body>
 </html>

@@ -1,154 +1,22 @@
 ---
-import { getCollection, render } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import BaseDetail from "../../layouts/BaseDetail.astro";
+import { PAGES } from "../../config";
+
+if (PAGES.publications.active === false) {
+    return Astro.redirect("/404");
+}
 
 export async function getStaticPaths() {
+    if (PAGES.publications.active === false) return [];
     const publications = await getCollection("publications");
-    return publications.map((pub) => ({
+    return publications.map((pub: any) => ({
         params: { id: pub.id },
         props: { pub },
     }));
 }
 
-const { pub } = Astro.props;
-const { Content } = await render(pub);
+const { id } = Astro.params;
 ---
 
-<Layout title={pub.data.title}>
-    <div class="back-link">
-        <a href="/publications">&larr; Back to Publications</a>
-    </div>
-    <article class="pub-content">
-        <h1>{pub.data.title}</h1>
-        <div class="meta">
-            <time datetime={pub.data.publicationDate.toISOString()}>
-                {
-                    pub.data.publicationDate.toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                    })
-                }
-            </time>
-        </div>
-        <p class="authors">{pub.data.authors.join(", ")}</p>
-        {
-            pub.data.journal && (
-                <p class="journal">
-                    <em>{pub.data.journal}</em>
-                </p>
-            )
-        }
-
-        <div class="links">
-            {
-                pub.data.doi && (
-                    <a href={`https://doi.org/${pub.data.doi}`} target="_blank">
-                        DOI
-                    </a>
-                )
-            }
-            {
-                pub.data.url && (
-                    <a href={pub.data.url} target="_blank">
-                        Publisher Website
-                    </a>
-                )
-            }
-            {
-                pub.data.pdf && (
-                    <a href={pub.data.pdf} target="_blank">
-                        PDF
-                    </a>
-                )
-            }
-        </div>
-
-        <hr />
-
-        <div class="prose">
-            <Content />
-        </div>
-    </article>
-</Layout>
-
-<style>
-    .pub-content {
-        max-width: 800px;
-        margin: 0 auto;
-        padding-top: 1rem;
-    }
-    .back-link {
-        max-width: 800px;
-        margin: 2rem auto 1rem;
-    }
-    .back-link a {
-        text-decoration: none;
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        font-weight: 600;
-        transition: color 0.2s;
-    }
-    .back-link a:hover {
-        color: var(--accent);
-    }
-    header {
-        margin-bottom: 3rem;
-    }
-    .meta {
-        font-size: 0.95rem;
-        color: var(--text-muted);
-        display: flex;
-        gap: 0.75rem;
-        align-items: center;
-        margin-bottom: 1.5rem;
-        font-weight: 500;
-    }
-    h1 {
-        font-size: clamp(2.5rem, 5vw, 3.5rem);
-        font-weight: 800;
-        margin: 0;
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-    }
-    .authors {
-        font-size: 1.15rem;
-        font-weight: 600;
-        margin-top: 1.5rem;
-        opacity: 0.9;
-    }
-    .journal {
-        color: var(--text-muted);
-        margin-top: 0.5rem;
-        font-size: 1.05rem;
-    }
-    .links {
-        display: flex;
-        gap: 1.5rem;
-        margin-top: 2rem;
-        margin-bottom: 3rem;
-    }
-    .links a {
-        text-decoration: none;
-        font-weight: 700;
-        color: var(--foreground);
-        font-size: 0.95rem;
-        transition: color 0.2s;
-    }
-    .links a:hover {
-        color: var(--accent);
-        text-decoration: underline;
-    }
-    hr {
-        border: 0;
-        border-top: 1px dashed var(--border);
-        margin: 3rem 0;
-    }
-    .prose {
-        line-height: 1.8;
-        font-size: 1.1rem;
-    }
-    .prose :global(p) {
-        margin-bottom: 1.5rem;
-    }
-</style>
+<BaseDetail collection="publications" id={id} />

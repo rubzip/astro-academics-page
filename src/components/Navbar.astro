@@ -1,15 +1,22 @@
 ---
-import { NAV_LINKS } from "../config";
+import { NAV_LINKS, PAGES } from "../config";
 
 const currentPath = Astro.url.pathname;
 ---
 
 <nav
-    class="py-8 border-b border-border mb-12 flex justify-between items-center overflow-hidden"
+    class="sticky top-0 z-50 px-8 md:px-16 lg:px-24 py-6 mb-16 flex justify-between items-center bg-background border-b border-border transition-all duration-300"
 >
     <ul class="flex gap-x-8 gap-y-4 list-none p-0 flex-wrap items-center">
         {
-            NAV_LINKS.map((link) => (
+            NAV_LINKS.filter((link) => {
+                const isHome = link.href === "/";
+                const pageKey = isHome
+                    ? "home"
+                    : link.href.split("/").filter(Boolean)[0];
+                const pageConfig = (PAGES as any)[pageKey];
+                return link.active !== false && pageConfig?.active !== false;
+            }).map((link) => (
                 <li>
                     <a
                         href={link.href}

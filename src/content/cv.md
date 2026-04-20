@@ -15,15 +15,18 @@ education:
     institution: "University of Zürich"
     period: "1901 - 1905"
     thesis: "A New Determination of Molecular Dimensions"
+    description: "Conducted research on thermodynamics and molecular dimensions."
   - degree: "Diploma in Physics and Mathematics"
     institution: "Federal Polytechnic School (ETH Zürich)"
     period: "1896 - 1900"
-skills:
-  - "Theoretical Physics"
-  - "Mathematics"
-  - "Electromagnetism"
-  - "Thermodynamics"
-  - "Patent Examination"
 ---
 
+## Skills
+- Theoretical Physics
+- Mathematics
+- Electromagnetism
+- Thermodynamics
+- Patent Examination
+
+## Biographical Summary
 Extra biographical notes or a summary can go here.

@@ -3,7 +3,8 @@ title: "On a Heuristic Point of View Concerning the Production and Transformatio
 authors: ["Albert Einstein"]
 publicationDate: 1905-06-09
 journal: "Annalen der Physik"
-url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19053220607"
+external_url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19053220607"
+tags: ["Quantum Mechanics", "Photoelectric Effect"]
 featured: true
 description: "The Nobel Prize-winning paper that proposed the quantization of light to explain the photoelectric effect."
 ---

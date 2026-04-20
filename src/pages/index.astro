@@ -1,17 +1,7 @@
 ---
-import { getCollection, getEntry, render } from "astro:content";
+import { getEntry, render } from "astro:content";
 import Layout from "../layouts/Layout.astro";
-import { SITE } from "../config";
-
-const featuredPub = (await getCollection("publications")).find(
-	(p) => p.data.featured,
-);
-const latestPost = (await getCollection("posts")).sort(
-	(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
-)[0];
-const featuredProject = (await getCollection("projects")).find(
-	(p) => p.data.featured,
-);
+import { PAGES } from "../config";
 
 // Load bio content
 const bioEntry = await getEntry("bio", "bio");
@@ -20,158 +10,18 @@ const { Content: BioContent } = bioEntry
 	: { Content: null };
 ---
 
-<Layout title="Home">
-	<section class="bio">
+<Layout title={PAGES.home.title}>
+	<div class="container-narrow">
+		<header class="page-header">
+			<h1 class="page-title">{PAGES.home.title}</h1>
+			{
+				PAGES.home.subtitle && (
+					<p class="page-subtitle">{PAGES.home.subtitle}</p>
+				)
+			}
+		</header>
 		<div class="prose">
 			{BioContent ? <BioContent /> : <p>Loading bio...</p>}
 		</div>
-	</section>
-
-	<section class="recent-work">
-		<div class="featured-list">
-			{
-				featuredPub && (
-					<div class="featured-item">
-						<div class="item-content">
-							<a
-								href={`/publications/${featuredPub.id}`}
-								class="post-link"
-							>
-								<h3>
-									{featuredPub.data.title} (
-									{featuredPub.data.publicationDate.getFullYear()}
-									)
-								</h3>
-							</a>
-							<span class="section-label">
-								Featured Publication
-							</span>
-							<a href="/publications" class="more-link">
-								View all publications &rarr;
-							</a>
-						</div>
-					</div>
-				)
-			}
-			{
-				featuredProject && (
-					<div class="featured-item">
-						<div class="item-content">
-							<a
-								href={`/projects/${featuredProject.id}`}
-								class="post-link"
-							>
-								<h3>{featuredProject.data.title}</h3>
-							</a>
-							<span class="section-label">Featured Code</span>
-							<a href="/projects" class="more-link">
-								View more projects &rarr;
-							</a>
-						</div>
-					</div>
-				)
-			}
-			{
-				latestPost && (
-					<div class="featured-item">
-						<div class="item-content">
-							<a
-								href={`/blog/${latestPost.id}`}
-								class="post-link"
-							>
-								<h3>{latestPost.data.title}</h3>
-							</a>
-							<span class="section-label">Latest Post</span>
-							<a href={`/blog`} class="more-link">
-								Read more &rarr;
-							</a>
-						</div>
-					</div>
-				)
-			}
-		</div>
-	</section>
+	</div>
 </Layout>
-
-<style>
-	section {
-		margin-top: 4rem;
-	}
-	.prose {
-		line-height: 1.6;
-		font-size: 1.1rem;
-	}
-	.prose :global(h1) {
-		font-size: 2.5rem;
-		font-weight: 800;
-		margin-bottom: 1.5rem;
-	}
-	.prose :global(h2) {
-		font-size: 1.75rem;
-		font-weight: 700;
-		margin-top: 2rem;
-		margin-bottom: 1rem;
-	}
-	.prose :global(p) {
-		margin-bottom: 1rem;
-	}
-	.prose :global(ul) {
-		margin-bottom: 1rem;
-		padding-left: 1.5rem;
-	}
-	.featured-list {
-		display: flex;
-		flex-direction: column;
-		gap: 3.5rem;
-	}
-	.featured-item {
-		padding-bottom: 2.5rem;
-		border-bottom: 1px dashed var(--border);
-	}
-	.featured-item:last-child {
-		border-bottom: none;
-	}
-	.section-label {
-		display: block;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		color: var(--text-muted);
-		margin-bottom: 0.75rem;
-		font-weight: 700;
-	}
-	.item-content {
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-	}
-	.post-link {
-		text-decoration: none;
-		color: inherit;
-	}
-	.post-link:hover h3 {
-		color: var(--accent);
-		text-decoration: underline;
-	}
-	h3 {
-		font-size: 1.75rem;
-		margin: 0;
-		line-height: 1.2;
-		font-weight: 700;
-		letter-spacing: -0.01em;
-	}
-	.more-link {
-		display: inline-block;
-		font-size: 0.95rem;
-		font-weight: 700;
-		text-decoration: none;
-		color: var(--foreground);
-		opacity: 0.8;
-		transition: all 0.2s;
-	}
-	.more-link:hover {
-		opacity: 1;
-		color: var(--accent);
-		text-decoration: underline;
-	}
-</style>
