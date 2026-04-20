@@ -37,6 +37,8 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] No CSS / tailwind code theme configuration. Choosing it as a .ts config file, between a group of them
  - [x] Active or disable sections and their respective subpages
  - [ ] Make look better repo
+ - [ ] Analytics implementation
+ 
 
 ## LightHouse Score
 
