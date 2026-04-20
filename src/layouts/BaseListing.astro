@@ -111,10 +111,14 @@ function mapEntryToCard(entry: any) {
 ---
 
 <Layout title={title}>
-    <header class="page-header">
-        <h1 class="page-title">{title}</h1>
-        {subtitle && <p class="page-subtitle">{subtitle}</p>}
-    </header>
+    {
+        (title || subtitle) && (
+            <header class="page-header">
+                {title && <h1 class="page-title">{title}</h1>}
+                {subtitle && <p class="page-subtitle">{subtitle}</p>}
+            </header>
+        )
+    }
 
     <section class="item-list">
         {

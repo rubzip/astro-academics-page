@@ -12,7 +12,7 @@ const { title, meta = [] } = Astro.props;
 ---
 
 <header class="page-header container-narrow">
-    <h1 class="page-title">{title}</h1>
+    {title && <h1 class="page-title">{title}</h1>}
     {
         meta.length > 0 && (
             <div class="item-meta mt-6">

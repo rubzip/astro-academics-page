@@ -22,35 +22,43 @@ const activeSocials = SOCIALS.filter((s) => s.active);
             )
         }
         <div class="flex flex-col items-center max-md:items-start">
-            <h1
-                class="text-3xl max-md:text-2xl font-extrabold m-0 tracking-tight text-foreground leading-tight"
-            >
-                {SITE.title}
-            </h1>
-            <p
-                class="text-[0.9rem] text-text-muted mt-2 font-medium flex items-center justify-center max-md:justify-start gap-2"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    class="opacity-70"
-                    ><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"
-                    ></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"
-                    ></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"
-                    ></path><path d="M10 6h4"></path><path d="M10 10h4"
-                    ></path><path d="M10 14h4"></path><path d="M10 18h4"
-                    ></path></svg
-                >
-                {SITE.institution}
-            </p>
+            {
+                SITE.title && (
+                    <h1 class="text-3xl max-md:text-2xl font-extrabold m-0 tracking-tight text-foreground leading-tight">
+                        {SITE.title}
+                    </h1>
+                )
+            }
+            {
+                SITE.institution && (
+                    <p class="text-[0.9rem] text-text-muted mt-2 font-medium flex items-center justify-center max-md:justify-start gap-2">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            class="opacity-70"
+                        >
+                            <>
+                                <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                                <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                                <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                                <path d="M10 6h4" />
+                                <path d="M10 10h4" />
+                                <path d="M10 14h4" />
+                                <path d="M10 18h4" />
+                            </>
+                        </svg>
+                        {SITE.institution}
+                    </p>
+                )
+            }
 
             <div
                 class="flex gap-2 flex-wrap items-center justify-center max-md:justify-start mt-6"
@@ -70,11 +78,13 @@ const activeSocials = SOCIALS.filter((s) => s.active);
                 }
             </div>
 
-            <p
-                class="text-[1rem] leading-relaxed mt-10 text-foreground opacity-90 font-medium max-md:hidden"
-            >
-                {SITE.shortBio}
-            </p>
+            {
+                SITE.shortBio && (
+                    <p class="text-[1rem] leading-relaxed mt-10 text-foreground opacity-90 font-medium max-md:hidden">
+                        {SITE.shortBio}
+                    </p>
+                )
+            }
         </div>
     </div>
 </aside>
