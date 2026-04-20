@@ -35,19 +35,19 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Add RSS button.
  - [x] Script for checking lighthouse score
  - [ ] Change styles, make content more readable and compact
- - [ ] Evaluate github pages deployment (optionally netlify, vercel)
+ - [x] Evaluate github pages deployment (optionally netlify, vercel)
  - [ ] Add examples with images
  - [ ] Add more examples, with different configurations
- - [ ] Improve documentation
+ - [ ] Improve documentation / README
  - [ ] Evaluate different screen sizes
  - [x] No CSS / tailwind code theme configuration. Choosing it as a .ts config file, between a group of them
  - [x] Active or disable sections and their respective subpages
  - [ ] Make look better repo.
- - [ ] Change GH repo name
+ - [x] Change GH repo name
  - [ ] Analytics implementation
  - [ ] **VISUAL BUG:** When some navbar buttons are clicked, sidebar moves
- - [ ] Add option for null title or null subtitle (and correctly moving code)
- - [ ] Download icons
+ - [ ] Add option for null title or null subtitle (and correctly moving page upper)
+ - [ ] Download icons 
  - [ ] Clean and restructure `config.ts`
 
  
