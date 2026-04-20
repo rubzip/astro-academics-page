@@ -137,5 +137,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
             initToggle();
             document.addEventListener("astro:after-swap", initToggle);
         </script>
+    </head>
+    <body class="bg-background text-foreground transition-colors duration-300 min-h-screen">
+        <div class="flex max-md:flex-col mx-auto max-w-6xl w-full">
+            <LeftSidebar />
+            <RightMain>
+                <slot />
+            </RightMain>
+        </div>
     </body>
 </html>
