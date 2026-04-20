@@ -2,6 +2,12 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+
+/* Some CSS utility classes and base variables are adapted from Astro Paper 
+  by Satnaing (https://github.com/satnaing/astro-paper) 
+  Released under the MIT License.
+*/
+
 @theme {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
