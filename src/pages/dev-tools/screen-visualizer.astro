@@ -1,0 +1,121 @@
+---
+import "../../styles/global.css";
+
+if (import.meta.env.PROD) {
+    return new Response(null, {
+        status: 404,
+        statusText: "Not found",
+    });
+}
+
+const viewports = [
+    { name: "Mobile", width: 375, height: 667, label: "iPhone SE" },
+    {
+        name: "Mobile Large",
+        width: 425,
+        height: 926,
+        label: "iPhone 14 Pro Max",
+    },
+    { name: "Tablet", width: 768, height: 1024, label: "iPad" },
+    { name: "Desktop", width: 1280, height: 800, label: "MacBook Air" },
+    {
+        name: "Widescreen",
+        width: 1536,
+        height: 960,
+        label: "2K Display (Scaled)",
+    },
+];
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Screen Visualizer - Responsive Preview</title>
+        <style>
+            .viewport-frame {
+                border: 1px solid #eee;
+                border-radius: 1rem;
+                background: #fff;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            .viewport-header {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #eee;
+                background: #fafafa;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .iframe-wrapper {
+                background: #f0f0f0;
+                display: flex;
+                justify-content: center;
+                overflow: auto;
+                height: 600px;
+            }
+            iframe {
+                background: white;
+                border: none;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            }
+        </style>
+    </head>
+    <body class="bg-white text-gray-800 font-sans p-10 min-h-screen">
+        <div class="max-w-[1600px] mx-auto">
+            <header
+                class="mb-12 flex flex-col gap-2 border-b border-gray-200 pb-5"
+            >
+                <h1 class="text-3xl font-bold text-gray-800">
+                    Screen Visualizer
+                </h1>
+                <p class="text-gray-500 font-mono text-sm">
+                    Responsive testing for default themes across common
+                    breakpoints.
+                </p>
+            </header>
+
+            <div class="flex flex-col gap-20">
+                {
+                    viewports.map((vp) => (
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-baseline gap-4">
+                                <h2 class="text-xl font-bold text-gray-700 capitalize">
+                                    {vp.name}
+                                </h2>
+                                <span class="text-sm font-mono text-gray-400">
+                                    {vp.label} — {vp.width}x{vp.height}px
+                                </span>
+                            </div>
+
+                            <div class="viewport-frame">
+                                <div class="viewport-header">
+                                    <div class="flex gap-1.5">
+                                        <div class="w-3 h-3 rounded-full bg-red-200" />
+                                        <div class="w-3 h-3 rounded-full bg-yellow-200" />
+                                        <div class="w-3 h-3 rounded-full bg-green-200" />
+                                    </div>
+                                    <div class="text-xs font-mono text-gray-400 bg-white px-3 py-1 rounded border border-gray-100 shadow-sm">
+                                        localhost:4321
+                                    </div>
+                                    <div class="w-10" />
+                                </div>
+                                <div class="iframe-wrapper">
+                                    <iframe
+                                        src="/"
+                                        width={vp.width}
+                                        height="100%"
+                                        title={`${vp.name} Preview`}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </body>
+</html>

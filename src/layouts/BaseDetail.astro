@@ -86,7 +86,10 @@ if (collection === "publications") {
             }),
         },
         readingTime && { value: readingTime },
-    ].filter((m): m is { label?: string; value: string } => !!m?.value);
+    ].filter(
+        (m): m is { label?: string; value: string } =>
+            !!m && typeof m === "object" && "value" in m && !!m.value,
+    );
     links = [
         d.external_url && { href: d.external_url, label: "Original Post" },
     ].filter((l): l is { href: string; label: string } => !!l);
