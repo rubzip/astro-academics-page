@@ -23,6 +23,25 @@ export const LOGO_IMAGE = {
     height: 46,
 };
 
+export interface Social {
+  name: string;
+  href: string;
+  linkTitle: string;
+  active: boolean;
+}
+
+export interface NavLink {
+  href: string;
+  label: string;
+  active: boolean;
+}
+
+export interface PageDetail {
+  title: string;
+  subtitle: string;
+  active: boolean;
+}
+
 export const SOCIALS = [
     {
         name: "Github",
