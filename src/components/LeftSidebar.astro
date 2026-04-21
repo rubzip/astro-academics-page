@@ -31,7 +31,7 @@ const activeSocials = SOCIALS.filter((s) => s.active);
             }
             {
                 SITE.institution && (
-                    <p class="text-[0.9rem] text-text-muted mt-2 font-medium flex items-center justify-center max-md:justify-start gap-2">
+                    <p class="text-[0.9rem] opacity-75 mt-2 font-medium flex items-center justify-center max-md:justify-start gap-2">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -71,7 +71,7 @@ const activeSocials = SOCIALS.filter((s) => s.active);
                             title={social.linkTitle}
                             target="_blank"
                             rel="noreferrer"
-                            class="group inline-block p-2 text-text-muted hover:text-accent transition-all duration-300 hover:rotate-6 sm:p-1"
+                            class="group inline-block p-2 opacity-75 hover:opacity-100 hover:text-accent transition-all duration-300 hover:rotate-6 sm:p-1"
                             set:html={SOCIAL_ICONS[social.name]}
                         />
                     ))
