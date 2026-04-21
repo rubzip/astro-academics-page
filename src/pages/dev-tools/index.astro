@@ -1,0 +1,85 @@
+---
+import "../../styles/global.css";
+
+if (import.meta.env.PROD) {
+    return new Response(null, {
+        status: 404,
+        statusText: "Not found",
+    });
+}
+
+const visualizers = [
+    {
+        name: "Palette Visualizer",
+        path: "/dev-tools/palette-visualizer",
+        desc: "Interactive view of all light and dark theme color palettes.",
+    },
+    {
+        name: "Screen Visualizer",
+        path: "/dev-tools/screen-visualizer",
+        desc: "Grid of preview frames for different device sizes (Mobile, Tablet, Desktop).",
+    },
+    {
+        name: "Theme Visualizer",
+        path: "/dev-tools/theme-visualizer",
+        desc: "Live comparison of the active light and dark theme configurations.",
+    },
+];
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dev Tools | Index</title>
+    </head>
+    <body class="bg-gray-50 text-slate-800 font-sans p-10 min-h-screen">
+        <div class="max-w-4xl mx-auto">
+            <header
+                class="mb-12 flex justify-between items-end border-b border-gray-200 pb-8"
+            >
+                <div>
+                    <h1
+                        class="text-4xl font-extrabold text-gray-900 tracking-tight"
+                    >
+                        Development Tools
+                    </h1>
+                    <p class="text-lg text-gray-500 mt-2">
+                        Internal utilities for UI/UX verification and theme
+                        debugging.
+                    </p>
+                </div>
+                <a href="/" class="text-blue-600 font-semibold hover:underline"
+                    >Back to Portfolio &rarr;</a
+                >
+            </header>
+
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {
+                    visualizers.map((tool) => (
+                        <a
+                            href={tool.path}
+                            class="block p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:border-blue-400 hover:shadow-xl transition-all duration-300 group"
+                        >
+                            <h2 class="text-xl font-bold text-gray-800 group-hover:text-blue-600 mb-2 transition-colors">
+                                {tool.name}
+                            </h2>
+                            <p class="text-gray-500 text-sm leading-relaxed">
+                                {tool.desc}
+                            </p>
+                        </a>
+                    ))
+                }
+            </div>
+
+            <footer
+                class="mt-20 pt-8 border-t border-gray-200 text-gray-400 text-sm"
+            >
+                <p>
+                    Note: These tools are only accessible in development mode.
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>

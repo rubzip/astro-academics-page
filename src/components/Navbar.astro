@@ -1,5 +1,6 @@
 ---
 import { NAV_LINKS, PAGES } from "../config";
+import Icon from "./Icon.astro";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -20,24 +21,16 @@ const currentPath = Astro.url.pathname;
                 <li>
                     <a
                         href={link.href}
-                        class={`no-underline font-semibold text-[1.1rem] transition-all duration-200 hover:text-accent relative group ${
+                        class={`nav-link ${
                             currentPath === link.href ||
                             (link.href !== "/" &&
                                 currentPath.startsWith(link.href))
-                                ? "text-accent"
-                                : "opacity-75"
+                                ? "active"
+                                : "inactive"
                         }`}
                     >
                         {link.label}
-                        <span
-                            class={`absolute -bottom-2 left-0 w-0 h-1 bg-accent transition-all duration-300 group-hover:w-full ${
-                                currentPath === link.href ||
-                                (link.href !== "/" &&
-                                    currentPath.startsWith(link.href))
-                                    ? "w-full"
-                                    : ""
-                            }`}
-                        />
+                        <span class="nav-link-line" />
                     </a>
                 </li>
             ))
@@ -50,45 +43,18 @@ const currentPath = Astro.url.pathname;
         class="flex items-center justify-center p-2 hover:text-accent transition-all duration-300 bg-transparent text-foreground cursor-pointer group shrink-0 ml-4"
     >
         <div class="relative w-5 h-5">
-            <svg
+            <Icon
+                name="Sun"
                 id="sun-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                size={20}
                 class="absolute inset-0 hidden dark:block"
-            >
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg
+            />
+            <Icon
+                name="Moon"
                 id="moon-icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                size={20}
                 class="absolute inset-0 block dark:hidden"
-            >
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-                ></path>
-            </svg>
+            />
         </div>
     </button>
 </nav>

@@ -1,5 +1,6 @@
 ---
 import { SITE, SOCIAL_ICONS } from "../config";
+import Icon from "./Icon.astro";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -20,8 +21,9 @@ const currentYear = new Date().getFullYear();
                 target="_blank"
                 rel="noreferrer"
                 class="hover:text-accent transition-colors"
-                set:html={SOCIAL_ICONS["RSS"]}
-            />
+            >
+                <Icon name="RSS" size={24} />
+            </a>
             <p class="font-medium">
                 Built with <a
                     href="https://github.com/rubzip/astro-academics-page"

@@ -1,0 +1,38 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BaseListing from "../../layouts/BaseListing.astro";
+import { getAllTags, getContentByTag } from "../../utils/tags";
+
+export async function getStaticPaths() {
+    const tags = await getAllTags();
+    return tags.map((tag) => ({
+        params: { tag: tag.name },
+        props: { tagName: tag.name },
+    }));
+}
+
+const { tag } = Astro.params;
+const { tagName } = Astro.props;
+
+const content = await getContentByTag(tagName);
+
+// Transform content for BaseListing
+const pagedContent = {
+    data: content.map((item) => ({
+        ...item,
+        // Ensure BaseItemCard can handle the mapping
+        slug: item.id,
+    })),
+    // Fake pagination for now as BaseListing expects it
+    currentPage: 1,
+    lastPage: 1,
+    url: { prev: undefined, next: undefined },
+};
+---
+
+<BaseListing
+    title={`#${tagName}`}
+    subtitle={`Content tagged with "${tagName}"`}
+    page={pagedContent as any}
+    collection="all"
+/>

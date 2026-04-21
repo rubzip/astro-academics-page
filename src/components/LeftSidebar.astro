@@ -1,5 +1,6 @@
 ---
 import { SITE, SOCIALS, SOCIAL_ICONS } from "../config";
+import Icon from "./Icon.astro";
 
 const activeSocials = SOCIALS.filter((s) => s.active);
 ---
@@ -32,29 +33,7 @@ const activeSocials = SOCIALS.filter((s) => s.active);
             {
                 SITE.institution && (
                     <p class="text-[0.9rem] opacity-75 mt-2 font-medium flex items-center justify-center max-md:justify-start gap-2">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            aria-hidden="true"
-                            class="opacity-70"
-                        >
-                            <>
-                                <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                                <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-                                <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-                                <path d="M10 6h4" />
-                                <path d="M10 10h4" />
-                                <path d="M10 14h4" />
-                                <path d="M10 18h4" />
-                            </>
-                        </svg>
+                        <Icon name="Institution" size={18} class="opacity-70" />
                         {SITE.institution}
                     </p>
                 )
@@ -71,9 +50,10 @@ const activeSocials = SOCIALS.filter((s) => s.active);
                             title={social.linkTitle}
                             target="_blank"
                             rel="noreferrer"
-                            class="group inline-block p-2 opacity-75 hover:opacity-100 hover:text-accent transition-all duration-300 hover:rotate-6 sm:p-1"
-                            set:html={SOCIAL_ICONS[social.name]}
-                        />
+                            class="sidebar-social-link sm:p-1"
+                        >
+                            <Icon name={social.name} size={24} />
+                        </a>
                     ))
                 }
             </div>
@@ -88,15 +68,3 @@ const activeSocials = SOCIALS.filter((s) => s.active);
         </div>
     </div>
 </aside>
-
-<style>
-    :global(a svg) {
-        width: 24px;
-        height: 24px;
-        stroke-width: 1.5px;
-        transition: transform 0.2s ease-in-out;
-    }
-    a:hover :global(svg) {
-        stroke: var(--accent);
-    }
-</style>

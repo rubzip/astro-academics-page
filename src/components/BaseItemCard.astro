@@ -1,4 +1,6 @@
 ---
+import Tag from "./Tag.astro";
+
 interface Props {
     title: string;
     href: string;
@@ -29,9 +31,9 @@ const { title, href, metaLine1, metaLine2, description, links, tags } =
 
         {
             tags && tags.length > 0 && (
-                <div class="tags flex gap-4 flex-wrap my-4">
+                <div class="tags flex gap-3 flex-wrap my-4">
                     {tags.map((tag) => (
-                        <span class="badge">#{tag}</span>
+                        <Tag name={tag} size="sm" />
                     ))}
                 </div>
             )

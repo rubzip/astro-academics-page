@@ -47,6 +47,19 @@ const posts = defineCollection({
     }),
 });
 
+const teaching = defineCollection({
+    loader: glob({ pattern: "**/*.md", base: "./src/content/teaching" }),
+    schema: z.object({
+        title: z.string(),
+        role: z.string(),
+        institution: z.string(),
+        semester: z.string(),
+        description: z.string(),
+        tags: z.array(z.string()).optional(),
+        external_url: z.string().url().optional(),
+    }),
+});
+
 const bio = defineCollection({
     loader: glob({ pattern: "bio.md", base: "./src/content" }),
     schema: z.object({
@@ -95,4 +108,5 @@ export const collections = {
     'bio': bio,
     'projects': projects,
     'cv': cv,
+    'teaching': teaching,
 };

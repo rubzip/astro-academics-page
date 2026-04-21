@@ -254,6 +254,63 @@ main a:hover {
     text-decoration: underline !important;
 }
 
+/* Sidebar Social Icons */
+.sidebar-social-link {
+    display: inline-block;
+    padding: 0.5rem;
+    opacity: 0.75;
+    transition: all 0.3s;
+}
+
+.sidebar-social-link:hover {
+    opacity: 1;
+    color: var(--accent);
+    transform: rotate(6deg);
+}
+
+.sidebar-social-link svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.sidebar-social-link:hover svg {
+    stroke: var(--accent);
+}
+
+/* Navbar Link Styling */
+.nav-link {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.nav-link.active {
+    color: var(--accent);
+}
+
+.nav-link.inactive {
+    opacity: 0.75;
+}
+
+.nav-link-line {
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: var(--accent);
+    transition: all 0.3s;
+}
+
+.nav-link:hover .nav-link-line,
+.nav-link.active .nav-link-line {
+    width: 100%;
+}
+
 /* MathML hide fallback */
 .katex-mathml {
     display: none;
