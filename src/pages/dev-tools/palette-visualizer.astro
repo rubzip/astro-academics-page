@@ -1,0 +1,66 @@
+---
+import { LIGHT_THEMES, DARK_THEMES } from "../../themes";
+import "../../styles/global.css";
+
+if (import.meta.env.PROD) {
+    return new Response(null, {
+        status: 404,
+        statusText: "Not found",
+    });
+}
+
+const themes = {
+    ...Object.fromEntries(
+        Object.entries(LIGHT_THEMES).map(([k, v]) => [`Light - ${k}`, v]),
+    ),
+    ...Object.fromEntries(
+        Object.entries(DARK_THEMES).map(([k, v]) => [`Dark - ${k}`, v]),
+    ),
+};
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Palette Visualizer</title>
+    </head>
+    <body class="bg-white text-slate-800 font-sans p-10 min-h-screen">
+        <div class="max-w-6xl mx-auto">
+            <header
+                class="mb-12 flex flex-col gap-2 border-b border-gray-200 pb-5"
+            >
+                <h1 class="text-3xl font-bold text-gray-800">Color Palettes</h1>
+                <p class="text-gray-500">
+                    Minimalist 6-color strip visualizer directly mapping to <code
+                        >themes.ts</code
+                    >.
+                </p>
+            </header>
+
+            <div class="flex flex-col gap-16">
+                {
+                    Object.entries(themes).map(([name, colors]) => (
+                        <div>
+                            <h2 class="text-xl font-bold mb-4 text-gray-700 capitalize">
+                                {name}
+                            </h2>
+                            <div class="flex flex-wrap gap-4">
+                                {Object.entries(colors).map(
+                                    ([varName, hexValue]) => (
+                                        <div
+                                            class="w-32 h-32 rounded-2xl shadow-sm transition-all duration-300 relative z-0 hover:z-10 hover:scale-[1.15] hover:-translate-y-2 hover:shadow-2xl cursor-pointer flex-shrink-0"
+                                            style={`background-color: ${hexValue}`}
+                                            title={`${varName}:\n${hexValue}`}
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </body>
+</html>
