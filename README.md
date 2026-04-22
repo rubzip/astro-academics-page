@@ -10,11 +10,50 @@ Strongly inspired by [Academic Pages](https://github.com/academicpages/academicp
 > **[Live Demo](https://astro-academics-page.vercel.app/)**
 
 ## Features
-GitHub Pages deploy
-Easy markdown-based content creation.
-Light/dark themes
-RSS
-Multiple Themes
+# Academic Portfolio: Implemented Features
+
+This document summarizes the core features and functionality implemented in this Astro-based academic portfolio template.
+
+## 🚀 Core Technology Stack
+- **Framework:** [Astro v6](https://astro.build/) - Modern static site generator.
+- **Language:** [TypeScript](https://www.typescriptlang.org/) - Type-safe development.
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS using the new `@tailwindcss/vite` plugin.
+
+## 🎨 Design & Layout
+- **2-Column Layout:**
+  - **Left Sidebar:** Sticky container with profile image, name, institution, social links, and a short bio.
+  - **Right Main:** Scrollable area for content, navigation, and page-specific layouts.
+- **Responsiveness:** Fully mobile-friendly design (sidebar collapses to a top/bottom header on small screens).
+- **Theme System:**
+  - **Light/Dark Mode:** Built-in toggle with persistence in `localStorage`.
+  - **Preset Themes:** Multiple color schemes (e.g., `default`, `lobster`, `leafBlue`, `astroPaper`, `pikkyDark`).
+  - **Unified UI:** Centralized styling in `global.css` and reusable components.
+
+## 📝 Content Management (Astro Collections)
+The project is strictly "Markdown-driven," allowing users to modify content just by editing `.md` files.
+- **Publications:** Supports authors, date, journal/conference info, DOI, and PDF links.
+- **Talks:** Tracking events, locations, slide decks, and video recordings.
+- **Projects:** Featured projects with tech tags and GitHub links.
+- **Blog (Posts):** Full-featured blog with reading time estimation and tags.
+- **Teaching:** Documenting roles and institutions across semesters.
+- **CV:** Structured education and experience data rendered into a clean layout.
+- **Bio:** Dedicated bio page driven by markdown.
+
+## 🎓 Academic Features
+- **LaTeX Support:** Integrated `remark-math` and `rehype-katex` for rendering complex mathematical equations.
+- **Rich Meta Metadata:** Extensive support for DOI, ISBN, and external URLs across all academic collections.
+
+## 🛠️ Performance & SEO
+- **SEO Ready:** Optimized meta tags (Open Graph, Twitter Cards) and canonical URLs.
+- **Analytics:** Out-of-the-box support for Umami and Google Analytics 4.
+- **Fast Navigation:** Uses Astro's View Transitions (`ClientRouter`) for smooth page loads.
+- **RSS Feed:** Automated feed generation at `/rss.xml`.
+- **Lighthouse Tooling:** Built-in scripts for running performance audits.
+
+## 🔧 Developer Utilities
+- **Content Adapters:** A unified item model transforms diverse content types into a standard renderable format.
+- **Tagging Engine:** Automatic tag extraction and filtering system across all collections.
+- **Developer Tools:** Specialized layouts and utilities for rapid template customization.
 
 
 ## Customization Guide
