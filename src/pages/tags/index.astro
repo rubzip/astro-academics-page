@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getAllTags } from "../../utils/tags";
 import Tag from "../../components/Tag.astro";
 import ContentHeader from "../../components/ContentHeader.astro";
@@ -21,7 +21,7 @@ function getTagSize(count: number): "sm" | "md" | "lg" {
 }
 ---
 
-<Layout title="Tags">
+<BaseLayout title="Tags">
     <div class="content-container">
         <ContentHeader
             title="Tags"
@@ -52,7 +52,7 @@ function getTagSize(count: number): "sm" | "md" | "lg" {
             }
         </div>
     </div>
-</Layout>
+</BaseLayout>
 
 <style>
     .flex-wrap > * {

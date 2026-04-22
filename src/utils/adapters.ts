@@ -1,5 +1,5 @@
 import { getReadingTime } from "./readingTime";
-import type { UnifiedItem, DisplayLink } from "../types/display";
+import type { UnifiedItem, DisplayLink } from "../types";
 
 export function getUnifiedItem(entry: any, customCollection?: string): UnifiedItem {
     const d = entry.data;

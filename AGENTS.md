@@ -10,10 +10,10 @@
 - Node.js >= 22.12.0
 
 ## Architecture
-- **Content location:** `src/content/` - Add `.md` files to subdirectories (posts/, publications/, projects/, talks/, teaching/)
-- **Config:** `src/config/site.ts` - Site metadata, analytics
-- **Config:** `src/config/pages.ts` - Page titles, active/inactive state
-- **Config:** `src/config/navigation.ts` - Navigation links
+- **Barrel files:** `src/config/index.ts`, `src/types/index.ts`
+- **Content:** `src/content/` - Add `.md` files to subdirectories (posts/, publications/, projects/, talks/, teaching/)
+- **Config:** `src/config/` - site.ts (metadata/analytics), pages.ts (titles/active state), navigation.ts (nav links)
+- **Types:** `src/types/` - content.ts (content interfaces), display.ts (UI types), config.ts (config types)
 - **Styles:** `src/styles/global.css` - Theme colors, base styles
 
 ## Key Constraints
@@ -23,5 +23,5 @@
 
 ## Notes
 - Tailwind CSS v4 uses `@tailwindcss/vite` plugin (no tailwind.config.js)
-- LaTeX math rendering enabled via remark-math/rehype-katex
+- LaTeX math rendering via remark-math/rehype-katex
 - No lint/typecheck scripts configured

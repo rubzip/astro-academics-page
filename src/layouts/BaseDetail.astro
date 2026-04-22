@@ -1,6 +1,6 @@
 ---
 import { getEntry, render } from "astro:content";
-import Layout from "./Layout.astro";
+import BaseLayout from "./BaseLayout.astro";
 import BackLink from "../components/BackLink.astro";
 import ContentHeader from "../components/ContentHeader.astro";
 import ContentLinks from "../components/ContentLinks.astro";
@@ -31,7 +31,7 @@ const { meta, links, backHref, backLabel, title, tags } = getUnifiedItem(
 );
 ---
 
-<Layout title={title}>
+<BaseLayout title={title}>
     <BackLink href={backHref} label={backLabel} />
 
     <article class="content-container pt-4">
@@ -55,4 +55,4 @@ const { meta, links, backHref, backLabel, title, tags } = getUnifiedItem(
 
         <slot name="footer" />
     </article>
-</Layout>
+</BaseLayout>

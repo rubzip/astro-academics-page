@@ -1,4 +1,4 @@
-import type { SiteConfig, SettingsConfig, AnalyticsConfig } from "../types/config";
+import type { SiteConfig, SettingsConfig, AnalyticsConfig } from "../types";
 
 export const SITE: SiteConfig = {
     website: "https://rubzip.github.io/academic-portfolio-astro/",

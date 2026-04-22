@@ -1,4 +1,4 @@
-import type { PagesConfig } from "../types/config";
+import type { PagesConfig } from "../types";
 
 export const PAGES: PagesConfig = {
     home: {

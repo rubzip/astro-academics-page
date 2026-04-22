@@ -1,4 +1,4 @@
-import type { NavLink, SocialLink } from "../types/config";
+import type { NavLink, SocialLink } from "../types";
 
 export const NAV_LINKS: NavLink[] = [
     { href: "/", label: "About", active: true },
