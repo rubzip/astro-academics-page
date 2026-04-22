@@ -24,3 +24,13 @@ export interface UnifiedItem {
     backLabel: string;
     backHref: string;
 }
+
+export interface ListingItem {
+    title: string;
+    description?: string;
+    date?: string;
+    author?: string;
+    extra?: string;
+    tags: string[];
+    externalUrl: string;
+}
