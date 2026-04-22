@@ -1,4 +1,6 @@
-export const NAV_LINKS = [
+import type { NavLink, SocialLink } from "../types/config";
+
+export const NAV_LINKS: NavLink[] = [
     { href: "/", label: "About", active: true },
     { href: "/publications", label: "Publications", active: true },
     { href: "/talks", label: "Talks", active: true },
@@ -9,7 +11,7 @@ export const NAV_LINKS = [
     { href: "/cv", label: "CV", active: true },
 ];
 
-export const SOCIALS = [
+export const SOCIALS: SocialLink[] = [
     {
         name: "Github",
         href: "https://github.com/albert-einstein",
