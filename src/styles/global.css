@@ -352,3 +352,55 @@ main a:hover {
 .timeline-item:last-child .timeline-content {
     padding-bottom: 0;
 }
+
+
+/* Dev Tools: Viewport framing for Screen Visualizer */
+.viewport-frame {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--surface);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.viewport-header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--background);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.iframe-wrapper {
+    background: var(--background);
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    height: 600px;
+}
+.iframe-wrapper iframe {
+    background: var(--background);
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Dev Tools: Iframe scaling for Theme Visualizer */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+}
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+    border: none;
+}
