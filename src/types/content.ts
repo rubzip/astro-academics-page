@@ -5,7 +5,7 @@ export interface Bio {
 export interface CVItem {
   name: string;
   institution: string;
-  date: string;
+  interval: string;
   description: string;
 }
 
