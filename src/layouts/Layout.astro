@@ -145,8 +145,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
                 }
             }
 
-            initToggle();
-            document.addEventListener("astro:after-swap", initToggle);
+            document.addEventListener("astro:page-load", initToggle);
         </script>
     </head>
     <body
