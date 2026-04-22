@@ -1,10 +1,8 @@
 ---
+import type { DisplayLink } from "../types/display";
+
 interface Props {
-    links: {
-        href: string;
-        label: string;
-        external?: boolean;
-    }[];
+    links: DisplayLink[];
     className?: string;
 }
 
