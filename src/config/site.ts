@@ -18,3 +18,13 @@ export const SETTINGS = {
     showTagsInNavbar: true,
     showRSSInFooter: true,
 };
+
+export const ANALYTICS = {
+    // Google Analytics 4 Measurement ID (e.g., 'G-XXXXXXXXXX')
+    ga4Id: "",
+    // Umami Analytics configuration
+    umami: {
+        websiteId: "", // e.g., 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+        src: "https://cloud.umami.is/script.js", // Default Umami cloud script URL
+    }
+};
