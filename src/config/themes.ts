@@ -1,7 +1,7 @@
 /* Some CSS utility classes and base variables are adapted from Astro Paper 
-  by Satnaing (https://github.com/satnaing/astro-paper) 
-  Released under the MIT License.
-*/
+   by Satnaing (https://github.com/satnaing/astro-paper) 
+   Released under the MIT License.
+ */
 
 export interface ThemeColors {
     background: string;
