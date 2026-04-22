@@ -1,5 +1,5 @@
 ---
-import "../../styles/global.css";
+import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
 
 if (import.meta.env.PROD) {
     return new Response(null, {
@@ -27,66 +27,17 @@ const viewports = [
 ];
 ---
 
-<!doctype html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Screen Visualizer - Responsive Preview</title>
-        <style>
-            .viewport-frame {
-                border: 1px solid #eee;
-                border-radius: 1rem;
-                background: #fff;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-            }
-            .viewport-header {
-                padding: 0.75rem 1rem;
-                border-bottom: 1px solid #eee;
-                background: #fafafa;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .iframe-wrapper {
-                background: #f0f0f0;
-                display: flex;
-                justify-content: center;
-                overflow: auto;
-                height: 600px;
-            }
-            iframe {
-                background: white;
-                border: none;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-            }
-        </style>
-    </head>
-    <body class="bg-white text-gray-800 font-sans p-10 min-h-screen">
-        <div class="max-w-[1600px] mx-auto">
-            <header
-                class="mb-12 flex flex-col gap-2 border-b border-gray-200 pb-5"
-            >
-                <h1 class="text-3xl font-bold text-gray-800">
-                    Screen Visualizer
-                </h1>
-                <p class="text-gray-500 font-mono text-sm">
-                    Responsive testing for default themes across common
-                    breakpoints.
-                </p>
-            </header>
+<DevToolsLayout title="Screen Visualizer" description="Responsive testing for default themes across common breakpoints.">
 
             <div class="flex flex-col gap-20">
                 {
                     viewports.map((vp) => (
                         <div class="flex flex-col gap-4">
                             <div class="flex items-baseline gap-4">
-                                <h2 class="text-xl font-bold text-gray-700 capitalize">
+                                <h2 class="text-xl font-bold capitalize">
                                     {vp.name}
                                 </h2>
-                                <span class="text-sm font-mono text-gray-400">
+                                <span class="text-sm font-mono opacity-50">
                                     {vp.label} — {vp.width}x{vp.height}px
                                 </span>
                             </div>
@@ -116,6 +67,4 @@ const viewports = [
                     ))
                 }
             </div>
-        </div>
-    </body>
-</html>
+</DevToolsLayout>
