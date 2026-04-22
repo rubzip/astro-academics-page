@@ -1,11 +1,9 @@
 ---
+import type { DisplayMeta } from "../types/display";
+
 interface Props {
     title: string;
-    meta?: {
-        label?: string;
-        value: string;
-        datetime?: string;
-    }[];
+    meta?: DisplayMeta[];
 }
 
 const { title, meta = [] } = Astro.props;
