@@ -3,7 +3,6 @@ title: "Electromagnetic Time Synchronizer"
 description: "A conceptual prototype for synchronizing clocks across distances using electrical signals."
 tags: ["Engineering", "Clocks", "Electrodynamics"]
 external_url: "https://github.com/albert/synchronizer"
-featured: true
 ---
 
 # Project Overview

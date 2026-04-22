@@ -1,8 +1,6 @@
 ---
 title: "Physics of Information"
-role: "Lecturer"
 institution: "University of Zurich"
-semester: "Fall 1909"
 description: "Exploring the thermodynamic limits of computation and the statistical mechanics of information processing."
 tags: ["physics", "statistical mechanics", "information theory"]
 external_url: "https://www.uzh.ch"

@@ -1,7 +1,7 @@
 ---
 title: "On the Electrodynamics of Moving Bodies"
-authors: ["Albert Einstein"]
-publicationDate: 1905-09-26
+authors: "Albert Einstein"
+date: 1905-09-26
 journal: "Annalen der Physik"
 external_url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19053221004"
 tags: ["Special Relativity", "Electrodynamics"]

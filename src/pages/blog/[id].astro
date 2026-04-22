@@ -12,7 +12,7 @@ export async function getStaticPaths() {
     if (PAGES.blog.active === false) return [];
     const posts = await getCollection("posts");
     const sortedPosts = posts.sort(
-        (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+        (a, b) => b.data.date.getTime() - a.data.date.getTime(),
     );
 
     return sortedPosts.map((post, i) => ({

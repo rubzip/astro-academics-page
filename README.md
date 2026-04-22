@@ -91,16 +91,17 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Clean and restructure `config.ts`
 ### Bugs
  - [x] Sometimes when you first load page, light/dark toggle doesnt work. You have to refresh or change page for doing it
+ - [ ] Pagination is broken. It doesnt show pagination for blog now
 ### Aesthetics
  - [ ] Define a new style make content more readable and compact
  - [ ] Implement definitive themes
 ### Features
- - [ ] Analytics implementation
+ - [x] Analytics implementation
  - [ ] Add bibtex support? There are 2 options, add bibtex as a feature of every specific article or having a master bibtex doc and mention it for having metadata
- - [ ] Improve dev tools.
+ - [x] Improve dev tools.
  - [ ] i18n? Maybe too much coding and not useful enough
 ### Clean Code
- - [ ] Define types for every feature
+ - [x] Define types for every feature
  - [ ] Refactor
 ### Docs
  - [ ] Improve documentation / README

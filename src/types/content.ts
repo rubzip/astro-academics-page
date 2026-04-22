@@ -3,17 +3,25 @@ export interface Bio {
 }
 
 export interface CVItem {
-  name: string;
   institution: string;
-  interval: string;
+  period: string;
   description: string;
+}
+
+export interface EducationItem extends CVItem {
+  degree: string;
+  thesis?: string;
+}
+
+export interface ExperienceItem extends CVItem {
+  role: string;
 }
 
 export interface CV {
   name: string;
   title: string;
-  experience: CVItem[];
-  education: CVItem[];
+  experience: ExperienceItem[];
+  education: EducationItem[];
 }
 
 export interface BasePage {
@@ -32,6 +40,8 @@ export interface Project extends BasePage {
 }
 
 export interface Publication extends BasePage {
+  authors: string;
+  journal?: string;
   external_url?: string;
 }
 

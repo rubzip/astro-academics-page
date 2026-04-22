@@ -1,5 +1,5 @@
 import { getReadingTime } from "./readingTime";
-import type { UnifiedItem, DisplayMeta, DisplayLink } from "../types/display";
+import type { UnifiedItem, DisplayLink } from "../types/display";
 
 export function getUnifiedItem(entry: any, customCollection?: string): UnifiedItem {
     const d = entry.data;
@@ -17,24 +17,21 @@ export function getUnifiedItem(entry: any, customCollection?: string): UnifiedIt
 
     switch (collection) {
         case "publications":
-            const pubDate = d.publicationDate?.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+            const pubDate = d.date?.toLocaleDateString("en-US", { year: "numeric", month: "long" });
             return {
                 ...common,
                 href: `/publications/${id}`,
                 backLabel: "Publications",
                 backHref: "/publications",
                 metaLine1: pubDate,
-                metaLine2: d.authors?.join(", "),
+                metaLine2: d.authors,
                 meta: [
                     { label: "Journal", value: d.journal },
-                    { value: d.authors?.join(", ") },
+                    { value: d.authors },
                     { value: pubDate },
                 ].filter(m => !!m.value),
                 links: [
                     d.external_url && { href: d.external_url, label: "View" },
-                    d.doi && { href: `https://doi.org/${d.doi}`, label: "DOI" },
-                    d.pdf && { href: d.pdf, label: "PDF" },
-                    d.url && { href: d.url, label: "Publisher" },
                 ].filter((l): l is DisplayLink => !!l),
             };
 
@@ -46,16 +43,13 @@ export function getUnifiedItem(entry: any, customCollection?: string): UnifiedIt
                 backLabel: "Talks",
                 backHref: "/talks",
                 metaLine1: talkDate,
-                metaLine2: `${d.event} • ${d.location}`,
+                metaLine2: d.event,
                 meta: [
                     { label: "Event", value: d.event },
-                    { label: "Location", value: d.location },
                     { value: talkDate },
                 ].filter(m => !!m.value),
                 links: [
                     d.external_url && { href: d.external_url, label: "View" },
-                    d.slides && { href: d.slides, label: "Slides" },
-                    d.video && { href: d.video, label: "Video" },
                 ].filter((l): l is DisplayLink => !!l),
             };
 
@@ -69,12 +63,11 @@ export function getUnifiedItem(entry: any, customCollection?: string): UnifiedIt
                 meta: [{ value: d.description }].filter(m => !!m.value),
                 links: [
                     d.external_url && { href: d.external_url, label: "View" },
-                    d.github && { href: d.github, label: "GitHub" }
                 ].filter((l): l is DisplayLink => !!l),
             };
 
         case "posts":
-            const postDate = d.pubDate?.toLocaleDateString("en-US", { year: "numeric", month: "long" });
+            const postDate = d.date?.toLocaleDateString("en-US", { year: "numeric", month: "long" });
             const readTime = `${getReadingTime(entry.body || "")} min read`;
             return {
                 ...common,
@@ -98,12 +91,9 @@ export function getUnifiedItem(entry: any, customCollection?: string): UnifiedIt
                 href: `/teaching/${id}`,
                 backLabel: "Teaching",
                 backHref: "/teaching",
-                metaLine1: `${d.role} • ${d.institution}`,
-                metaLine2: d.semester,
+                metaLine1: d.institution,
                 meta: [
-                    { label: "Role", value: d.role },
                     { label: "Institution", value: d.institution },
-                    { label: "Semester", value: d.semester },
                 ].filter(m => !!m.value),
                 links: [
                     d.external_url && { href: d.external_url, label: "Course Page" },
