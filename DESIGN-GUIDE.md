@@ -13,6 +13,11 @@ Strictly follow these UI/UX design guidelines:
 - Dark Mode: Very dark charcoal/slate background (e.g., #212529) with off-white text (#fbfbfb).
 - Accent Color: Use ONE single accent color very sparingly (e.g., a muted skin-color/orange or a subtle link color) only for hover states, active states, or subtle highlights.
 
+2.5 VARIABLE THEMES:
+- The template now supports dynamic variable themes configured in `src/themes.ts` (providing multiple `LIGHT_THEMES` and `DARK_THEMES`).
+- Selecting Themes: The active light and dark themes are selected globally in `src/config/site.ts` using the `themeLight` and `themeDark` fields.
+- Theme Structure: Each theme tokenizes 6 essential colors: `background`, `foreground`, `accent`, `muted`, `border`, and `surface`.
+
 3. TYPOGRAPHY:
 - System fonts or clean sans-serif (like Inter or Roboto) for all body text and headings.
 - Monospace font (like JetBrains Mono or Fira Code) for code blocks, tags, or small technical metadata.
