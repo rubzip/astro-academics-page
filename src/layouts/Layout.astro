@@ -1,5 +1,5 @@
 ---
-import { SITE } from "../config";
+import { SITE, ANALYTICS } from "../config";
 import { LIGHT_THEMES, DARK_THEMES } from "../themes";
 import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/LeftSidebar.astro";
@@ -104,6 +104,36 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
 
         <ClientRouter />
 
+        {
+            ANALYTICS.umami.websiteId && (
+                <script
+                    is:inline
+                    defer
+                    src={ANALYTICS.umami.src}
+                    data-website-id={ANALYTICS.umami.websiteId}
+                />
+            )
+        }
+
+        {
+            ANALYTICS.ga4Id && (
+                <>
+                    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.ga4Id}`}></script>
+                    <script is:inline define:vars={{ ga4Id: ANALYTICS.ga4Id }}>
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', ga4Id);
+
+                        document.addEventListener('astro:page-load', () => {
+                            gtag('config', ga4Id, {
+                                page_path: window.location.pathname,
+                            });
+                        });
+                    </script>
+                </>
+            )
+        }
         <script is:inline>
             function setTheme() {
                 const theme = (() => {
