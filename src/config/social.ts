@@ -5,31 +5,31 @@ export const SOCIALS: SocialLink[] = [
         name: "Github",
         href: "https://github.com/albert-einstein",
         linkTitle: `Follow albert-einstein on Github`,
-        active: true,
+        isActive: true,
     },
     {
         name: "LinkedIn",
         href: "https://linkedin.com/in/alberteinstein",
         linkTitle: `Follow albert-einstein on LinkedIn`,
-        active: true,
+        isActive: true,
     },
     {
         name: "Mail",
         href: "mailto:albert@ias.edu",
         linkTitle: `Send an email to Albert`,
-        active: true,
+        isActive: true,
     },
     {
         name: "Google Scholar",
         href: "https://scholar.google.com/citations?user=einstein",
         linkTitle: `Albert Einstein on Google Scholar`,
-        active: true,
+        isActive: true,
     },
     {
         name: "ORCID",
         href: "https://orcid.org/0000-0001-2345-6789",
         linkTitle: `Albert Einstein on ORCID`,
-        active: true,
+        isActive: true,
     },
 ];
 

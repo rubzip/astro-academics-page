@@ -2,7 +2,7 @@
 import { SITE, SOCIALS, SOCIAL_ICONS } from "../../config";
 import Icon from "../ui/Icon.astro";
 
-const activeSocials = SOCIALS.filter((s) => s.active);
+const activeSocials = SOCIALS.filter((s) => s.isActive);
 ---
 
 <aside

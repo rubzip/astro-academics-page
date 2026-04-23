@@ -12,7 +12,7 @@ export type {
     Teaching,
 } from "./content";
 
-export type { UnifiedItem, DisplayLink, DisplayMeta, ListingItem, DetailItem } from "./display";
+export type { DisplayLink, DisplayMeta, ListingItem, DetailItem } from "./display";
 
 export type {
     SiteConfig,

@@ -3,8 +3,8 @@ import { getCollection } from "astro:content";
 import { SITE, PAGES } from "../config";
 
 export async function GET(context: any) {
-    const posts = PAGES.blog.active !== false ? await getCollection("posts") : [];
-    const publications = PAGES.publications.active !== false ? await getCollection("publications") : [];
+    const posts = PAGES.blog.isActive !== false ? await getCollection("posts") : [];
+    const publications = PAGES.publications.isActive !== false ? await getCollection("publications") : [];
 
     const items = [
         ...posts.map((post: any) => ({

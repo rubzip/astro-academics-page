@@ -19,6 +19,7 @@ export const SITE: SiteConfig = {
 export const SETTINGS: SettingsConfig = {
     showTagsInNavbar: true,
     showRSSInFooter: true,
+    addDevToolsInProduction: true,
 };
 
 export const ANALYTICS: AnalyticsConfig = {

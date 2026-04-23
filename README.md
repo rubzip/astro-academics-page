@@ -93,14 +93,14 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Sometimes when you first load page, light/dark toggle doesnt work. You have to refresh or change page for doing it
  - [x] Pagination is broken. It doesnt show pagination for blog now. (Closed, it wasnt a bug)
 ### TO DO
- - [ ] CRITICAL: Finish code simplification, full integrate `types/display.ts`. Probably we should keep (and improve) `ListingItem` and aditionally create `DetailItem`.
- - [ ] Add `addDevToolsInProduction` to `SettingsConfig`
- - [ ] Add new file `config/social.ts`
+ - [x] CRITICAL: Finish code simplification, full integrate `types/display.ts`. Probably we should keep (and improve) `ListingItem` and aditionally create `DetailItem`.
+ - [x] Add `addDevToolsInProduction` to `SettingsConfig`
+ - [x] Add new file `config/social.ts`
  - [ ] Add `assets/fonts.ts`?
  - [ ] Rethink what to do with `assets/icons.ts`
  - [ ] Delete unused features (Lighthouse, scripts, ...)
  - [ ] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
- - [ ] Naming convention: I would like to change boolean variables (e.g. 'active' -> 'isActive')
+ - [x] Naming convention: I would like to change boolean variables (e.g. 'active' -> 'isActive')
  - [ ] Maybe adding settings to `bio.md`. Maybe we could place there things like: avatar, name, short_bio, institution...
  - [ ] Add code examples and images in posts
  - [ ] Remove G4A or consider doing it. It is mandatory to add cookies policy in case we are tracking with G4A. Talk about why is great Umami analytics (low control).

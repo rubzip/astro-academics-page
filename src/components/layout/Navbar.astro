@@ -16,7 +16,7 @@ const currentPath = Astro.url.pathname;
                     ? "home"
                     : link.href.split("/").filter(Boolean)[0];
                 const pageConfig = (PAGES as any)[pageKey];
-                return link.active !== false && pageConfig?.active !== false;
+                return link.isActive !== false && pageConfig?.active !== false;
             }).map((link) => (
                 <li>
                     <a

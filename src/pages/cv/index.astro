@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Timeline from "../../components/ui/Timeline.astro";
 import { PAGES } from "../../config";
 
-if (PAGES.cv.active === false) {
+if (PAGES.cv.isActive === false) {
     return Astro.redirect("/404");
 }
 
