@@ -93,6 +93,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Sometimes when you first load page, light/dark toggle doesnt work. You have to refresh or change page for doing it
  - [x] Pagination is broken. It doesnt show pagination for blog now. (Closed, it wasnt a bug)
 ### TO DO
+ - [ ] CRITICAL: Finish code simplification, full integrate `types/display.ts`. Probably we should keep (and improve) `ListingItem` and aditionally create `DetailItem`.
  - [ ] Add `addDevToolsInProduction` to `SettingsConfig`
  - [ ] Add new file `config/social.ts`
  - [ ] Add `assets/fonts.ts`?
