@@ -105,6 +105,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [ ] Add code examples and images in posts
  - [ ] Remove G4A or consider doing it. It is mandatory to add cookies policy in case we are tracking with G4A. Talk about why is great Umami analytics (low control).
  - [ ] Set things for loading lazyly analytics and keeping performance good
+ - [ ] Add an extra theme visualizer, it should be simpler. Instead of loading the full page maybe would be better loading some easier html
 ### Aesthetics
  - [ ] Define a new style make content more readable and compact
  - [ ] Implement definitive themes
