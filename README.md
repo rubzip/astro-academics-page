@@ -157,7 +157,14 @@ export interface Bio {
  - [ ] Add examples with code and evaluate it
  - [ ] Add examples with images
  - [ ] Add more examples, with different configurations 
-
+### SEO Improvements To-Do
+- [ ] **Avoid hardcoded language:** Make the `<html lang="en">` attribute in `BaseLayout.astro` dynamic or tied to the global site configuration.
+- [ ] **Pass dynamic metadata to detail pages:** Update `BaseDetail.astro` to extract specific descriptions/excerpts and Open Graph images, and pass them as props to `<BaseLayout>`.
+- [ ] **Implement dynamic Open Graph types:** Add an `og:type` prop to differentiate between `website` (for home/listing pages) and `article` (for publications, posts, and talks).
+- [ ] **Generate a Sitemap:** Install and configure the `@astrojs/sitemap` integration to ensure search engines can discover and index all dynamic routes.
+- [ ] **Add a `robots.txt` file:** Create a static `public/robots.txt` or dynamically generate one to guide web crawlers and provide the sitemap URL.
+- [ ] **Implement Structured Data (JSON-LD):** Add Schema.org metadata (e.g., `Person` for the portfolio owner, `ScholarlyArticle` for publications, `BlogPosting` for posts) to improve indexing in Google and Google Scholar.
+- [ ] **Add explicit indexing meta tags:** Include `<meta name="robots" content="index, follow">` in the base layout, allowing specific pages (like dev tools) to opt-out via props.
 ## LightHouse Score
 ![Lighthouse Performance](https://lighthouse-metrics.com/api/v1/pages/https-astro-academics-page-vercel-app/performance/badge.svg)
 
