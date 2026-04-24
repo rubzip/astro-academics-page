@@ -99,7 +99,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [ ] Add `assets/fonts.ts`?
  - [ ] Rethink what to do with `assets/icons.ts`
  - [ ] Delete unused features (Lighthouse, scripts, ...)
- - [ ] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
+ - [x] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
  - [x] Naming convention: I would like to change boolean variables (e.g. 'active' -> 'isActive')
  - [ ] Maybe adding settings to `bio.md`. Maybe we could place there things like: avatar, name, short_bio, institution...
  - [ ] Add code examples and images in posts
@@ -107,6 +107,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [ ] Set things for loading lazyly analytics and keeping performance good
  - [ ] Add an extra theme visualizer, it should be simpler. Instead of loading the full page maybe would be better loading some easier html
  - [ ] Add `images/` folder, `robots.txt`.
+ - [ ] Add share buttons to posts?
  
 ### Aesthetics
  - [ ] Define a new style make content more readable and compact
