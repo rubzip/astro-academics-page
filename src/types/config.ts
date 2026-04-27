@@ -4,12 +4,13 @@ export interface SiteConfig {
     desc: string;
     title: string;
     ogImage: string;
-    lightAndDark: boolean;
     postPerPage: number;
     favicon: string;
-    profileImage: string;
-    shortBio: string;
-    institution: string;
+    lang: string;
+}
+
+export interface ThemeConfig {
+    lightAndDark: boolean;
     themeLight: string;
     themeDark: string;
 }

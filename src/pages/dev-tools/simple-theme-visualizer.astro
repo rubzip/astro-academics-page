@@ -1,0 +1,323 @@
+---
+import { THEMES, SETTINGS } from "../../config";
+import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
+
+const redirect: boolean = import.meta.env.PROD && !SETTINGS.addDevToolsInProduction;
+if (redirect) {
+    return Astro.redirect("/404");
+}
+
+const lightThemes = Object.entries(THEMES).filter(([_, t]) => !t.isDark);
+const darkThemes = Object.entries(THEMES).filter(([_, t]) => t.isDark);
+
+const sampleHtmlLight = `
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .sample-card {
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            background: var(--surface);
+        }
+        .sample-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .sample-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .sample-tag {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+        .sample-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: var(--background);
+            border-radius: 0.25rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        .color-swatches {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .swatch {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.375rem;
+            border: 1px solid var(--border);
+        }
+        .swatch-label {
+            font-size: 0.75rem;
+            font-family: monospace;
+            margin-top: 0.25rem;
+            text-align: center;
+        }
+        .swatch-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="sample-card">
+        <h1 class="sample-title">Sample Title</h1>
+        <p class="sample-desc">This is a sample description with some text to preview how the theme colors look in paragraphs and content.</p>
+        <div class="sample-tags">
+            <span class="sample-tag">#tag1</span>
+            <span class="sample-tag">#tag2</span>
+        </div>
+        <a href="#" class="sample-btn">Sample Button</a>
+    </div>
+    <div class="color-swatches">
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--background)"></div>
+            <span class="swatch-label">bg</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--foreground)"></div>
+            <span class="swatch-label">fg</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--accent)"></div>
+            <span class="swatch-label">accent</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--text-muted)"></div>
+            <span class="swatch-label">muted</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--border)"></div>
+            <span class="swatch-label">border</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--surface)"></div>
+            <span class="swatch-label">surface</span>
+        </div>
+    </div>
+</body>
+</html>
+`;
+
+const sampleHtmlDark = `
+<!DOCTYPE html>
+<html data-theme="dark">
+<head>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .sample-card {
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            background: var(--surface);
+        }
+        .sample-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .sample-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        .sample-tag {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-right: 0.5rem;
+        }
+        .sample-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: var(--background);
+            border-radius: 0.25rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        .color-swatches {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .swatch {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.375rem;
+            border: 1px solid var(--border);
+        }
+        .swatch-label {
+            font-size: 0.75rem;
+            font-family: monospace;
+            margin-top: 0.25rem;
+            text-align: center;
+        }
+        .swatch-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="sample-card">
+        <h1 class="sample-title">Sample Title</h1>
+        <p class="sample-desc">This is a sample description with some text to preview how the theme colors look in paragraphs and content.</p>
+        <div class="sample-tags">
+            <span class="sample-tag">#tag1</span>
+            <span class="sample-tag">#tag2</span>
+        </div>
+        <a href="#" class="sample-btn">Sample Button</a>
+    </div>
+    <div class="color-swatches">
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--background)"></div>
+            <span class="swatch-label">bg</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--foreground)"></div>
+            <span class="swatch-label">fg</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--accent)"></div>
+            <span class="swatch-label">accent</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--text-muted)"></div>
+            <span class="swatch-label">muted</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--border)"></div>
+            <span class="swatch-label">border</span>
+        </div>
+        <div class="swatch-group">
+            <div class="swatch" style="background: var(--surface)"></div>
+            <span class="swatch-label">surface</span>
+        </div>
+    </div>
+</body>
+</html>
+`;
+---
+
+<DevToolsLayout title="Simple Theme Visualizer" description="Simple HTML previews of theme colors.">
+    <div class="mb-12">
+        <p class="text-foreground opacity-80 mb-8">
+            A simpler theme visualizer showing sample UI elements with theme colors.
+            Each preview loads minimal HTML with global styles.
+        </p>
+    </div>
+
+    <div class="mb-16">
+        <h2
+            class="text-xl font-bold mb-8 uppercase tracking-widest border-l-4 border-accent pl-4"
+        >
+            Light Themes
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                lightThemes.map(([themeName, colors]: [string, any]) => (
+                    <div class="flex flex-col gap-3">
+                        <h3 class="text-sm font-mono font-bold text-gray-500 uppercase tracking-tighter">
+                            {themeName.replace("light_", "")}
+                        </h3>
+                        <div class="border border-border rounded-lg overflow-hidden">
+                            <iframe
+                                srcdoc={sampleHtmlLight.replace(
+                                    "</head>",
+                                    `<style>
+                                        :root {
+                                            --background: ${colors.background};
+                                            --foreground: ${colors.foreground};
+                                            --accent: ${colors.accent};
+                                            --text-muted: ${colors.muted};
+                                            --border: ${colors.border};
+                                            --surface: ${colors.surface};
+                                        }
+                                    </style></head>`,
+                                )}
+                                title={`${themeName} Preview`}
+                                class="w-full h-64 border-0"
+                            />
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+
+    <div class="mb-16">
+        <h2
+            class="text-xl font-bold mb-8 uppercase tracking-widest border-l-4 border-accent pl-4"
+        >
+            Dark Themes
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+                darkThemes.map(([themeName, colors]: [string, any]) => (
+                    <div class="flex flex-col gap-3">
+                        <h3 class="text-sm font-mono font-bold text-gray-400 uppercase tracking-tighter">
+                            {themeName.replace("dark_", "")}
+                        </h3>
+                        <div class="border border-border rounded-lg overflow-hidden">
+                            <iframe
+                                srcdoc={sampleHtmlDark.replace(
+                                    "</head>",
+                                    `<style>
+                                        [data-theme="dark"] {
+                                            --background: ${colors.background};
+                                            --foreground: ${colors.foreground};
+                                            --accent: ${colors.accent};
+                                            --text-muted: ${colors.muted};
+                                            --border: ${colors.border};
+                                            --surface: ${colors.surface};
+                                        }
+                                    </style></head>`,
+                                )}
+                                title={`${themeName} Preview`}
+                                class="w-full h-64 border-0"
+                            />
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</DevToolsLayout>

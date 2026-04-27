@@ -48,7 +48,6 @@ The project is strictly "Markdown-driven," allowing users to modify content just
 - **Analytics:** Out-of-the-box support for Umami and Google Analytics 4.
 - **Fast Navigation:** Uses Astro's View Transitions (`ClientRouter`) for smooth page loads.
 - **RSS Feed:** Automated feed generation at `/rss.xml`.
-- **Lighthouse Tooling:** Built-in scripts for running performance audits.
 
 ## 🔧 Developer Utilities
 - **Content Adapters:** A unified item model transforms diverse content types into a standard renderable format.
@@ -59,7 +58,7 @@ The project is strictly "Markdown-driven," allowing users to modify content just
 ## Customization Guide
 
 ### 1. Update Site Configuration
-Edit `src/config.ts` to change the site title, description, favicon, and social links.
+Edit `src/config/` to change the site title, description, favicon, and social links.
 - **Favicon**: You can set `SITE.favicon` to any path in `public/`. For example, `"/favicon-academic.svg"` for the default academic icon.
 
 ### 2. Add Your Content
@@ -82,7 +81,6 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Script for checking lighthouse score
  - [x] Evaluate github pages deployment (optionally netlify, vercel)
  - [x] Evaluate different screen sizes
- - [x] No CSS / tailwind code theme configuration. Choosing it as a .ts config file, between a group of them
  - [x] Active or disable sections and their respective subpages
  - [x] Change GH repo name
  - [x] **VISUAL BUG:** When some navbar buttons are clicked, sidebar moves
@@ -98,10 +96,10 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Add new file `config/social.ts`
  - [ ] Add `assets/fonts.ts`?
  - [ ] Rethink what to do with `assets/icons.ts`
- - [ ] Delete unused features (Lighthouse, scripts, ...)
- - [ ] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
+ - [x] Delete unused features (Lighthouse, scripts, ...)
+ - [x] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
  - [x] Naming convention: I would like to change boolean variables (e.g. 'active' -> 'isActive')
- - [ ] Maybe adding settings to `bio.md`. Maybe we could place there things like: avatar, name, short_bio, institution...
+ - [x] Maybe adding settings to `bio.md`. Maybe we could place there things like: avatar, name, short_bio, institution...
 ```typescript
 // types/config.ts
 export interface SiteConfig {
@@ -132,13 +130,13 @@ export interface Bio {
     institution?: string;
 }
 ```
- - [ ] Add code examples and images in posts
+ - [x] Add code examples and images in posts
  - [ ] Remove G4A or consider doing it. It is mandatory to add cookies policy in case we are tracking with G4A. Talk about why is great Umami analytics (low control).
  - [ ] Set things for loading lazyly analytics and keeping performance good
- - [ ] Add an extra theme visualizer, it should be simpler. Instead of loading the full page maybe would be better loading some easier html
- - [ ] Add `images/` folder, `robots.txt`.
+ - [x] Add an extra theme visualizer, it should be simpler. Instead of loading the full page maybe would be better loading some easier html
+ - [x] Add `images/` folder, `robots.txt`.
  - [ ] Add share buttons to posts?
- - [ ] Change content to Shannon
+ - [x] Change content to Shannon
  
 ### Aesthetics
  - [ ] Define a new style make content more readable and compact
@@ -159,15 +157,13 @@ export interface Bio {
  - [ ] Add examples with images
  - [ ] Add more examples, with different configurations 
 ### SEO Improvements To-Do
-- [ ] **Avoid hardcoded language:** Make the `<html lang="en">` attribute in `BaseLayout.astro` dynamic or tied to the global site configuration.
-- [ ] **Pass dynamic metadata to detail pages:** Update `BaseDetail.astro` to extract specific descriptions/excerpts and Open Graph images, and pass them as props to `<BaseLayout>`.
-- [ ] **Implement dynamic Open Graph types:** Add an `og:type` prop to differentiate between `website` (for home/listing pages) and `article` (for publications, posts, and talks).
-- [ ] **Generate a Sitemap:** Install and configure the `@astrojs/sitemap` integration to ensure search engines can discover and index all dynamic routes.
-- [ ] **Add a `robots.txt` file:** Create a static `public/robots.txt` or dynamically generate one to guide web crawlers and provide the sitemap URL.
-- [ ] **Implement Structured Data (JSON-LD):** Add Schema.org metadata (e.g., `Person` for the portfolio owner, `ScholarlyArticle` for publications, `BlogPosting` for posts) to improve indexing in Google and Google Scholar.
-- [ ] **Add explicit indexing meta tags:** Include `<meta name="robots" content="index, follow">` in the base layout, allowing specific pages (like dev tools) to opt-out via props.
-## LightHouse Score
-![Lighthouse Performance](https://lighthouse-metrics.com/api/v1/pages/https-astro-academics-page-vercel-app/performance/badge.svg)
+- [x] **Avoid hardcoded language:** Make the `<html lang="en">` attribute in `BaseLayout.astro` dynamic or tied to the global site configuration.
+- [x] **Pass dynamic metadata to detail pages:** Update `BaseDetail.astro` to extract specific descriptions/excerpts and Open Graph images, and pass them as props to `<BaseLayout>`.
+- [x] **Implement dynamic Open Graph types:** Add an `og:type` prop to differentiate between `website` (for home/listing pages) and `article` (for publications, posts, and talks).
+- [x] **Generate a Sitemap:** Install and configure the `@astrojs/sitemap` integration to ensure search engines can discover and index all dynamic routes.
+- [x] **Add a `robots.txt` file:** Create a static `public/robots.txt` or dynamically generate one to guide web crawlers and provide the sitemap URL.
+- [x] **Implement Structured Data (JSON-LD):** Add Schema.org metadata (e.g., `Person` for the portfolio owner, `ScholarlyArticle` for publications, `BlogPosting` for posts) to improve indexing in Google and Google Scholar.
+- [x] **Add explicit indexing meta tags:** Include `<meta name="robots" content="index, follow">` in the base layout, allowing specific pages (like dev tools) to opt-out via props.
 
 ## Agentic AI Warning
 This project was mainly vibe coded by strong human supervision. Take it in count in case you dont like LLMs.

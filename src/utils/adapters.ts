@@ -18,6 +18,7 @@ export function getListingItem(entry: any, collection?: string): ListingItem {
         extraInput: d.journal || d.event || d.institution,
         tags: d.tags || [],
         externalUrl: d.external_url,
+        image: d.image,
     };
 }
 

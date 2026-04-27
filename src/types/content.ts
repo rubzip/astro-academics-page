@@ -1,5 +1,8 @@
 export interface Bio {
-
+    name: string;
+    avatar: string;
+    shortBio?: string;
+    institution?: string;
 }
 
 export interface CVItem {

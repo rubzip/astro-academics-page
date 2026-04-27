@@ -7,6 +7,7 @@ import ContentLinks from "../components/content/ContentLinks.astro";
 import Tag from "../components/ui/Tag.astro";
 import Icon from "../components/ui/Icon.astro";
 import { getDetailItem } from "../utils/adapters";
+import { SITE } from "../config";
 
 interface Props {
     collection: "publications" | "talks" | "projects" | "posts" | "teaching";
@@ -40,9 +41,17 @@ if (detail.extraInput) {
                 : "Info";
     meta.push({ label, value: detail.extraInput, icon });
 }
+
+const description = entry.data.description || detail.description || SITE.desc;
+const ogImage = entry.data.image || SITE.ogImage;
 ---
 
-<BaseLayout title={detail.title}>
+<BaseLayout 
+    title={detail.title}
+    description={description}
+    ogImage={ogImage}
+    ogType="article"
+>
     <BackLink href={detail.backHref} label={collection} />
 
     <article class="content-container pt-4">
@@ -82,6 +91,8 @@ if (detail.extraInput) {
         <div class="prose container-narrow pt-8">
             <Content />
         </div>
+
+        <slot name="share" />
 
         <slot name="footer" />
     </article>

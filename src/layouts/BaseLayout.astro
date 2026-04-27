@@ -1,5 +1,5 @@
 ---
-import { SITE, ANALYTICS, THEMES } from "../config";
+import { SITE, THEME_CONFIG, ANALYTICS, THEMES } from "../config";
 import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/layout/LeftSidebar.astro";
 import RightMain from "../components/layout/RightMain.astro";
@@ -14,31 +14,51 @@ import "katex/dist/katex.min.css";
 import "../styles/global.css";
 
 const themeLight =
-    THEMES[`light_${SITE.themeLight}` as keyof typeof THEMES] ||
+    THEMES[`light_${THEME_CONFIG.themeLight}` as keyof typeof THEMES] ||
     THEMES.light_default;
 const themeDark =
-    THEMES[`dark_${SITE.themeDark}` as keyof typeof THEMES] ||
+    THEMES[`dark_${THEME_CONFIG.themeDark}` as keyof typeof THEMES] ||
     THEMES.dark_default;
 
 interface Props {
     title: string;
     description?: string;
     ogImage?: string;
+    ogType?: "website" | "article";
+    robots?: "index, follow" | "noindex, nofollow";
 }
 
-const { title, description = SITE.desc, ogImage = SITE.ogImage } = Astro.props;
+const { 
+    title, 
+    description = SITE.desc, 
+    ogImage = SITE.ogImage,
+    ogType = "website",
+    robots = "index, follow"
+} = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
+
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: SITE.author,
+    url: SITE.website,
+    jobTitle: "Professor",
+    description: SITE.desc,
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={SITE.lang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href={SITE.favicon} />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="generator" content={Astro.generator} />
+
+        <!-- Robots / Indexing -->
+        <meta name="robots" content={robots} />
 
         <style
             is:global
@@ -88,7 +108,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
         <meta name="author" content={SITE.author} />
 
         <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content={ogType} />
         <meta property="og:url" content={Astro.url} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -100,6 +120,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
+
+        <!-- Structured Data (JSON-LD) -->
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
         <ClientRouter />
 

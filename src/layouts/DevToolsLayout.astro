@@ -1,5 +1,5 @@
 ---
-import { SITE, THEMES } from "../config";
+import { SITE, THEME_CONFIG, THEMES } from "../config";
 import { ClientRouter } from "astro:transitions";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
@@ -18,10 +18,10 @@ interface Props {
 const { title, description } = Astro.props;
 
 const themeLight =
-    THEMES[`light_${SITE.themeLight}` as keyof typeof THEMES] ||
+    THEMES[`light_${THEME_CONFIG.themeLight}` as keyof typeof THEMES] ||
     THEMES.light_default;
 const themeDark =
-    THEMES[`dark_${SITE.themeDark}` as keyof typeof THEMES] ||
+    THEMES[`dark_${THEME_CONFIG.themeDark}` as keyof typeof THEMES] ||
     THEMES.dark_default;
 ---
 

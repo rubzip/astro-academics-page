@@ -17,6 +17,7 @@ export interface ListingItem {
     extraInput?: string;
     tags: string[];
     externalUrl?: string;
+    image?: string;
 }
 
 export interface DetailItem extends ListingItem {

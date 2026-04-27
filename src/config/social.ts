@@ -3,40 +3,40 @@ import type { SocialLink } from "../types";
 export const SOCIALS: SocialLink[] = [
     {
         name: "Github",
-        href: "https://github.com/albert-einstein",
-        linkTitle: `Follow albert-einstein on Github`,
-        isActive: true,
-    },
-    {
-        name: "LinkedIn",
-        href: "https://linkedin.com/in/alberteinstein",
-        linkTitle: `Follow albert-einstein on LinkedIn`,
+        href: "https://github.com/shannon",
+        linkTitle: `Follow Claude Shannon on Github`,
         isActive: true,
     },
     {
         name: "Mail",
-        href: "mailto:albert@ias.edu",
-        linkTitle: `Send an email to Albert`,
+        href: "mailto:shannon@bell-labs.com",
+        linkTitle: `Send an email to Claude`,
         isActive: true,
     },
     {
         name: "Google Scholar",
-        href: "https://scholar.google.com/citations?user=einstein",
-        linkTitle: `Albert Einstein on Google Scholar`,
+        href: "https://scholar.google.com/citations?user=shannon",
+        linkTitle: `Claude Shannon on Google Scholar`,
         isActive: true,
     },
     {
         name: "ORCID",
-        href: "https://orcid.org/0000-0001-2345-6789",
-        linkTitle: `Albert Einstein on ORCID`,
+        href: "https://orcid.org/0000-0002-1825-0097",
+        linkTitle: `Claude Shannon on ORCID`,
         isActive: true,
+    },
+    {
+        name: "LinkedIn",
+        href: "https://www.linkedin.com/in/claude-shannon-123456789/",
+        linkTitle: `Claude Shannon on LinkedIn`,
+        isActive: true, // Assuming Claude doesn't have a LinkedIn profile
     },
 ];
 
 export const SOCIAL_ICONS: Record<string, string> = {
     Github: "Github",
-    LinkedIn: "LinkedIn",
     Mail: "Mail",
+    Linkedin: "LinkedIn",
     "Google Scholar": "Google Scholar",
     ORCID: "ORCID",
     RSS: "RSS",

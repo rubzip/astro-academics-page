@@ -10,6 +10,7 @@ const publications = defineCollection({
         date: z.string().optional(),
         journal: z.string().optional(),
         external_url: z.string().optional(),
+        image: z.string().optional(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
     }),
@@ -24,6 +25,7 @@ const talks = defineCollection({
         external_url: z.string().optional(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
+        image: z.string().optional(),
     }),
 });
 
@@ -36,6 +38,7 @@ const posts = defineCollection({
         author: z.string().optional(),
         tags: z.array(z.string()).optional(),
         external_url: z.string().optional(),
+        image: z.string().optional(),
     }),
 });
 
@@ -53,8 +56,10 @@ const teaching = defineCollection({
 const bio = defineCollection({
     loader: glob({ pattern: "bio.md", base: "./src/content" }),
     schema: z.object({
-        title: z.string().optional(),
-        description: z.string().optional(),
+        name: z.string(),
+        avatar: z.string(),
+        shortBio: z.string().optional(),
+        institution: z.string().optional(),
     }),
 });
 
@@ -65,6 +70,7 @@ const projects = defineCollection({
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
         external_url: z.string().optional(),
+        image: z.string().optional(),
     }),
 });
 

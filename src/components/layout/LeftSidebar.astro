@@ -1,8 +1,11 @@
 ---
 import { SITE, SOCIALS, SOCIAL_ICONS } from "../../config";
+import { getCollection } from "astro:content";
 import Icon from "../ui/Icon.astro";
 
 const activeSocials = SOCIALS.filter((s) => s.isActive);
+const bioCollection = await getCollection("bio");
+const bio = bioCollection[0]?.data;
 ---
 
 <aside
@@ -12,11 +15,11 @@ const activeSocials = SOCIALS.filter((s) => s.isActive);
         class="sidebar-header flex flex-col items-center text-center max-md:flex-row max-md:text-left max-md:gap-6 max-md:items-center max-md:w-full"
     >
         {
-            SITE.profileImage && (
+            bio?.avatar && (
                 <div class="mb-10 max-md:mb-0 shrink-0">
                     <img
-                        src={`/${SITE.profileImage}`}
-                        alt={SITE.author}
+                        src={`/${bio.avatar}`}
+                        alt={bio.name}
                         class="w-32 h-32 max-md:w-20 max-md:h-20 rounded-full object-cover border-0 contrast-110 hover:contrast-125 transition-all duration-300"
                     />
                 </div>
@@ -24,17 +27,17 @@ const activeSocials = SOCIALS.filter((s) => s.isActive);
         }
         <div class="flex flex-col items-center max-md:items-start">
             {
-                SITE.title && (
+                bio?.name && (
                     <h1 class="text-3xl max-md:text-2xl font-extrabold m-0 tracking-tight text-foreground leading-tight">
-                        {SITE.title}
+                        {bio.name}
                     </h1>
                 )
             }
             {
-                SITE.institution && (
+                bio?.institution && (
                     <p class="text-[0.9rem] opacity-75 mt-2 font-medium flex items-center justify-center max-md:justify-start gap-2">
                         <Icon name="Institution" size={18} class="opacity-70" />
-                        {SITE.institution}
+                        {bio.institution}
                     </p>
                 )
             }
@@ -59,9 +62,9 @@ const activeSocials = SOCIALS.filter((s) => s.isActive);
             </div>
 
             {
-                SITE.shortBio && (
+                bio?.shortBio && (
                     <p class="text-[1rem] leading-relaxed mt-10 text-foreground opacity-90 font-medium max-md:hidden">
-                        {SITE.shortBio}
+                        {bio.shortBio}
                     </p>
                 )
             }

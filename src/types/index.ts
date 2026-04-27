@@ -16,7 +16,9 @@ export type { DisplayLink, DisplayMeta, ListingItem, DetailItem } from "./displa
 
 export type {
     SiteConfig,
+    ThemeConfig,
     SettingsConfig,
+    UmamiAnalyticsConfig,
     AnalyticsConfig,
     PagesConfig,
     NavLink,

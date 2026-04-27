@@ -1,16 +1,53 @@
 ---
-title: "Physics of Information"
-institution: "University of Zurich"
-description: "Exploring the thermodynamic limits of computation and the statistical mechanics of information processing."
-tags: ["physics", "statistical mechanics", "information theory"]
-external_url: "https://www.uzh.ch"
+title: "The Physics of Information"
+institution: "MIT"
+description: "A course exploring the fundamental connections between physics, information theory, and computation."
+tags:
+  - "Information Theory"
+  - "Physics"
+  - "Education"
+external_url: "https://en.wikipedia.org/wiki/Claude_Shannon"
 ---
 
-This course covers the intersection of information theory and thermodynamics. Topics include Maxwell's Demon, Landauer's principle, and the algorithmic complexity of physical systems.
+## Course Overview
 
-## Course Syllabus
+I developed and taught this special course at MIT exploring the deep connections between physical systems and information processing.
 
-1. Introduction to Entropy
-2. Reversibility and Computation
-3. Algorithmic Information Theory
-4. Experimental Verification of Landauer's Limit
+## Topics Covered
+
+### Information Theory Fundamentals
+- Entropy and thermodynamics
+- Maxwell's demon and information
+- Landauer's principle (physical limits of computation)
+
+### Quantum Information
+- Quantum entropy
+- Superposition and entanglement
+- Quantum computing basics
+
+### Computation and Physics
+- Reversible computing
+- Energy costs of computation
+- The physical limits of information processing
+
+## Teaching Philosophy
+
+I believe in:
+1. **Hands-on experimentation**: Students built simple information processing devices
+2. **Mathematical rigor**: Formally proving all major results
+3. **Historical perspective**: Understanding how ideas developed
+
+## Student Projects
+
+Students explored topics like:
+- Building mechanical entropydemonstrations
+- Analyzing biological information systems
+- Simulating quantum information processing
+
+## Impact
+
+This course influenced generations of students who went on to work in quantum computing, bioinformatics, and the physics of computation.
+
+---
+
+*Information sits at the intersection of mathematics, physics, and engineering.*

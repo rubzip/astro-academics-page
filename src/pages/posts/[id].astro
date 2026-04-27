@@ -1,8 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import BaseDetail from "../../layouts/BaseDetail.astro";
+import ShareButtons from "../../components/ui/ShareButtons.astro";
 import { getReadingTime } from "../../utils/readingTime";
-import { PAGES } from "../../config";
+import { PAGES, SITE } from "../../config";
 
 if (PAGES.blog.isActive === false) {
     return Astro.redirect("/404");
@@ -27,6 +28,7 @@ export async function getStaticPaths() {
 
 const { post, prevPost, nextPost } = Astro.props;
 const readingTime = `${getReadingTime(post.body || "")} min read`;
+const postUrl = new URL(`/posts/${post.id}`, SITE.website).href;
 ---
 
 <BaseDetail collection="posts" id={post.id} readingTime={readingTime}>
@@ -66,4 +68,7 @@ const readingTime = `${getReadingTime(post.body || "")} min read`;
             )
         }
     </nav>
+    <div slot="share" class="container-narrow">
+        <ShareButtons title={post.data.title} url={postUrl} description={post.data.description} />
+    </div>
 </BaseDetail>

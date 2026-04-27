@@ -55,9 +55,10 @@ const sortedEntries = entries.sort((a: any, b: any) => {
         {
             sortedEntries.map((entry: any) => {
                 const item = getListingItem(entry);
+                const { image, ...itemWithoutImage } = item;
                 return (
                     <BaseItemCard
-                        {...item}
+                        {...itemWithoutImage}
                         href={`/${collection}/${entry.id}`}
                     />
                 );
