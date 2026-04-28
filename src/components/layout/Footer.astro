@@ -1,17 +1,30 @@
 ---
-import { SITE } from "../../config";
+import { SITE, THEME_CONFIG } from "../../config";
 import Icon from "../ui/Icon.astro";
 
 const currentYear = new Date().getFullYear();
+const showToggle = THEME_CONFIG.lightAndDark;
 ---
 
 <footer class="footer">
     <div class="flex items-center gap-4">
         <span class="body-xs">&copy; {currentYear} {SITE.author}.</span>
-        <span class="body-xs" style="opacity: 0.5;">·</span>
-        <span class="body-xs">Built with <a href="https://github.com/rubzip/astro-academics-page" target="_blank" rel="noopener noreferrer" class="link">Astro</a></span>
     </div>
-    <a href="/rss.xml" aria-label="RSS Feed" title="RSS Feed" target="_blank" rel="noreferrer" class="btn-icon" style="width: 28px; height: 28px;">
-        <Icon name="RSS" size={16} />
-    </a>
+    <div class="flex items-center gap-4">
+        <span class="body-xs hidden sm:inline-block">Built with <a href="https://github.com/rubzip/astro-academics-page" target="_blank" rel="noopener noreferrer" class="link">Astro</a></span>
+        <a href="/rss.xml" aria-label="RSS Feed" title="RSS Feed" target="_blank" rel="noreferrer" class="btn-icon" style="width: 28px; height: 28px;">
+            <Icon name="RSS" size={14} />
+        </a>
+        {showToggle && (
+            <button
+                id="theme-toggle"
+                aria-label="Toggle Dark Mode"
+                class="btn-icon"
+                style="width: 28px; height: 28px;"
+            >
+                <Icon name="Sun" size={14} class="hidden dark:block" />
+                <Icon name="Moon" size={14} class="block dark:hidden" />
+            </button>
+        )}
+    </div>
 </footer>

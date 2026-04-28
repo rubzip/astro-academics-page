@@ -484,7 +484,7 @@ a:hover, .link:hover {
 
 /* Footer */
 .footer {
-    padding: 1.5rem 0;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

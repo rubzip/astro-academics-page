@@ -1,9 +1,7 @@
 ---
-import { NAV_LINKS, PAGES, THEME_CONFIG } from "../../config";
-import Icon from "../ui/Icon.astro";
+import { NAV_LINKS, PAGES } from "../../config";
 
 const currentPath = Astro.url.pathname;
-const showToggle = THEME_CONFIG.lightAndDark;
 ---
 
 <nav class="navbar">
@@ -11,7 +9,9 @@ const showToggle = THEME_CONFIG.lightAndDark;
         {
             NAV_LINKS.filter((link) => {
                 const isHome = link.href === "/";
-                const pageKey = isHome ? "home" : link.href.split("/").filter(Boolean)[0];
+                const pageKey = isHome
+                    ? "home"
+                    : link.href.split("/").filter(Boolean)[0];
                 const pageConfig = (PAGES as any)[pageKey];
                 return link.isActive !== false && pageConfig?.active !== false;
             }).map((link) => (
@@ -19,8 +19,11 @@ const showToggle = THEME_CONFIG.lightAndDark;
                     <a
                         href={link.href}
                         class={`nav-link ${
-                            currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
-                                ? "active" : "inactive"
+                            currentPath === link.href ||
+                            (link.href !== "/" &&
+                                currentPath.startsWith(link.href))
+                                ? "active"
+                                : "inactive"
                         }`}
                     >
                         {link.label}
@@ -30,15 +33,4 @@ const showToggle = THEME_CONFIG.lightAndDark;
             ))
         }
     </ul>
-
-    {showToggle && (
-        <button
-            id="theme-toggle"
-            aria-label="Toggle Dark Mode"
-            class="btn-icon"
-        >
-            <Icon name="Sun" size={18} class="hidden dark:block" />
-            <Icon name="Moon" size={18} class="block dark:hidden" />
-        </button>
-    )}
 </nav>
