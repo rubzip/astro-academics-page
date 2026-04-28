@@ -2,11 +2,12 @@
 
 [![Built with Astro](https://img.shields.io/badge/Built_with-Astro-ff5d01?logo=astro&logoColor=white&style=flat-square)](https://astro.build/)
 [![Styled with Tailwind](https://img.shields.io/badge/Styled_with-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white&style=flat-square)](https://tailwindcss.com/)
+[![Deploy with Vercel](https://img.shields.io/badge/Deploy_with-Vercel-000000?logo=vercel&logoColor=white&style=flat-square)](https://vercel.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 A fast, minimalist, and highly customizable Astro template designed specifically for researchers, professors, PhD students, and academics. 
 
-Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, SEO discoverability, and ease of configuration.
+Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, SEO discoverability, and ease of configuration without touching the UI code.
 
 > 🌟 **[View the Live Demo](https://shannon.github.io/academic-portfolio-astro/)**
 
@@ -14,18 +15,19 @@ Strongly inspired by [Academic Pages](https://github.com/academicpages/academicp
 
 ## ✨ Features
 
-- **Markdown-Driven Collections:** Easily manage your Blog, Publications, Projects, Talks, and Teaching experience without touching UI code.
-- **Academic Standard:** Out-of-the-box $\LaTeX$ rendering support via KaTeX. Includes structured metadata for Google Scholar indexing (DOI, Journal, PDF Links).
+- **Markdown-Driven Collections:** Easily manage your Bio, Blog, Publications, Projects, Talks, CV, and Teaching experience purely through `.md` files.
+- **Academic Standard Support:** Out-of-the-box $\LaTeX$ rendering support via KaTeX. Includes structured metadata for Google Scholar indexing (DOI, Journal, PDF Links).
 - **Extensive Theming System:** Built-in Light/Dark mode toggle with a highly customizable underlying design system and several beautiful preset palettes (`notepad`, `leafBlue`, `pikkyDark`, etc).
+- **Toggleable Sections:** Don't need a "Talks" or "Teaching" section? Disable them globally with a single boolean flag in your config.
 - **Peak Performance:** Built with Astro v6 and Tailwind CSS v4, yielding near-perfect Lighthouse scores and 0kb of unnecessary client-side JavaScript.
 - **Privacy-First Analytics:** Includes native configuration options for self-hosted Umami analytics, as well as GA4 support—with built-in lazy-loading strategies to protect Core Web Vitals.
-- **Developer Tools:** Unique built-in visualizers for inspecting themes, typography, and responsive screen sizes on your local development server.
+- **Built-in Developer Tools:** Unique internal visualizers for inspecting themes, typography, and responsive screen sizes on your local development server.
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Create a Repository
+### 1. Bootstrap the Repository
 You can initialize a new repository using the GitHub CLI or standard Git:
 
 **Via GitHub CLI (Recommended):**
@@ -54,38 +56,47 @@ Your local server will start at `http://localhost:4321`.
 
 ---
 
-## ⚙️ Configuration & Customization
+## 📂 Project Structure
 
-The core philosophy of this template is centralized configuration. All site-wide settings are isolated inside the `src/config/` directory.
-
-### Global Site Details
-Open `src/config/site.ts` to edit your overarching metadata, default analytics IDs, and default themes:
-```typescript
-export const SITE: SiteConfig = {
-    website: "https://your-domain.com/",
-    author: "Your Name",
-    desc: "Your academic portfolio.",
-    title: "Portfolio Title",
-    ogImage: "your-image.webp",
-    favicon: "/favicon.svg",
-    lang: "en",
-};
+```text
+/
+├── public/                 # Static assets (images, favicon, robots.txt)
+├── src/
+│   ├── assets/             # Global icons (`icons.ts`)
+│   ├── components/         # Reusable Astro UI components
+│   ├── config/             # ⚙️ ALL GLOBAL CONFIGURATION LIVES HERE
+│   │   ├── site.ts         # Meta details & Analytics
+│   │   ├── pages.ts        # Enable/Disable sections & subtitles
+│   │   ├── themes.ts       # Color palettes
+│   │   ├── navigation.ts   # Navbar links
+│   │   └── social.ts       # Social media links
+│   ├── content/            # 📝 ALL MARKDOWN CONTENT LIVES HERE
+│   │   ├── bio.md
+│   │   ├── cv.md
+│   │   ├── posts/
+│   │   ├── projects/
+│   │   ├── publications/
+│   │   ├── talks/
+│   │   └── teaching/
+│   ├── layouts/            # Page layout wrappers
+│   ├── pages/              # Astro routing
+│   ├── styles/             # Global CSS and Tailwind directives
+│   └── types/              # TypeScript interfaces
+└── content.config.ts       # Zod schemas for all markdown collections
 ```
 
-### Content Organization
-The site contains predefined content collections optimized for academic workflows:
-- 📁 `src/content/bio.md`: Your homepage biography.
-- 📁 `src/content/cv/`: Structured markdown arrays of your education and experience.
-- 📁 `src/content/posts/`: Your technical blog posts.
-- 📁 `src/content/publications/`: Scholarly articles, preprints, and conference papers.
-- 📁 `src/content/talks/`: Keynotes, presentations, and colloquia.
+## 📖 Documentation & Setup
 
-*If you do not need all of these pages, you can dynamically disable them by modifying the `isActive` boolean in `src/config/pages.ts`!*
+For a comprehensive, step-by-step guide on how to configure your site, modify the design, and write new content, please refer to the dedicated setup post included in this template:
 
-### Theming
-A fully responsive design system dictates the UI styling. Open `src/config/themes.ts` to adjust individual CSS variable properties (`background`, `foreground`, `accent`, `muted`, `border`), or choose from existing defaults.
+**👉 [Setting up Your Academic Portfolio](src/content/posts/setting-up-portfolio.md)**
 
-To preview available themes in real-time on your local machine, visit `http://localhost:4321/dev-tools`.
+This detailed guide covers:
+- Global configuration (`site.ts`, `pages.ts`, `themes.ts`)
+- Setting up privacy-first analytics (Umami & GA4)
+- Creating new publications, talks, and blog posts
+- Using $\LaTeX$ in your markdown files
+- Building and deploying to production
 
 ---
 
