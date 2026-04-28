@@ -23,41 +23,86 @@ const sampleHtmlLight = `
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            background: var(--background);
+            color: var(--foreground);
         }
-        .sample-card {
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
             padding: 1.5rem;
-            background: var(--surface);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background: var(--background);
         }
-        .sample-title {
+        .sidebar-avatar {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .sidebar-name {
             font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--foreground);
+        }
+        .sidebar-info {
+            font-size: 0.85rem;
+            color: var(--foreground);
+            opacity: 0.7;
+        }
+        .sidebar-bio {
+            font-size: 0.9rem;
+            color: var(--foreground);
+            opacity: 0.8;
+        }
+        .main-content {
+            flex: 1;
+            padding: 1.5rem;
+            background: var(--background);
+        }
+        .card {
+            padding: 1rem 0;
+        }
+        .card-title {
+            font-size: 1.25rem;
             font-weight: 700;
+            color: var(--foreground);
+            text-decoration: none;
+            display: block;
             margin-bottom: 0.5rem;
         }
-        .sample-desc {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--foreground);
+            opacity: 0.75;
+            display: flex;
+            gap: 0.75rem;
         }
-        .sample-tag {
-            display: inline-block;
+        .tag {
+            display: inline-flex;
             color: var(--accent);
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            margin-right: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
-        .sample-btn {
-            display: inline-block;
+        .btn {
+            display: inline-flex;
             padding: 0.5rem 1rem;
-            background: var(--accent);
-            color: var(--background);
-            border-radius: 0.25rem;
             font-weight: 600;
+            font-size: 0.9rem;
+            background: transparent;
+            color: var(--foreground);
+            transition: all 0.2s ease;
             text-decoration: none;
-            margin-top: 1rem;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 1rem;
         }
         .color-swatches {
             display: flex;
@@ -68,13 +113,14 @@ const sampleHtmlLight = `
             width: 3rem;
             height: 3rem;
             border-radius: 0.375rem;
-            border: 1px solid var(--border);
         }
         .swatch-label {
             font-size: 0.75rem;
             font-family: monospace;
             margin-top: 0.25rem;
             text-align: center;
+            color: var(--foreground);
+            opacity: 0.7;
         }
         .swatch-group {
             display: flex;
@@ -84,14 +130,37 @@ const sampleHtmlLight = `
     </style>
 </head>
 <body>
-    <div class="sample-card">
-        <h1 class="sample-title">Sample Title</h1>
-        <p class="sample-desc">This is a sample description with some text to preview how the theme colors look in paragraphs and content.</p>
-        <div class="sample-tags">
-            <span class="sample-tag">#tag1</span>
-            <span class="sample-tag">#tag2</span>
+    <div style="display: flex; gap: 2rem; width: 100%;">
+        <div class="sidebar">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" class="sidebar-avatar" alt="Avatar" />
+            <div>
+                <h1 class="sidebar-name">John Doe</h1>
+                <p class="sidebar-info">University of Science</p>
+            </div>
+            <p class="sidebar-bio">Short bio text goes here with some information about the researcher.</p>
         </div>
-        <a href="#" class="sample-btn">Sample Button</a>
+        <div class="main-content">
+            <h2 class="section-title">Recent Posts</h2>
+            <div class="card">
+                <a href="#" class="card-title">Sample Article Title</a>
+                <div class="card-meta">
+                    <span>Jan 2024</span>
+                    <span>Author Name</span>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="tag">#tag1</span>
+                    <span class="tag">#tag2</span>
+                </div>
+            </div>
+            <div class="card">
+                <a href="#" class="card-title">Another Article Title</a>
+                <div class="card-meta">
+                    <span>Dec 2023</span>
+                    <span>Author Name</span>
+                </div>
+            </div>
+            <button class="btn">Load More</button>
+        </div>
     </div>
     <div class="color-swatches">
         <div class="swatch-group">
@@ -136,41 +205,86 @@ const sampleHtmlDark = `
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            background: var(--background);
+            color: var(--foreground);
         }
-        .sample-card {
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
+        .sidebar {
+            width: 280px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
             padding: 1.5rem;
-            background: var(--surface);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            background: var(--background);
         }
-        .sample-title {
+        .sidebar-avatar {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .sidebar-name {
             font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--foreground);
+        }
+        .sidebar-info {
+            font-size: 0.85rem;
+            color: var(--foreground);
+            opacity: 0.7;
+        }
+        .sidebar-bio {
+            font-size: 0.9rem;
+            color: var(--foreground);
+            opacity: 0.8;
+        }
+        .main-content {
+            flex: 1;
+            padding: 1.5rem;
+            background: var(--background);
+        }
+        .card {
+            padding: 1rem 0;
+        }
+        .card-title {
+            font-size: 1.25rem;
             font-weight: 700;
+            color: var(--foreground);
+            text-decoration: none;
+            display: block;
             margin-bottom: 0.5rem;
         }
-        .sample-desc {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            opacity: 0.9;
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--foreground);
+            opacity: 0.75;
+            display: flex;
+            gap: 0.75rem;
         }
-        .sample-tag {
-            display: inline-block;
+        .tag {
+            display: inline-flex;
             color: var(--accent);
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            margin-right: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
-        .sample-btn {
-            display: inline-block;
+        .btn {
+            display: inline-flex;
             padding: 0.5rem 1rem;
-            background: var(--accent);
-            color: var(--background);
-            border-radius: 0.25rem;
             font-weight: 600;
+            font-size: 0.9rem;
+            background: transparent;
+            color: var(--foreground);
+            transition: all 0.2s ease;
             text-decoration: none;
-            margin-top: 1rem;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 1rem;
         }
         .color-swatches {
             display: flex;
@@ -181,13 +295,14 @@ const sampleHtmlDark = `
             width: 3rem;
             height: 3rem;
             border-radius: 0.375rem;
-            border: 1px solid var(--border);
         }
         .swatch-label {
             font-size: 0.75rem;
             font-family: monospace;
             margin-top: 0.25rem;
             text-align: center;
+            color: var(--foreground);
+            opacity: 0.7;
         }
         .swatch-group {
             display: flex;
@@ -197,14 +312,37 @@ const sampleHtmlDark = `
     </style>
 </head>
 <body>
-    <div class="sample-card">
-        <h1 class="sample-title">Sample Title</h1>
-        <p class="sample-desc">This is a sample description with some text to preview how the theme colors look in paragraphs and content.</p>
-        <div class="sample-tags">
-            <span class="sample-tag">#tag1</span>
-            <span class="sample-tag">#tag2</span>
+    <div style="display: flex; gap: 2rem; width: 100%;">
+        <div class="sidebar">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" class="sidebar-avatar" alt="Avatar" />
+            <div>
+                <h1 class="sidebar-name">John Doe</h1>
+                <p class="sidebar-info">University of Science</p>
+            </div>
+            <p class="sidebar-bio">Short bio text goes here with some information about the researcher.</p>
         </div>
-        <a href="#" class="sample-btn">Sample Button</a>
+        <div class="main-content">
+            <h2 class="section-title">Recent Posts</h2>
+            <div class="card">
+                <a href="#" class="card-title">Sample Article Title</a>
+                <div class="card-meta">
+                    <span>Jan 2024</span>
+                    <span>Author Name</span>
+                </div>
+                <div style="margin-top: 0.5rem;">
+                    <span class="tag">#tag1</span>
+                    <span class="tag">#tag2</span>
+                </div>
+            </div>
+            <div class="card">
+                <a href="#" class="card-title">Another Article Title</a>
+                <div class="card-meta">
+                    <span>Dec 2023</span>
+                    <span>Author Name</span>
+                </div>
+            </div>
+            <button class="btn">Load More</button>
+        </div>
     </div>
     <div class="color-swatches">
         <div class="swatch-group">
@@ -237,18 +375,15 @@ const sampleHtmlDark = `
 `;
 ---
 
-<DevToolsLayout title="Simple Theme Visualizer" description="Simple HTML previews of theme colors.">
+<DevToolsLayout title="Simple Theme Visualizer" description="Simple HTML previews matching global.css styles.">
     <div class="mb-12">
         <p class="text-foreground opacity-80 mb-8">
-            A simpler theme visualizer showing sample UI elements with theme colors.
-            Each preview loads minimal HTML with global styles.
+            Theme visualizer using styles from global.css (AstroPaper-style, no borders).
         </p>
     </div>
 
     <div class="mb-16">
-        <h2
-            class="text-xl font-bold mb-8 uppercase tracking-widest border-l-4 border-accent pl-4"
-        >
+        <h2 class="text-xl font-bold mb-8 uppercase tracking-widest pl-4">
             Light Themes
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -258,7 +393,7 @@ const sampleHtmlDark = `
                         <h3 class="text-sm font-mono font-bold text-gray-500 uppercase tracking-tighter">
                             {themeName.replace("light_", "")}
                         </h3>
-                        <div class="border border-border rounded-lg overflow-hidden">
+                        <div class="rounded-lg overflow-hidden">
                             <iframe
                                 srcdoc={sampleHtmlLight.replace(
                                     "</head>",
@@ -284,9 +419,7 @@ const sampleHtmlDark = `
     </div>
 
     <div class="mb-16">
-        <h2
-            class="text-xl font-bold mb-8 uppercase tracking-widest border-l-4 border-accent pl-4"
-        >
+        <h2 class="text-xl font-bold mb-8 uppercase tracking-widest pl-4">
             Dark Themes
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -296,7 +429,7 @@ const sampleHtmlDark = `
                         <h3 class="text-sm font-mono font-bold text-gray-400 uppercase tracking-tighter">
                             {themeName.replace("dark_", "")}
                         </h3>
-                        <div class="border border-border rounded-lg overflow-hidden">
+                        <div class="rounded-lg overflow-hidden">
                             <iframe
                                 srcdoc={sampleHtmlDark.replace(
                                     "</head>",

@@ -179,11 +179,6 @@ a:hover, .link:hover {
 /* Card (list items) */
 .card {
     padding: 1rem 0;
-    border-bottom: 1px dashed var(--border);
-}
-
-.card:last-child {
-    border-bottom: none;
 }
 
 .card-title {
@@ -374,7 +369,6 @@ a:hover, .link:hover {
     flex-direction: column;
     gap: 1.5rem;
     flex-shrink: 0;
-    border-right: 1px solid var(--border);
     background: var(--background);
     transition: background 0.3s ease;
 }
@@ -424,7 +418,6 @@ a:hover, .link:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--border);
     background: var(--background);
     transition: background 0.3s ease;
 }
@@ -492,7 +485,6 @@ a:hover, .link:hover {
 /* Footer */
 .footer {
     padding: 1.5rem 0;
-    border-top: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -536,8 +528,6 @@ a:hover, .link:hover {
     font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--foreground);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
     margin-bottom: 1rem;
 }
 
@@ -564,8 +554,6 @@ a:hover, .link:hover {
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: -0.01em;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
     margin: 1.5rem 0 0.75rem;
 }
 
@@ -683,6 +671,41 @@ a:hover, .link:hover {
     gap: 2rem;
 }
 
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+}
+
+.pagination-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--foreground);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.pagination-link:hover {
+    color: var(--accent);
+}
+
+.pagination-inactive {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--foreground);
+    opacity: 0.4;
+}
+
+.pagination-info {
+    font-size: 0.85rem;
+    color: var(--foreground);
+    opacity: 0.6;
+}
+
 /* Divider */
 .divider {
     border: none;
@@ -797,25 +820,61 @@ a:hover, .link:hover {
    RESPONSIVE
    =========================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .sidebar {
         width: 100%;
         height: auto;
         position: relative;
         border-right: none;
-        border-bottom: 1px solid var(--border);
         padding: 1rem;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.75rem;
     }
 
     .sidebar-avatar {
-        width: 64px;
-        height: 64px;
+        width: 72px;
+        height: 72px;
     }
 
     .main-body {
-        padding: 1rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .main-content {
+        width: 100%;
+        flex: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+    }
+
+    .sidebar-avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .sidebar-name {
+        font-size: 1.25rem;
+    }
+
+    .sidebar-bio {
+        display: none;
+    }
+
+    .main-body {
+        padding: 0.75rem 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
     }
 }

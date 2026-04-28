@@ -17,13 +17,6 @@ const { tag } = Astro.params;
 const { tagName } = Astro.props;
 
 const content = await getContentByTag(tagName);
-
-// Group items by collection to build proper hrefs
-const itemsWithCollection = content.map((item) => {
-    const parts = item.id.split("/");
-    const collection = parts.length > 1 ? parts[0] : "posts";
-    return { ...item, collection };
-});
 ---
 
 <BaseLayout title={`#${tagName}`}>
@@ -33,7 +26,7 @@ const itemsWithCollection = content.map((item) => {
     </header>
 
     <section class="item-list">
-        {itemsWithCollection.map((item) => {
+        {content.map((item) => {
             const listingItem = {
                 title: item.data.title || item.id,
                 description: item.data.description,
@@ -43,7 +36,7 @@ const itemsWithCollection = content.map((item) => {
                 tags: item.data.tags,
                 externalUrl: item.data.external_url,
             };
-            const href = `/${item.collection}/${item.slug || item.id.split("/").pop()}`;
+            const href = `/${item.collection}/${item.id}`;
             return <BaseItemCard {...listingItem} href={href} />;
         })}
     </section>

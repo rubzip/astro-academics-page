@@ -40,17 +40,17 @@ const sortedEntries = entries.sort((a: any, b: any) => {
     </section>
 
     {page && page.lastPage > 1 && (
-        <nav class="flex justify-center items-center mt-8 pt-8 border-t border-dashed border-border gap-6">
+        <nav class="pagination">
             {page.url.prev ? (
-                <a href={page.url.prev} class="btn btn-sm">&larr; Newer</a>
+                <a href={page.url.prev} class="pagination-link">Newer</a>
             ) : (
-                <span class="body-sm" style="opacity: 0.4;">&larr; Newer</span>
+                <span class="pagination-inactive">Newer</span>
             )}
-            <span class="body-sm" style="opacity: 0.6;">Page {page.currentPage} of {page.lastPage}</span>
+            <span class="pagination-info">Page {page.currentPage} of {page.lastPage}</span>
             {page.url.next ? (
-                <a href={page.url.next} class="btn btn-sm">Older &rarr;</a>
+                <a href={page.url.next} class="pagination-link">Older</a>
             ) : (
-                <span class="body-sm" style="opacity: 0.4;">Older &rarr;</span>
+                <span class="pagination-inactive">Older</span>
             )}
         </nav>
     )}

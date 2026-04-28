@@ -8,8 +8,8 @@ const bioCollection = await getCollection("bio");
 const bio = bioCollection[0]?.data;
 ---
 
-<aside class="sidebar max-md:flex-row max-md:flex-wrap max-md:gap-4">
-    <div class="flex flex-col items-center text-center max-md:flex-row max-md:text-left max-md:gap-4 max-md:items-center">
+<aside class="sidebar max-lg:flex-row max-lg:flex-wrap max-lg:gap-3 max-md:gap-2">
+    <div class="flex flex-col items-center text-center max-lg:flex-row max-lg:text-left max-lg:gap-3 max-lg:items-center max-md:gap-2">
         {bio?.avatar && (
             <img
                 src={`/${bio.avatar}`}
@@ -17,7 +17,7 @@ const bio = bioCollection[0]?.data;
                 class="sidebar-avatar"
             />
         )}
-        <div class="flex flex-col items-center max-md:items-start">
+        <div class="flex flex-col items-center max-lg:items-start">
             {bio?.name && <h1 class="sidebar-name">{bio.name}</h1>}
             {bio?.institution && (
                 <p class="sidebar-info">
@@ -25,7 +25,7 @@ const bio = bioCollection[0]?.data;
                     {bio.institution}
                 </p>
             )}
-            <div class="flex gap-1 flex-wrap items-center justify-center max-md:justify-start mt-4">
+            <div class="flex gap-1 flex-wrap items-center justify-center max-lg:justify-start mt-3">
                 {activeSocials.map((social) => (
                     <a
                         href={social.href}
@@ -43,6 +43,6 @@ const bio = bioCollection[0]?.data;
     </div>
 
     {bio?.shortBio && (
-        <p class="sidebar-bio max-md:w-full max-md:order-3">{bio.shortBio}</p>
+        <p class="sidebar-bio max-lg:w-full max-lg:order-3 max-md:hidden">{bio.shortBio}</p>
     )}
 </aside>

@@ -34,7 +34,7 @@ const postUrl = new URL(`/posts/${post.id}`, SITE.website).href;
 <BaseDetail collection="posts" id={post.id} readingTime={readingTime}>
     <nav
         slot="footer"
-        class="post-navigation container-narrow flex justify-between mt-24 pt-12 border-t border-dashed border-border gap-8"
+        class="post-navigation container-narrow flex justify-between mt-24 pt-12 gap-8"
     >
         {
             prevPost && (
@@ -43,7 +43,7 @@ const postUrl = new URL(`/posts/${post.id}`, SITE.website).href;
                     class="nav-prev flex flex-col group max-w-[45%] no-underline"
                 >
                     <span class="nav-label text-[0.8rem] uppercase tracking-wider opacity-75 font-bold mb-2">
-                        &larr; Previous Post
+                        Previous Post
                     </span>
                     <span class="nav-title text-lg font-semibold text-foreground group-hover:text-accent transition-colors duration-200 leading-snug">
                         {prevPost.data.title}
@@ -59,7 +59,7 @@ const postUrl = new URL(`/posts/${post.id}`, SITE.website).href;
                     class="nav-next flex flex-col items-end text-right group max-w-[45%] no-underline"
                 >
                     <span class="nav-label text-[0.8rem] uppercase tracking-wider opacity-75 font-bold mb-2">
-                        Next Post &rarr;
+                        Next Post
                     </span>
                     <span class="nav-title text-lg font-semibold text-foreground group-hover:text-accent transition-colors duration-200 leading-snug">
                         {nextPost.data.title}

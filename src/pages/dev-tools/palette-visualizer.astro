@@ -12,7 +12,7 @@ if (redirect) {
 
             <div class="flex flex-col gap-16">
                 {
-                    Object.entries(THEMES).filter(([name]) => name !== 'isDark').map(([name, colors]: [string, any]) => (
+                    Object.entries(THEMES).filter(([name]) => !name.startsWith('isDark')).map(([name, colors]: [string, any]) => (
                         <div>
                             <h2 class="text-xl font-bold mb-4 capitalize">
                                 {name.replace('_', ' ')}
