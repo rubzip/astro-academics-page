@@ -33,20 +33,17 @@ const visualizers = [
 
 <DevToolsLayout title="Index" description="Internal utilities for UI/UX verification and theme debugging.">
 
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="item-list">
                 {
                     visualizers.map((tool) => (
-                        <a
-                            href={tool.path}
-                            class="block p-6 bg-surface rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group"
-                        >
-                            <h2 class="text-xl font-bold transition-colors mb-2">
+                        <div class="card">
+                            <a href={tool.path} class="card-title">
                                 {tool.name}
-                            </h2>
-                            <p class="text-sm opacity-80 leading-relaxed">
+                            </a>
+                            <p class="card-desc">
                                 {tool.desc}
                             </p>
-                        </a>
+                        </div>
                     ))
                 }
             </div>

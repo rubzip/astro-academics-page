@@ -13,8 +13,8 @@ export const SITE: SiteConfig = {
 
 export const THEME_CONFIG: ThemeConfig = {
     lightAndDark: true,
-    themeLight: "default",
-    themeDark: "default",
+    themeLight: "light_notepad",
+    themeDark: "dark_notepad",
 };
 
 export const SETTINGS: SettingsConfig = {

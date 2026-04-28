@@ -13,12 +13,11 @@ import "@fontsource/jetbrains-mono/500.css";
 import "katex/dist/katex.min.css";
 import "../styles/global.css";
 
-const themeLight =
-    THEMES[`light_${THEME_CONFIG.themeLight}` as keyof typeof THEMES] ||
-    THEMES.light_default;
-const themeDark =
-    THEMES[`dark_${THEME_CONFIG.themeDark}` as keyof typeof THEMES] ||
-    THEMES.dark_default;
+const themeLightKey = (THEME_CONFIG.themeLight.startsWith('light_') ? THEME_CONFIG.themeLight : `light_${THEME_CONFIG.themeLight}`) as keyof typeof THEMES;
+const themeDarkKey = (THEME_CONFIG.themeDark.startsWith('dark_') ? THEME_CONFIG.themeDark : `dark_${THEME_CONFIG.themeDark}`) as keyof typeof THEMES;
+
+const themeLight = THEMES[themeLightKey] || THEMES.light_default;
+const themeDark = THEMES[themeDarkKey] || THEMES.dark_default;
 
 interface Props {
     title: string;
@@ -127,33 +126,49 @@ const jsonLd = {
         <ClientRouter />
 
         {
-            ANALYTICS.umami.websiteId && (
-                <script
-                    is:inline
-                    defer
-                    src={ANALYTICS.umami.src}
-                    data-website-id={ANALYTICS.umami.websiteId}
-                />
-            )
-        }
+            (ANALYTICS.umami.websiteId || ANALYTICS.ga4Id) && (
+                <script is:inline define:vars={{
+                    umamiId: ANALYTICS.umami.websiteId,
+                    umamiSrc: ANALYTICS.umami.src,
+                    ga4Id: ANALYTICS.ga4Id
+                }}>
+                    let analyticsLoaded = false;
+                    const loadAnalytics = () => {
+                        if (analyticsLoaded) return;
+                        analyticsLoaded = true;
 
-        {
-            ANALYTICS.ga4Id && (
-                <>
-                    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.ga4Id}`}></script>
-                    <script is:inline define:vars={{ ga4Id: ANALYTICS.ga4Id }}>
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-                        gtag('config', ga4Id);
+                        if (umamiId && umamiSrc) {
+                            const script = document.createElement('script');
+                            script.src = umamiSrc;
+                            script.defer = true;
+                            script.setAttribute('data-website-id', umamiId);
+                            document.head.appendChild(script);
+                        }
 
-                        document.addEventListener('astro:page-load', () => {
-                            gtag('config', ga4Id, {
-                                page_path: window.location.pathname,
+                        if (ga4Id) {
+                            const script1 = document.createElement('script');
+                            script1.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+                            script1.async = true;
+                            document.head.appendChild(script1);
+
+                            window.dataLayer = window.dataLayer || [];
+                            window.gtag = function(){window.dataLayer.push(arguments);}
+                            window.gtag('js', new Date());
+                            window.gtag('config', ga4Id);
+
+                            document.addEventListener('astro:page-load', () => {
+                                window.gtag('config', ga4Id, {
+                                    page_path: window.location.pathname,
+                                });
                             });
-                        });
-                    </script>
-                </>
+                        }
+                    };
+
+                    ['scroll', 'click', 'mousemove', 'touchstart', 'keydown'].forEach(event => {
+                        window.addEventListener(event, loadAnalytics, { once: true, passive: true });
+                    });
+                    setTimeout(loadAnalytics, 5000); // Fallback
+                </script>
             )
         }
         <script is:inline>

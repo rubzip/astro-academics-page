@@ -377,20 +377,20 @@ const sampleHtmlDark = `
 
 <DevToolsLayout title="Simple Theme Visualizer" description="Simple HTML previews matching global.css styles.">
     <div class="mb-12">
-        <p class="text-foreground opacity-80 mb-8">
+        <p class="body mb-8">
             Theme visualizer using styles from global.css (AstroPaper-style, no borders).
         </p>
     </div>
 
     <div class="mb-16">
-        <h2 class="text-xl font-bold mb-8 uppercase tracking-widest pl-4">
+        <h2 class="title-lg mb-8 uppercase tracking-widest">
             Light Themes
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {
                 lightThemes.map(([themeName, colors]: [string, any]) => (
                     <div class="flex flex-col gap-3">
-                        <h3 class="text-sm font-mono font-bold text-gray-500 uppercase tracking-tighter">
+                        <h3 class="mono font-bold uppercase tracking-tighter" style="opacity: 0.6;">
                             {themeName.replace("light_", "")}
                         </h3>
                         <div class="rounded-lg overflow-hidden">
@@ -419,14 +419,14 @@ const sampleHtmlDark = `
     </div>
 
     <div class="mb-16">
-        <h2 class="text-xl font-bold mb-8 uppercase tracking-widest pl-4">
+        <h2 class="title-lg mb-8 uppercase tracking-widest">
             Dark Themes
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {
                 darkThemes.map(([themeName, colors]: [string, any]) => (
                     <div class="flex flex-col gap-3">
-                        <h3 class="text-sm font-mono font-bold text-gray-400 uppercase tracking-tighter">
+                        <h3 class="mono font-bold uppercase tracking-tighter" style="opacity: 0.6;">
                             {themeName.replace("dark_", "")}
                         </h3>
                         <div class="rounded-lg overflow-hidden">

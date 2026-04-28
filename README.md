@@ -90,13 +90,13 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
 ### Bugs
  - [x] Sometimes when you first load page, light/dark toggle doesnt work. You have to refresh or change page for doing it
  - [x] Pagination is broken. It doesnt show pagination for blog now. (Closed, it wasnt a bug)
- - [ ] when you are on tags/[tag], then when you try to click to listing it redirects you to all/[id] and retries a 404 error
+ - [x] when you are on tags/[tag], then when you try to click to listing it redirects you to all/[id] and retries a 404 error
 ### TO DO
  - [x] CRITICAL: Finish code simplification, full integrate `types/display.ts`. Probably we should keep (and improve) `ListingItem` and aditionally create `DetailItem`.
  - [x] Add `addDevToolsInProduction` to `SettingsConfig`
  - [x] Add new file `config/social.ts`
- - [ ] Add `assets/fonts.ts`?
- - [ ] Rethink what to do with `assets/icons.ts`
+ - [x] Add `assets/fonts.ts`?
+ - [x] Rethink what to do with `assets/icons.ts`
  - [x] Delete unused features (Lighthouse, scripts, ...)
  - [x] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
  - [x] Naming convention: I would like to change boolean variables (e.g. 'active' -> 'isActive')
@@ -132,16 +132,16 @@ export interface Bio {
 }
 ```
  - [x] Add code examples and images in posts
- - [ ] Remove G4A or consider doing it. It is mandatory to add cookies policy in case we are tracking with G4A. Talk about why is great Umami analytics (low control).
- - [ ] Set things for loading lazyly analytics and keeping performance good
+ - [x] Remove G4A or consider doing it. It is mandatory to add cookies policy in case we are tracking with G4A. Talk about why is great Umami analytics (low control).
+ - [x] Set things for loading lazyly analytics and keeping performance good
  - [x] Add an extra theme visualizer, it should be simpler. Instead of loading the full page maybe would be better loading some easier html
  - [x] Add `images/` folder, `robots.txt`.
- - [ ] Add share buttons to posts?
+ - [x] Add share buttons to posts?
  - [x] Change content to Shannon
  
 ### Aesthetics
- - [ ] Define a new style make content more readable and compact
- - [ ] Implement definitive themes
+ - [x] Define a new style make content more readable and compact
+ - [x] Implement definitive themes
 ### Features
  - [x] Analytics implementation
  - [x] Add bibtex support? There are 2 options, add bibtex as a feature of every specific article or having a master bibtex doc and mention it for having metadata
@@ -165,6 +165,7 @@ export interface Bio {
 - [x] **Add a `robots.txt` file:** Create a static `public/robots.txt` or dynamically generate one to guide web crawlers and provide the sitemap URL.
 - [x] **Implement Structured Data (JSON-LD):** Add Schema.org metadata (e.g., `Person` for the portfolio owner, `ScholarlyArticle` for publications, `BlogPosting` for posts) to improve indexing in Google and Google Scholar.
 - [x] **Add explicit indexing meta tags:** Include `<meta name="robots" content="index, follow">` in the base layout, allowing specific pages (like dev tools) to opt-out via props.
+- [x] **SEO Consultancy:** Performed a comprehensive SEO audit of the codebase to identify opportunities for academic discoverability (Google Scholar integration, semantic tags, internal linking).
 
 ## Agentic AI Warning
 This project was mainly vibe coded by strong human supervision. Take it in count in case you dont like LLMs.

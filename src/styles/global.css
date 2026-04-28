@@ -364,7 +364,7 @@ a:hover, .link:hover {
     height: 100vh;
     position: sticky;
     top: 0;
-    padding: 1.5rem;
+    padding: 4rem 1.5rem 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -374,8 +374,8 @@ a:hover, .link:hover {
 }
 
 .sidebar-avatar {
-    width: 112px;
-    height: 112px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--border);
@@ -416,7 +416,7 @@ a:hover, .link:hover {
 .navbar {
     padding: 1rem 1.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     background: var(--background);
     transition: background 0.3s ease;
@@ -833,8 +833,8 @@ a:hover, .link:hover {
     }
 
     .sidebar-avatar {
-        width: 72px;
-        height: 72px;
+        width: 112px;
+        height: 112px;
     }
 
     .main-body {
@@ -854,8 +854,8 @@ a:hover, .link:hover {
     }
 
     .sidebar-avatar {
-        width: 48px;
-        height: 48px;
+        width: 80px;
+        height: 80px;
     }
 
     .sidebar-name {

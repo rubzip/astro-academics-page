@@ -25,6 +25,9 @@ const bio = bioCollection[0]?.data;
                     {bio.institution}
                 </p>
             )}
+            {bio?.shortBio && (
+                <p class="sidebar-bio mt-2 max-md:hidden">{bio.shortBio}</p>
+            )}
             <div class="flex gap-1 flex-wrap items-center justify-center max-lg:justify-start mt-3">
                 {activeSocials.map((social) => (
                     <a
@@ -41,8 +44,4 @@ const bio = bioCollection[0]?.data;
             </div>
         </div>
     </div>
-
-    {bio?.shortBio && (
-        <p class="sidebar-bio max-lg:w-full max-lg:order-3 max-md:hidden">{bio.shortBio}</p>
-    )}
 </aside>

@@ -17,12 +17,11 @@ interface Props {
 
 const { title, description } = Astro.props;
 
-const themeLight =
-    THEMES[`light_${THEME_CONFIG.themeLight}` as keyof typeof THEMES] ||
-    THEMES.light_default;
-const themeDark =
-    THEMES[`dark_${THEME_CONFIG.themeDark}` as keyof typeof THEMES] ||
-    THEMES.dark_default;
+const themeLightKey = (THEME_CONFIG.themeLight.startsWith('light_') ? THEME_CONFIG.themeLight : `light_${THEME_CONFIG.themeLight}`) as keyof typeof THEMES;
+const themeDarkKey = (THEME_CONFIG.themeDark.startsWith('dark_') ? THEME_CONFIG.themeDark : `dark_${THEME_CONFIG.themeDark}`) as keyof typeof THEMES;
+
+const themeLight = THEMES[themeLightKey] || THEMES.light_default;
+const themeDark = THEMES[themeDarkKey] || THEMES.dark_default;
 ---
 
 <!doctype html>
@@ -76,9 +75,10 @@ const themeDark =
 
         <ClientRouter />
 
-        <script is:inline>
+        <script is:inline define:vars={{ allowDark: THEME_CONFIG.lightAndDark }}>
             function setTheme() {
                 const theme = (() => {
+                    if (!allowDark) return "light";
                     if (
                         typeof localStorage !== "undefined" &&
                         localStorage.getItem("theme")
@@ -95,7 +95,9 @@ const themeDark =
                 })();
 
                 document.documentElement.setAttribute("data-theme", theme);
-                localStorage.setItem("theme", theme);
+                if (allowDark) {
+                    localStorage.setItem("theme", theme);
+                }
             }
 
             setTheme();
