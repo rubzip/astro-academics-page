@@ -1,10 +1,10 @@
 ---
 import { getEntry, render } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
-import Timeline from "../../components/Timeline.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Timeline from "../../components/ui/Timeline.astro";
 import { PAGES } from "../../config";
 
-if (PAGES.cv.active === false) {
+if (PAGES.cv.isActive === false) {
     return Astro.redirect("/404");
 }
 
@@ -19,7 +19,7 @@ const { Content } = await render(cvEntry);
 const { name, title, experience = [], education = [] } = cvEntry.data;
 ---
 
-<Layout title={PAGES.cv.title}>
+<BaseLayout title={PAGES.cv.title}>
     <header class="page-header">
         <h1 class="page-title">{PAGES.cv.title}</h1>
         <p class="page-subtitle">{PAGES.cv.subtitle}</p>
@@ -63,5 +63,5 @@ const { name, title, experience = [], education = [] } = cvEntry.data;
             <Content />
         </div>
     </div>
-</Layout>
+</BaseLayout>
 

@@ -1,6 +1,5 @@
 ---
-import { SITE } from "../config";
-import { LIGHT_THEMES, DARK_THEMES } from "../themes";
+import { SITE, THEME_CONFIG, THEMES } from "../config";
 import { ClientRouter } from "astro:transitions";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
@@ -18,12 +17,11 @@ interface Props {
 
 const { title, description } = Astro.props;
 
-const themeLight =
-    LIGHT_THEMES[SITE.themeLight as keyof typeof LIGHT_THEMES] ||
-    LIGHT_THEMES.default;
-const themeDark =
-    DARK_THEMES[SITE.themeDark as keyof typeof DARK_THEMES] ||
-    DARK_THEMES.default;
+const themeLightKey = (THEME_CONFIG.themeLight.startsWith('light_') ? THEME_CONFIG.themeLight : `light_${THEME_CONFIG.themeLight}`) as keyof typeof THEMES;
+const themeDarkKey = (THEME_CONFIG.themeDark.startsWith('dark_') ? THEME_CONFIG.themeDark : `dark_${THEME_CONFIG.themeDark}`) as keyof typeof THEMES;
+
+const themeLight = THEMES[themeLightKey] || THEMES.light_default;
+const themeDark = THEMES[themeDarkKey] || THEMES.dark_default;
 ---
 
 <!doctype html>
@@ -77,9 +75,10 @@ const themeDark =
 
         <ClientRouter />
 
-        <script is:inline>
+        <script is:inline define:vars={{ allowDark: THEME_CONFIG.lightAndDark }}>
             function setTheme() {
                 const theme = (() => {
+                    if (!allowDark) return "light";
                     if (
                         typeof localStorage !== "undefined" &&
                         localStorage.getItem("theme")
@@ -96,7 +95,9 @@ const themeDark =
                 })();
 
                 document.documentElement.setAttribute("data-theme", theme);
-                localStorage.setItem("theme", theme);
+                if (allowDark) {
+                    localStorage.setItem("theme", theme);
+                }
             }
 
             setTheme();

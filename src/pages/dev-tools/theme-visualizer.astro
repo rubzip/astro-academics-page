@@ -1,30 +1,31 @@
 ---
-import { LIGHT_THEMES, DARK_THEMES } from "../../themes";
+import { THEMES, SETTINGS } from "../../config";
 import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
 
-if (import.meta.env.PROD) {
-    return new Response(null, {
-        status: 404,
-        statusText: "Not found",
-    });
+const redirect: boolean = import.meta.env.PROD && !SETTINGS.addDevToolsInProduction;
+if (redirect) {
+    return Astro.redirect("/404");
 }
+
+const lightThemes = Object.entries(THEMES).filter(([_, t]) => !t.isDark);
+const darkThemes = Object.entries(THEMES).filter(([_, t]) => t.isDark);
 ---
 
 <DevToolsLayout title="Theme Visualizer" description="Live iframe previews of index.astro for all defined themes.">
 
             <div class="mb-16">
                 <h2
-                    class="text-xl font-bold mb-8 uppercase tracking-widest border-l-4 border-accent pl-4"
+                    class="title-lg mb-8 uppercase tracking-widest"
                 >
                     Light Themes
                 </h2>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {
-                        Object.entries(LIGHT_THEMES).map(
-                            ([themeName, colors]) => (
+                        lightThemes.map(
+                            ([themeName, colors]: [string, any]) => (
                                 <div class="flex flex-col gap-2">
-                                    <h3 class="text-sm font-mono font-bold text-gray-500 uppercase tracking-tighter">
-                                        {themeName}
+                                    <h3 class="mono font-bold uppercase tracking-tighter" style="opacity: 0.6;">
+                                        {themeName.replace('light_', '')}
                                     </h3>
                                     <div class="iframe-container">
                                         <iframe
@@ -52,19 +53,19 @@ if (import.meta.env.PROD) {
 
             <div class="mb-16 mt-24">
                 <h2
-                    class="text-xl font-bold mb-8 uppercase tracking-widest border-l-4 border-accent pl-4"
+                    class="title-lg mb-8 uppercase tracking-widest"
                 >
                     Dark Themes
                 </h2>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {
-                        Object.entries(DARK_THEMES).map(
-                            ([themeName, colors]) => (
+                        darkThemes.map(
+                            ([themeName, colors]: [string, any]) => (
                                 <div class="flex flex-col gap-2">
-                                    <h3 class="text-lg font-bold text-slate-300 capitalize">
-                                        {themeName}
+                                    <h3 class="mono font-bold uppercase tracking-tighter" style="opacity: 0.6;">
+                                        {themeName.replace('dark_', '')}
                                     </h3>
-                                    <div class="iframe-container border-gray-100">
+                                    <div class="iframe-container">
                                         <iframe
                                             src={`/?force_mode=dark`}
                                             title={`${themeName} Dark Preview`}

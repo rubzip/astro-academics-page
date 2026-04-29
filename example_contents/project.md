@@ -6,7 +6,6 @@ tags:
   - "Astro"
   - "Tailwind"
 external_url: "https://github.com/username/project (Optional)"
-featured: true
 ---
 
 # Project Overview

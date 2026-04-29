@@ -3,23 +3,23 @@ import { getCollection } from "astro:content";
 import { SITE, PAGES } from "../config";
 
 export async function GET(context: any) {
-    const posts = PAGES.blog.active !== false ? await getCollection("posts") : [];
-    const publications = PAGES.publications.active !== false ? await getCollection("publications") : [];
+    const posts = PAGES.blog.isActive !== false ? await getCollection("posts") : [];
+    const publications = PAGES.publications.isActive !== false ? await getCollection("publications") : [];
 
     const items = [
         ...posts.map((post: any) => ({
             title: post.data.title,
-            pubDate: post.data.pubDate,
+            pubDate: post.data.date,
             description: post.data.description,
-            link: `/blog/${post.id}/`,
+            link: `/posts/${post.id}/`,
         })),
         ...publications.map((pub: any) => ({
             title: `[Publication] ${pub.data.title}`,
-            pubDate: pub.data.publicationDate,
-            description: pub.data.description || `Published in ${pub.data.journal || pub.data.conference || 'Journal'}`,
+            pubDate: pub.data.date,
+            description: pub.data.description || `Published in ${pub.data.journal || 'Journal'}`,
             link: `/publications/${pub.id}/`,
         })),
-    ].sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+    ].sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
     return rss({
         title: SITE.title,

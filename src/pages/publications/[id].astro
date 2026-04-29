@@ -3,12 +3,12 @@ import { getCollection } from "astro:content";
 import BaseDetail from "../../layouts/BaseDetail.astro";
 import { PAGES } from "../../config";
 
-if (PAGES.publications.active === false) {
+if (PAGES.publications.isActive === false) {
     return Astro.redirect("/404");
 }
 
 export async function getStaticPaths() {
-    if (PAGES.publications.active === false) return [];
+    if (PAGES.publications.isActive === false) return [];
     const publications = await getCollection("publications");
     return publications.map((pub: any) => ({
         params: { id: pub.id },

@@ -1,11 +1,10 @@
 ---
+import { SETTINGS } from "../../config";
 import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
 
-if (import.meta.env.PROD) {
-    return new Response(null, {
-        status: 404,
-        statusText: "Not found",
-    });
+const redirect: boolean = import.meta.env.PROD && !SETTINGS.addDevToolsInProduction;
+if (redirect) {
+    return Astro.redirect("/404");
 }
 
 const visualizers = [
@@ -24,31 +23,33 @@ const visualizers = [
         path: "/dev-tools/theme-visualizer",
         desc: "Live comparison of the active light and dark theme configurations.",
     },
+    {
+        name: "Simple Theme Visualizer",
+        path: "/dev-tools/simple-theme-visualizer",
+        desc: "Simplified preview of theme colors with sample UI elements.",
+    },
 ];
 ---
 
 <DevToolsLayout title="Index" description="Internal utilities for UI/UX verification and theme debugging.">
 
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="item-list">
                 {
                     visualizers.map((tool) => (
-                        <a
-                            href={tool.path}
-                            class="block p-6 bg-surface rounded-2xl shadow-sm border border-border hover:border-accent hover:shadow-xl transition-all duration-300 group"
-                        >
-                            <h2 class="text-xl font-bold transition-colors mb-2">
+                        <div class="card">
+                            <a href={tool.path} class="card-title">
                                 {tool.name}
-                            </h2>
-                            <p class="text-sm opacity-80 leading-relaxed">
+                            </a>
+                            <p class="card-desc">
                                 {tool.desc}
                             </p>
-                        </a>
+                        </div>
                     ))
                 }
             </div>
 
             <footer
-                class="mt-20 pt-8 border-t border-border text-text-muted text-sm"
+                class="mt-20 pt-8 text-text-muted text-sm"
             >
                 <p>
                     Note: These tools are only accessible in development mode.
