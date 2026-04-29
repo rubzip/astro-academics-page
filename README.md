@@ -13,6 +13,9 @@ Strongly inspired by [Academic Pages](https://github.com/academicpages/academicp
  - [ ] Better readme
  - [ ] MIT LICENSE INCLUDE
  - [ ] Better navigation on long pages (go up button / progress bar)
+ - [ ] Use always `<Image />` Astro component. Squared Aspect ratio for AVATAR!!!!!
+ - [ ] Contraste: El texto sobre los fondos (especialmente en clases como .body-xs) no es lo suficientemente oscuro/claro. Revisa tus variables de color --lightFg y --lightBg para que cumplan con el ratio 4.5:1. CHECK FOOTER
+ - [ ] Punto de referencia principal (Landmark): Tu HTML necesita una etiqueta <main>. El lector de pantalla no sabe dónde empieza el contenido real. Solución: Envuelve tu contenido principal así: <main class="main-content"> ... </main>.
 ---
 
 ## ✨ Features
