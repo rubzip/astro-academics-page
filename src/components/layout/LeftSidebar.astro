@@ -11,10 +11,15 @@ const bio = bioCollection[0]?.data;
 <aside class="sidebar max-lg:flex-row max-lg:flex-wrap max-lg:gap-3 max-md:gap-2">
     <div class="flex flex-col items-center text-center max-lg:flex-row max-lg:text-left max-lg:gap-3 max-lg:items-center max-md:gap-2">
         {bio?.avatar && (
-            <img
+            <Image
                 src={`/${bio.avatar}`}
-                alt={bio.name}
+                alt={`Avatar of ${bio.name}`}
+                width={160} # Maximum widht in global.css for sidebar-avatar class
+                height={160}
+                densities={[1.5, 2]} 
+                format="webp"
                 class="sidebar-avatar"
+                loading="eager"
             />
         )}
         <div class="flex flex-col items-center max-lg:items-start">
