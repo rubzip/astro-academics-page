@@ -359,8 +359,8 @@ a:hover,
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     border: 1px solid var(--border);
     background: var(--surface);
@@ -376,8 +376,8 @@ a:hover,
 }
 
 .icon-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
     stroke-width: 1.5px;
 }
 
@@ -397,8 +397,8 @@ a:hover,
 }
 
 .social-link svg {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     stroke-width: 1.5px;
     transition: transform 0.2s ease;
 }
