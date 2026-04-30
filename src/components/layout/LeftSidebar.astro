@@ -2,6 +2,7 @@
 import { SITE, SOCIALS, SOCIAL_ICONS } from "../../config";
 import { getCollection } from "astro:content";
 import Icon from "../ui/Icon.astro";
+import { Image } from 'astro:assets';
 
 const activeSocials = SOCIALS.filter((s) => s.isActive);
 const bioCollection = await getCollection("bio");
@@ -14,7 +15,7 @@ const bio = bioCollection[0]?.data;
             <Image
                 src={`/${bio.avatar}`}
                 alt={`Avatar of ${bio.name}`}
-                width={160} /* Maximum widht in global.css for sidebar-avatar class */
+                width={160} /* Maximum width in global.css for sidebar-avatar class */
                 height={160}
                 densities={[1.5, 2]} 
                 format="webp"
@@ -26,7 +27,7 @@ const bio = bioCollection[0]?.data;
             {bio?.name && <h1 class="sidebar-name">{bio.name}</h1>}
             {bio?.institution && (
                 <p class="sidebar-info">
-                    <Icon name="Institution" size={16} />
+                    <Icon name="Institution" size={24} />
                     {bio.institution}
                 </p>
             )}
@@ -43,7 +44,7 @@ const bio = bioCollection[0]?.data;
                         rel="noreferrer"
                         class="social-link"
                     >
-                        <Icon name={social.name} size={20} />
+                        <Icon name={SOCIAL_ICONS[social.name] || social.name} size={24} />
                     </a>
                 ))}
             </div>
