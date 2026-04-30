@@ -5,7 +5,7 @@
 [![Tailwind](https://img.shields.io/badge/TAILWIND-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Markdown](https://img.shields.io/badge/MARKDOWN-000000?style=for-the-badge&logo=markdown&logoColor=white)](#)
 [![GitHub](https://img.shields.io/badge/PAGES-181717?style=for-the-badge&logo=github&logoColor=white)](#)
-[![License](https://img.shields.io/badge/MIT-44CC11?style=for-the-badge)](#)
+[![License](https://img.shields.io/badge/MIT-44CC11?style=for-the-badge)](https://opensource.org/license/mit)
 
 A fast, minimalist, and highly customizable Astro template designed specifically for researchers, professors, PhD students, and academics. 
 
