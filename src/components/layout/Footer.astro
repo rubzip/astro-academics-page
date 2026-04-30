@@ -27,9 +27,8 @@ const showDevTools = import.meta.env.DEV || SETTINGS.addDevToolsInProduction;
             target="_blank"
             rel="noreferrer"
             class="btn-icon"
-            style="width: 28px; height: 28px;"
         >
-            <Icon name="RSS" size={14} />
+            <Icon name="RSS" size={16} />
         </a>
         {
             showToggle && (
@@ -37,10 +36,9 @@ const showDevTools = import.meta.env.DEV || SETTINGS.addDevToolsInProduction;
                     id="theme-toggle"
                     aria-label="Toggle Dark Mode"
                     class="btn-icon"
-                    style="width: 28px; height: 28px;"
                 >
-                    <Icon name="Sun" size={14} class="hidden dark:block" />
-                    <Icon name="Moon" size={14} class="block dark:hidden" />
+                    <Icon name="Sun" size={16} class="hidden dark:block" />
+                    <Icon name="Moon" size={16} class="block dark:hidden" />
                 </button>
             )
         }
@@ -51,9 +49,8 @@ const showDevTools = import.meta.env.DEV || SETTINGS.addDevToolsInProduction;
                     aria-label="Developer Tools"
                     title="Developer Tools"
                     class="btn-icon"
-                    style="width: 28px; height: 28px;"
                 >
-                    <Icon name="Settings" size={14} />
+                    <Icon name="Settings" size={16} />
                 </a>
             )
         }

@@ -1,18 +1,29 @@
 # 🎓 Academic Portfolio Astro
 
-[![Built with Astro](https://img.shields.io/badge/Built_with-Astro-ff5d01?logo=astro&logoColor=white&style=flat-square)](https://astro.build/)
-[![Styled with Tailwind](https://img.shields.io/badge/Styled_with-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white&style=flat-square)](https://tailwindcss.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![Astro](https://img.shields.io/badge/ASTRO-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build/)
+[![Tailwind](https://img.shields.io/badge/TAILWIND-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Markdown](https://img.shields.io/badge/MARKDOWN-000000?style=for-the-badge&logo=markdown&logoColor=white)](#)
+[![GitHub](https://img.shields.io/badge/PAGES-181717?style=for-the-badge&logo=github&logoColor=white)](#)
+[![License](https://img.shields.io/badge/MIT-44CC11?style=for-the-badge)](https://opensource.org/license/mit)
 
 A fast, minimalist, and highly customizable Astro template designed specifically for researchers, professors, PhD students, and academics. 
 
 Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, SEO discoverability, and ease of configuration without touching the UI code.
 
 > 🌟 **[View the Live Demo](https://shannon.github.io/academic-portfolio-astro/)**
- - [ ] Sticky navbar (at least on large screens)
+ - [x] Sticky navbar (at least on large screens)
  - [ ] Better readme
- - [ ] MIT LICENSE INCLUDE
+ - [x] MIT LICENSE INCLUDE
  - [ ] Better navigation on long pages (go up button / progress bar)
+ - [x] Use always `<Image />` Astro component. Squared Aspect ratio for AVATAR!!!!!
+ - [x] Contraste: El texto sobre los fondos (especialmente en clases como .body-xs) no es lo suficientemente oscuro/claro. Revisa tus variables de color --lightFg y --lightBg para que cumplan con el ratio 4.5:1. CHECK FOOTER
+ - [ ] Punto de referencia principal (Landmark): Tu HTML necesita una etiqueta <main>. El lector de pantalla no sabe dónde empieza el contenido real. Solución: Envuelve tu contenido principal así: <main class="main-content"> ... </main>.
+ - [ ] robots.txt no es válido 1 error encontrado Si el formato del archivo robots.txt no es correcto, es posible que los rastreadores no puedan interpretar cómo quieres que se rastree o indexe tu sitio web. Más información sobre robots.txt Line # Content Error 4 Sitemap: /sitemap-index.xml Invalid sitemap URL
+ - [ ] /sitemap-index.xml generated is empty
+ - [x] Update CV UI
+ - [ ] Add Search Feature
+ - [x] Change `src/assets/icons`
 ---
 
 ## ✨ Features

@@ -145,7 +145,7 @@ All styles are defined in `@src/styles/global.css`. No inline `<style>` allowed 
 ### Icons
 - Outline style (Lucide/Tabler style).
 - stroke-width: 1.5px.
-- Sizes: 24px (standard), 20px (social), 18px (nav), 16px (meta).
+- Sizes: 24px (standard).
 
 ---
 

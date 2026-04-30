@@ -37,7 +37,7 @@ export const SOCIAL_ICONS: Record<string, string> = {
     Github: "Github",
     Mail: "Mail",
     Linkedin: "LinkedIn",
-    "Google Scholar": "Google Scholar",
+    "Google Scholar": "GoogleScholar",
     ORCID: "ORCID",
     RSS: "RSS",
 };
